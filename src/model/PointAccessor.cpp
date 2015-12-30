@@ -1,13 +1,4 @@
-/*
- * PointReference.cpp
- *
- *  Created on: Dec 15, 2015
- *      Author: d065325
- */
-
 #include "PointAccessor.h"
-#include <string>
-#include <cstddef>
 
 size_t PointAccessor::dimension() const {
 	return this->dimension_;

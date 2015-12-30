@@ -1,17 +1,10 @@
-/*
- * PointContainer.h
- *
- *  Created on: Dec 14, 2015
- *      Author: d065325
- */
-
 #ifndef POINTCONTAINER_H_
 #define POINTCONTAINER_H_
 
 #include "../util/Representable.h"
-#include "PointAccessor.h"
 #include <vector>
 #include <cstddef>
+#include "PointVectorAccessor.h"
 
 class PointContainer: public Representable {
 protected:
@@ -21,16 +14,16 @@ protected:
 
 public:
 	PointContainer() :
-			dimension_(1) {
+			dimension_(DEFAULT_DIMENSION) {
 	}
 	PointContainer(const std::size_t dimension) :
 			dimension_(dimension) {
 	}
 
-	PointAccessor operator[](std::size_t idx) {
+	PointVectorAccessor operator[](std::size_t idx) {
 		const std::size_t pIndex = dimension_ * idx;
 
-		return PointAccessor(coordinates_, pIndex, dimension_);
+		return PointVectorAccessor(coordinates_, pIndex, dimension_);
 	}
 
 	void add(const double* p, std::size_t size);
@@ -42,4 +35,4 @@ public:
 	void to_stream(std::ostream& os) override;
 };
 
-#endif /* POINTCONTAINER_H_ */
+#endif
