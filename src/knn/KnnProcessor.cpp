@@ -14,8 +14,8 @@ KnnProcessor::KnnProcessor() {
 KnnProcessor::~KnnProcessor() {
 }
 
-const PointAccessor KnnProcessor::nearestNeighbor(const PointAccessor& query) {
-	PointContainer pc = kNearestNeighbors(1, query);
-	assert(pc.size() == 1);
-	return pc[0];
+std::priority_queue<double> KnnProcessor::nearestNeighbor(const PointAccessor& query) {
+	auto nNQueue = kNearestNeighbors(1, query);
+	assert(nNQueue.size() == 1);
+	return nNQueue;
 }
