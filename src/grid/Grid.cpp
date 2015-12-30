@@ -1,10 +1,3 @@
-/*
- * Grid.cpp
- *
- *  Created on: Dec 16, 2015
- *      Author: d065325
- */
-
 #include "Grid.h"
 #include <vector>
 #include <cassert>
@@ -16,12 +9,15 @@
 Grid::~Grid() {
 }
 
-void Grid::initPointContainers() {
+void Grid::initPointContainers(std::size_t containerIndex) {
+	if (grid_[containerIndex].empty()) {
+		grid_[containerIndex] = PointContainer(dimension_);
+	}
+}
+
+void Grid::allocPointContainers() {
 	std::size_t numberOfCells = productOfCellsUpToDimension(dimension_);
 	grid_.resize(numberOfCells);
-	for (std::size_t i = 0; i < numberOfCells; i++) {
-		grid_[i] = PointContainer(dimension_);
-	}
 }
 
 void Grid::insert(double * coordinates, std::size_t size) {
@@ -63,7 +59,7 @@ std::size_t Grid::cellNumber(double * point) {
 void Grid::insert(double * point) {
 	if (!mbr_.isWithin(point)) {
 		throw std::runtime_error(
-				"Point is not within MBR bounds: " + to_string());
+				"Point is not within MBR bounds.");
 	} else {
 		int cellNr = cellNumber(point);
 		grid_[cellNr].addPoint(point);
@@ -91,7 +87,7 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	}
 
 	double cellWidth = std::pow(
-			volume / (Grid::CELL_FILL_OPTIMUM * numberOfPoints_),
+			volume / (numberOfPoints_ / Grid::CELL_FILL_OPTIMUM),
 			1.0 / dimension_);
 
 	for (std::size_t i = 0; i < dimension_; i++) {
@@ -101,29 +97,29 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	return cellsPerDim;
 }
 
-std::string Grid::to_string() {
-	std::string gridStr = "Grid[\n";
+void Grid::to_stream(std::ostream& os) {
+	os << "Grid[\n";
 	int bucketCounter = 0;
-	gridStr += "dimension: " + std::to_string(dimension_) + "\n";
-	gridStr += "cells in dimension: [\n";
+	os << "dimension: " << dimension_ << +'\n';
+	os << "cells in dimension: [\n";
 
 	for (std::size_t i = 0; i < dimension_; i++) {
-		gridStr += "dim " + std::to_string(i) + ": ";
-		gridStr += std::to_string(cellsPerDimension_[i]) + "\n";
+		os << "dim " << i << ": " << cellsPerDimension_[i] << '\n';
 	}
 
-	gridStr += "]\n";
-	gridStr += "number of buckets: " + std::to_string(grid_.size()) + "\n";
-	gridStr += mbr_.to_string() + "\n";
+	os << "]\n";
+	os << "number of buckets: " << grid_.size() << '\n';
+	os << "points / bucket: " << (numberOfPoints_ / grid_.size()) << '\n';
+	mbr_.to_stream(os);
 
 	for (PointContainer bucket : grid_) {
 		if (!bucket.empty()) {
-			gridStr += "bucket " + std::to_string(bucketCounter) + "[\n";
-			gridStr += bucket.to_string();
-			gridStr += "\n]\n";
+			os << "bucket " << bucketCounter << "[\n";
+			bucket.to_stream(os);
+			os << "\n]\n";
 		}
 		bucketCounter++;
 	}
 
-	return gridStr + "\n]";
+	os << "\n]";
 }

@@ -8,7 +8,7 @@
 #ifndef POINTACCESSOR_H_
 #define POINTACCESSOR_H_
 
-#include "Representable.h"
+#include "../util/Representable.h"
 #include <cstddef>
 #include <vector>
 
@@ -30,7 +30,7 @@ public:
 	}
 
 	size_t dimension() const;
-	virtual std::string to_string();
+	void to_stream(std::ostream& os) override;
 };
 
 #endif /* POINTACCESSOR_H_ */

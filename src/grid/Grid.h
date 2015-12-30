@@ -8,13 +8,14 @@
 #ifndef GRID_H_
 #define GRID_H_
 #include "MBR.h"
+#include "../util/Representable.h"
 #include <cstddef>
 #include <vector>
 
 class Grid: public Representable {
 private:
 	/** we assume this the optimal number points per cell */
-	static const unsigned CELL_FILL_OPTIMUM = 1;
+	static const unsigned CELL_FILL_OPTIMUM = 32;
 	/** dimension of the grid space */
 	const std::size_t dimension_;
 	/** minimum bounding hyperrectangle around the inserted point cloud */
@@ -40,8 +41,10 @@ private:
 	std::size_t productOfCellsUpToDimension(std::size_t dimension);
 	/** Calculates the grid index (cell number) for a point. */
 	std::size_t cellNumber(double * point);
-	/** Initializes grid_ vector with sufficient PointContainers of proper dimension. */
-	void initPointContainers();
+	/** Assigns empty PointsContainer to grid_[containerIndex]. */
+	void initPointContainers(std::size_t containerIndex);
+	/** Allocates memory for grid_ vector. */
+	void allocPointContainers();
 
 public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size) :
@@ -49,7 +52,7 @@ public:
 					MBR::buildMBR(coordinates, size, dimension)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
 					calculateCellsPerDimension()) {
-		initPointContainers();
+		allocPointContainers();
 		insert(coordinates, size);
 	}
 	virtual ~Grid();
@@ -60,7 +63,7 @@ public:
 	const PointContainer kNearestNeighbors(unsigned k,
 			const PointAccessor& query);
 	/** Returns string representation of grid object. */
-	virtual std::string to_string();
+	void to_stream(std::ostream& os) override;
 };
 
 #endif /* GRID_H_ */

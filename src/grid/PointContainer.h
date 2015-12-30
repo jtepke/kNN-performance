@@ -8,7 +8,7 @@
 #ifndef POINTCONTAINER_H_
 #define POINTCONTAINER_H_
 
-#include "Representable.h"
+#include "../util/Representable.h"
 #include "PointAccessor.h"
 #include <vector>
 #include <cstddef>
@@ -20,9 +20,10 @@ protected:
 	std::vector<double> coordinates_;
 
 public:
-	PointContainer(): dimension_(1) {
+	PointContainer() :
+			dimension_(1) {
 	}
-	PointContainer(const size_t dimension) :
+	PointContainer(const std::size_t dimension) :
 			dimension_(dimension) {
 	}
 
@@ -36,9 +37,9 @@ public:
 	void addPoint(const double* p);
 	void addPointAtIndex(std::vector<double> point, std::size_t indexPosition);
 	std::size_t size() const;
-	bool empty();
+	virtual bool empty();
 	PointContainer clonePoint(std::size_t pointIndex) const;
-	virtual std::string to_string();
+	void to_stream(std::ostream& os) override;
 };
 
 #endif /* POINTCONTAINER_H_ */

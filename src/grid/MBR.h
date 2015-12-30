@@ -9,7 +9,7 @@
 #define MBR_H_
 
 #include "PointContainer.h"
-#include "Representable.h"
+#include "../util/Representable.h"
 #include <cstddef>
 
 class MBR: public PointContainer {
@@ -35,7 +35,8 @@ public:
 	void addLower(const std::vector<double>& point);
 	void addUpper(std::vector<double>& point);
 	bool isWithin(double * point);
-	std::string to_string() override;
+	void to_stream(std::ostream& os) override;
+	bool empty() override;
 	static MBR buildMBR(double * pts, std::size_t size, std::size_t dimension);
 };
 

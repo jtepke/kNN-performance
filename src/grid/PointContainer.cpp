@@ -23,6 +23,7 @@ void PointContainer::addPoint(const double* p) {
 		coordinates_.push_back(p[i]);
 	}
 }
+
 void PointContainer::addPointAtIndex(std::vector<double> point,
 		std::size_t indexPosition) {
 	std::size_t indexOffset = dimension_ * indexPosition;
@@ -47,12 +48,12 @@ PointContainer PointContainer::clonePoint(std::size_t pointIndex) const {
 	return p;
 }
 
-std::string PointContainer::to_string() {
-	std::string str = "PointContainer [\n";
+void PointContainer::to_stream(std::ostream& os) {
+	os << "PointContainer [\n";
 
 	for (std::size_t i = 0; i < size(); i++) {
-		str += (*this)[i].to_string();
+		(*this)[i].to_stream(os);
 	}
 
-	return str + "]\n";
+	os << std::endl;
 }

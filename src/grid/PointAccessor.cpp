@@ -6,7 +6,6 @@
  */
 
 #include "PointAccessor.h"
-#include "PointContainer.h"
 #include <string>
 #include <cstddef>
 
@@ -14,15 +13,15 @@ size_t PointAccessor::dimension() const {
 	return this->dimension_;
 }
 
-std::string PointAccessor::to_string() {
-	std::string str = "Point (";
+void PointAccessor::to_stream(std::ostream& os) {
+	os << "Point (";
 
 	for (std::size_t i = 0; i < dimension_; i++) {
-		str += std::to_string((*this)[i]);
+		os << (*this)[i];
 		if (i != (dimension_ - 1)) {
-			str += ", ";
+			os << ", ";
 		}
 	}
 
-	return str + ")\n";
+	os << ")\n";
 }

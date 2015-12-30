@@ -10,16 +10,23 @@ PointAccessor MBR::getUpperPoint() {
 	return (*this)[UPPERD_INDEX];
 }
 
-std::string MBR::to_string() {
-	std::string str = "MBR [\n";
-	str += "lower: " + getLowerPoint().to_string();
-	str += "upper: " + getUpperPoint().to_string();
+void MBR::to_stream(std::ostream& os) {
+	os << "MBR [\n";
+	os << "lower: ";
+	getLowerPoint().to_stream(os);
+	os << "upper: ";
+	getUpperPoint().to_stream(os);
 
-	return str + "]\n";
+	os << "]" << std::endl;
 }
+
+bool MBR::empty() {
+	return coordinates_.size() < (2 * dimension_);
+}
+
 void MBR::resizeContainerToMBRSize() {
 	if (coordinates_.empty()) {
-		coordinates_.resize(dimension_);
+		coordinates_.resize(2 * dimension_);
 	}
 }
 
