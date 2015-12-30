@@ -1,7 +1,7 @@
 #ifndef MBR_H_
 #define MBR_H_
 
-#include "PointContainer.h"
+#include "../model/PointContainer.h"
 #include "../util/Representable.h"
 #include <cstddef>
 

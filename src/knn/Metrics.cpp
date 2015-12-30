@@ -18,7 +18,7 @@ Metrics::~Metrics() {
 	// TODO Auto-generated destructor stub
 }
 
-double Metrics::squared_euclidean(PointVectorAccessor& p, PointVectorAccessor& q) {
+double Metrics::squared_euclidean(PointAccessor& p, PointAccessor& q) {
 	double result = 0.0;
 	for (std::size_t dim = 0; dim < q.dimension(); dim++) {
 		result += std::pow(p[dim] - q[dim], 2);
@@ -27,6 +27,6 @@ double Metrics::squared_euclidean(PointVectorAccessor& p, PointVectorAccessor& q
 	return result;
 }
 
-double Metrics::euclidean(PointVectorAccessor& p, PointVectorAccessor& q) {
+double Metrics::euclidean(PointAccessor& p, PointAccessor& q) {
 	return std::sqrt(Metrics::squared_euclidean(p, q));
 }

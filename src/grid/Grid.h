@@ -7,7 +7,7 @@
 
 #ifndef GRID_H_
 #define GRID_H_
-#include "MBR.h"
+#include "GridMBR.h"
 #include "../util/Representable.h"
 #include <cstddef>
 #include <vector>

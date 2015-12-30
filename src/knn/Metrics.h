@@ -7,14 +7,14 @@
 
 #ifndef KNN_METRICS_H_
 #define KNN_METRICS_H_
-#include "../grid/PointAccessor.h"
+#include "../model/PointAccessor.h"
 
 class Metrics {
 public:
 	Metrics();
 	virtual ~Metrics();
-	static double squared_euclidean(PointVectorAccessor& p, PointVectorAccessor& q);
-	static double euclidean(PointVectorAccessor& p, PointVectorAccessor& q);
+	static double squared_euclidean(PointAccessor& p, PointAccessor& q);
+	static double euclidean(PointAccessor& p, PointAccessor& q);
 
 };
 

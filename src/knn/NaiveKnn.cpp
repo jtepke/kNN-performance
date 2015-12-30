@@ -5,7 +5,7 @@
 #include <vector>
 
 std::priority_queue<double> NaiveKnn::kNearestNeighbors(unsigned k,
-		const PointVectorAccessor& query) {
+		const PointAccessor& query) {
 	std::priority_queue<double, std::vector<double>, std::less<double> > candidates;
 	assert(dimension_ == query.dimension());
 

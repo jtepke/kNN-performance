@@ -7,8 +7,8 @@
 
 #ifndef KNN_NAIVEKNN_H_
 #define KNN_NAIVEKNN_H_
-#include "../grid/PointAccessor.h"
-#include "../grid/PointContainer.h"
+#include "../model/PointAccessor.h"
+#include "../model/PointContainer.h"
 #include "KnnProcessor.h"
 #include <cstddef>
 
@@ -29,7 +29,7 @@ public:
 	}
 
 	std::priority_queue<double> kNearestNeighbors(unsigned k,
-			const PointVectorAccessor& query) override;
+			const PointAccessor& query) override;
 
 };
 

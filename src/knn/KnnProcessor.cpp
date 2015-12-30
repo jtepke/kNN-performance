@@ -14,7 +14,7 @@ KnnProcessor::KnnProcessor() {
 KnnProcessor::~KnnProcessor() {
 }
 
-std::priority_queue<double> KnnProcessor::nearestNeighbor(const PointVectorAccessor& query) {
+std::priority_queue<double> KnnProcessor::nearestNeighbor(const PointAccessor& query) {
 	auto nNQueue = kNearestNeighbors(1, query);
 	assert(nNQueue.size() == 1);
 	return nNQueue;

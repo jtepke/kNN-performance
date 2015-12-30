@@ -4,9 +4,9 @@
 #include <cstddef>
 
 class PointAccessor: Representable {
+protected:
 	const std::size_t pIndexOffset_;
 	const std::size_t dimension_;
-
 public:
 	PointAccessor(std::size_t pointIndexOffset, std::size_t dimension) :
 			pIndexOffset_(pointIndexOffset), dimension_(dimension) {
