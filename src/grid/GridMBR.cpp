@@ -1,16 +1,16 @@
-#include "MBR.h"
+#include "GridMBR.h"
 
-const double MBR::EPSILON = 0.1;
+const double GridMBR::EPSILON = 0.1;
 
-PointAccessor MBR::getLowerPoint() {
+PointVectorAccessor GridMBR::getLowerPoint() {
 	return (*this)[LOWER_INDEX];
 }
 
-PointAccessor MBR::getUpperPoint() {
+PointVectorAccessor GridMBR::getUpperPoint() {
 	return (*this)[UPPERD_INDEX];
 }
 
-void MBR::to_stream(std::ostream& os) {
+void GridMBR::to_stream(std::ostream& os) {
 	os << "MBR [\n";
 	os << "lower: ";
 	getLowerPoint().to_stream(os);
@@ -20,33 +20,33 @@ void MBR::to_stream(std::ostream& os) {
 	os << "]" << std::endl;
 }
 
-bool MBR::empty() {
+bool GridMBR::empty() {
 	return coordinates_.size() < (2 * dimension_);
 }
 
-void MBR::resizeContainerToMBRSize() {
+void GridMBR::resizeContainerToMBRSize() {
 	if (coordinates_.empty()) {
 		coordinates_.resize(2 * dimension_);
 	}
 }
 
-void MBR::addEpsilon(std::vector<double>& upper) {
+void GridMBR::addEpsilon(std::vector<double>& upper) {
 	for (auto& p : upper) {
 		p = p + EPSILON;
 	}
 }
 
-void MBR::addLower(const std::vector<double>& point) {
+void GridMBR::addLower(const std::vector<double>& point) {
 	resizeContainerToMBRSize();
 	addPointAtIndex(point, LOWER_INDEX);
 }
 
-void MBR::addUpper(std::vector<double>& point) {
+void GridMBR::addUpper(std::vector<double>& point) {
 	resizeContainerToMBRSize();
 	addEpsilon(point);
 	addPointAtIndex(point, UPPERD_INDEX);
 }
-bool MBR::isWithin(double * point) {
+bool GridMBR::isWithin(double * point) {
 	bool isWithin = true;
 
 	for (std::size_t i = 0; i < dimension_; i++) {
@@ -56,7 +56,7 @@ bool MBR::isWithin(double * point) {
 
 	return isWithin;
 }
-MBR MBR::buildMBR(double * coordinates, std::size_t size,
+GridMBR GridMBR::buildMBR(double * coordinates, std::size_t size,
 		std::size_t dimension) {
 	std::vector<double> lower(dimension);
 	std::vector<double> upper(dimension);
@@ -75,7 +75,7 @@ MBR MBR::buildMBR(double * coordinates, std::size_t size,
 		}
 	}
 
-	MBR mbr = MBR(dimension);
+	GridMBR mbr = GridMBR(dimension);
 
 	mbr.addLower(lower);
 	mbr.addUpper(upper);

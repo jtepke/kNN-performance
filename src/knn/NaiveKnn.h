@@ -29,7 +29,7 @@ public:
 	}
 
 	std::priority_queue<double> kNearestNeighbors(unsigned k,
-			const PointAccessor& query) override;
+			const PointVectorAccessor& query) override;
 
 };
 

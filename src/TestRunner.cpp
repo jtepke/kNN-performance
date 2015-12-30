@@ -1,4 +1,4 @@
-#include "grid/MBR.h"
+#include "grid/GridMBR.h"
 #include "grid/Grid.h"
 #include <iostream>
 #include <string>
@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
 	double mbrCoords[] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0, 4.0, 4.0, 4.0,
 			4.0, 4.0 };
 
-	MBR m = MBR::buildMBR(mbrCoords, 12, 6);
+	GridMBR m = GridMBR::buildMBR(mbrCoords, 12, 6);
 
 	m.to_stream(std::cout);
 

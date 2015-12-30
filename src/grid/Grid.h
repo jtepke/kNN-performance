@@ -19,7 +19,7 @@ private:
 	/** dimension of the grid space */
 	const std::size_t dimension_;
 	/** minimum bounding hyperrectangle around the inserted point cloud */
-	MBR mbr_;
+	GridMBR mbr_;
 	/** number of points in the grid */
 	const std::size_t numberOfPoints_;
 	/** width of the grid in each dimension */
@@ -49,7 +49,7 @@ private:
 public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size) :
 			dimension_(dimension), mbr_(
-					MBR::buildMBR(coordinates, size, dimension)), numberOfPoints_(
+					GridMBR::buildMBR(coordinates, size, dimension)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
 					calculateCellsPerDimension()) {
 		allocPointContainers();
@@ -58,10 +58,10 @@ public:
 	virtual ~Grid();
 
 	/** Lookup the closest point for input query point. */
-	const PointAccessor nearestNeighbor(const PointAccessor& query);
+	const PointVectorAccessor nearestNeighbor(const PointVectorAccessor& query);
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
 	const PointContainer kNearestNeighbors(unsigned k,
-			const PointAccessor& query);
+			const PointVectorAccessor& query);
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };

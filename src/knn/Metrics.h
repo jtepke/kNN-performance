@@ -13,8 +13,8 @@ class Metrics {
 public:
 	Metrics();
 	virtual ~Metrics();
-	static double squared_euclidean(PointAccessor& p, PointAccessor& q);
-	static double euclidean(PointAccessor& p, PointAccessor& q);
+	static double squared_euclidean(PointVectorAccessor& p, PointVectorAccessor& q);
+	static double euclidean(PointVectorAccessor& p, PointVectorAccessor& q);
 
 };
 
