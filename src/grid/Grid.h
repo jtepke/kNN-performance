@@ -19,7 +19,7 @@ private:
 	/** dimension of the grid space */
 	const std::size_t dimension_;
 	/** minimum bounding hyperrectangle around the inserted point cloud */
-	GridMBR mbr_;
+	MBR mbr_;
 	/** number of points in the grid */
 	const std::size_t numberOfPoints_;
 	/** width of the grid in each dimension */
@@ -29,6 +29,9 @@ private:
 	/** the grid is a vector of buckets containing points */
 	std::vector<PointContainer> grid_;
 
+	/** Create an MBR around the grid points. */
+	static MBR initGridMBR(double * coordinates, std::size_t size,
+			std::size_t dimension);
 	/** Insert a set of points into the grid. */
 	void insert(double * coordinates, std::size_t size);
 	/** Insert single point into grid. */
@@ -49,12 +52,13 @@ private:
 public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size) :
 			dimension_(dimension), mbr_(
-					GridMBR::buildMBR(coordinates, size, dimension)), numberOfPoints_(
+					Grid::initGridMBR(coordinates, size, dimension)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
 					calculateCellsPerDimension()) {
 		allocPointContainers();
 		insert(coordinates, size);
 	}
+
 	virtual ~Grid();
 
 	/** Lookup the closest point for input query point. */

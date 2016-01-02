@@ -2,8 +2,7 @@
 #define UTIL_RANDOMPOINTGENERATOR_H_
 
 #include <random>
-//TODO: use new MBR!
-#include "../grid/GridMBR.h"
+#include "../model/MBR.h"
 
 class RandomPointGenerator {
 private:
@@ -12,13 +11,13 @@ private:
 	std::uniform_real_distribution<double>** uniform_;
 	std::normal_distribution<double>** gauss_;
 
-	void initUniform(GridMBR& m, std::size_t dimension);
+	void initUniform(MBR& m, std::size_t dimension);
 	void initGauss(double mean, double stddev);
 	void initGaussCluster(std::size_t dimension, double stddev);
 	void genUniformPts(double * randPts, std::size_t numberOfPoints,
 			std::size_t dimension);
 	void genGaussPts(double * randPts, std::size_t numberOfPoints,
-			std::size_t dimension, std::size_t numberOfClusters, GridMBR& m);
+			std::size_t dimension, std::size_t numberOfClusters, MBR& m);
 public:
 	RandomPointGenerator() :
 			randEngine_(randDevice_()) {
@@ -34,8 +33,8 @@ public:
 	};
 
 	double * generatePoints(std::size_t numberOfPoints, DISTRIBUTION d,
-			GridMBR& m, double mean = 0.0, double stddev = 1.0,
+			MBR& m, double mean = 0.0, double stddev = 1.0,
 			int numberOfClusters = 1);
 };
 
-#endif /* UTIL_RANDOMPOINTGENERATOR_H_ */
+#endif

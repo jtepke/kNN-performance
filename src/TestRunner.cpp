@@ -26,7 +26,8 @@ int main(int argc, char** argv) {
 	double mbrCoords[] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0, 4.0, 4.0, 4.0,
 			4.0, 4.0 };
 
-	GridMBR m = GridMBR::buildMBR(mbrCoords, 12, 6);
+	MBR m = MBR(6);
+	m = m.createMBR(mbrCoords, 12);
 
 	m.to_stream(std::cout);
 

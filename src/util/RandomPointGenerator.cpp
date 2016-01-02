@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <cassert>
 
-void RandomPointGenerator::initUniform(GridMBR& m, std::size_t dimension) {
+void RandomPointGenerator::initUniform(MBR& m, std::size_t dimension) {
 	uniform_ = new std::uniform_real_distribution<double> *[dimension];
 
 	for (std::size_t i = 0; i < dimension; i++) {
@@ -46,7 +46,7 @@ void RandomPointGenerator::genUniformPts(double * randPts,
 
 void RandomPointGenerator::genGaussPts(double * randPts,
 		std::size_t numberOfPoints, std::size_t dimension,
-		std::size_t numberOfClusters, GridMBR& m) {
+		std::size_t numberOfClusters, MBR& m) {
 	std::size_t clusterID = 0;
 	std::size_t coordIndex = 0;
 
@@ -60,7 +60,7 @@ void RandomPointGenerator::genGaussPts(double * randPts,
 }
 
 double * RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
-		DISTRIBUTION distrib, GridMBR& mbr, double mean, double stddev,
+		DISTRIBUTION distrib, MBR& mbr, double mean, double stddev,
 		int numberOfClusters) {
 	assert(!mbr.empty());
 

@@ -15,6 +15,12 @@ void Grid::initPointContainers(std::size_t containerIndex) {
 	}
 }
 
+MBR Grid::initGridMBR(double * coordinates, std::size_t size,
+		std::size_t dimension) {
+	GridMBR m = GridMBR(dimension);
+	return m.createMBR(coordinates, size);
+}
+
 void Grid::allocPointContainers() {
 	std::size_t numberOfCells = productOfCellsUpToDimension(dimension_);
 	grid_.resize(numberOfCells);
@@ -58,8 +64,7 @@ std::size_t Grid::cellNumber(double * point) {
 
 void Grid::insert(double * point) {
 	if (!mbr_.isWithin(point)) {
-		throw std::runtime_error(
-				"Point is not within MBR bounds.");
+		throw std::runtime_error("Point is not within MBR bounds.");
 	} else {
 		int cellNr = cellNumber(point);
 		grid_[cellNr].addPoint(point);
