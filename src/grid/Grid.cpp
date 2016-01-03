@@ -102,6 +102,11 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	return cellsPerDim;
 }
 
+kNNResultQueue Grid::kNearestNeighbors(unsigned k,
+		PointAccessor& query) {
+	//TODO: Implement kNN
+}
+
 void Grid::to_stream(std::ostream& os) {
 	os << "Grid[\n";
 	int bucketCounter = 0;

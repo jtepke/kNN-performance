@@ -28,8 +28,7 @@ public:
 	virtual ~NaiveKnn() {
 	}
 
-	std::priority_queue<double> kNearestNeighbors(unsigned k,
-			const PointAccessor& query) override;
+	kNNResultQueue kNearestNeighbors(unsigned k, PointAccessor& query) override;
 
 };
 

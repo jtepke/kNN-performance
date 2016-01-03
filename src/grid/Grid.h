@@ -7,12 +7,16 @@
 
 #ifndef GRID_H_
 #define GRID_H_
-#include "GridMBR.h"
+
 #include "../util/Representable.h"
+#include "../model/PointAccessor.h"
+#include "../knn/KnnProcessor.h"
+#include "GridMBR.h"
+
 #include <cstddef>
 #include <vector>
 
-class Grid: public Representable {
+class Grid: public Representable, public KnnProcessor {
 private:
 	/** we assume this the optimal number points per cell */
 	static const unsigned CELL_FILL_OPTIMUM = 32;
@@ -61,11 +65,9 @@ public:
 
 	virtual ~Grid();
 
-	/** Lookup the closest point for input query point. */
-	const PointVectorAccessor nearestNeighbor(const PointVectorAccessor& query);
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
-	const PointContainer kNearestNeighbors(unsigned k,
-			const PointVectorAccessor& query);
+	kNNResultQueue kNearestNeighbors(unsigned k,
+			PointAccessor& query) override;
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };
