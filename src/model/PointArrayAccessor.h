@@ -10,9 +10,7 @@ public:
 	PointArrayAccessor(double * pointsContainer, std::size_t pointIndexOffset,
 			std::size_t dimension) :
 			PointAccessor(pointIndexOffset, dimension), container_(pointsContainer) {
-
 	}
-	virtual ~PointArrayAccessor();
 
 	double& operator[](std::size_t idx) override;
 };
