@@ -25,7 +25,7 @@ public:
 	bool isWithin(double * point);
 	void to_stream(std::ostream& os) override;
 	bool empty() override;
-	MBR createMBR(double * pts, std::size_t size);
+	MBR createMBR(double * pts);
 
 };
 

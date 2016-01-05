@@ -18,7 +18,7 @@ void Grid::initPointContainers(std::size_t containerIndex) {
 MBR Grid::initGridMBR(double * coordinates, std::size_t size,
 		std::size_t dimension) {
 	GridMBR m = GridMBR(dimension);
-	return m.createMBR(coordinates, size);
+	return m.createMBR(coordinates);
 }
 
 void Grid::allocPointContainers() {
@@ -102,8 +102,7 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	return cellsPerDim;
 }
 
-kNNResultQueue Grid::kNearestNeighbors(unsigned k,
-		PointAccessor& query) {
+kNNResultQueue Grid::kNearestNeighbors(unsigned k, PointAccessor& query) {
 	//TODO: Implement kNN
 }
 

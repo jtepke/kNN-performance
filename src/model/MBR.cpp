@@ -48,7 +48,7 @@ bool MBR::isWithin(double * point) {
 	return isWithin;
 }
 
-MBR MBR::createMBR(double * coordinates, std::size_t size) {
+MBR MBR::createMBR(double * coordinates) {
 	std::vector<double> lower(dimension_);
 	std::vector<double> upper(dimension_);
 
@@ -56,7 +56,9 @@ MBR MBR::createMBR(double * coordinates, std::size_t size) {
 		lower[i] = upper[i] = coordinates[i];
 	}
 
-	for (std::size_t i = 0; i < size; i++) {
+	std::size_t array_size = 2 * dimension_;
+
+	for (std::size_t i = 0; i < array_size; i++) {
 		std::size_t coordinateDimension = (i % dimension_);
 		if (coordinates[i] < lower[coordinateDimension]) {
 			lower[coordinateDimension] = coordinates[i];
