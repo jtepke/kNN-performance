@@ -14,13 +14,12 @@
 
 class NaiveKnn: public KnnProcessor {
 private:
-	const double * points_;
+	double * points_;
 	const std::size_t dimension_;
 	const std::size_t numberOfPoints_;
 
 public:
-	NaiveKnn(const double * points, std::size_t dimension,
-			std::size_t numberOfPoints) :
+	NaiveKnn(double * points, std::size_t dimension, std::size_t numberOfPoints) :
 			points_(points), dimension_(dimension), numberOfPoints_(
 					numberOfPoints) {
 
