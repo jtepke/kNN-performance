@@ -38,7 +38,7 @@ bool FileHandler::readPointsFromFile(const char * fileName, double * points,
 
 	auto numberOfCoordinates = numberOfPoints * dimension;
 
-	std::FILE* fin = std::fopen("testPts.bin", "rb");
+	std::FILE* fin = std::fopen(fileName, "rb");
 	if (!fin) {
 		std::cerr << "Failed to open '" << fileName << "'" << std::endl;
 		return false;
