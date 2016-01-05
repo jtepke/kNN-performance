@@ -4,6 +4,10 @@ size_t PointAccessor::dimension() const {
 	return this->dimension_;
 }
 
+void PointAccessor::set_new_offset(std::size_t new_offset) {
+	pIndexOffset_ = new_offset;
+}
+
 void PointAccessor::to_stream(std::ostream& os) {
 	os << "Point (";
 
