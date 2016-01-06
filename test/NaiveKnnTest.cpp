@@ -10,7 +10,7 @@
 
 class NaiveKnnTest: public ::testing::Test {
 protected:
-	double* points_;
+	std::shared_ptr<double> points_;
 	static const unsigned NUMBER_OF_TEST_POINTS = 1000000;
 	static const unsigned DIMENSION = 3;
 	static const unsigned K = 1000;
@@ -33,7 +33,7 @@ protected:
 };
 
 TEST_F(NaiveKnnTest, k_1000_contains_1000_results) {
-	NaiveKnn naive(points_, DIMENSION, NUMBER_OF_TEST_POINTS);
+	NaiveKnn naive(points_.get(), DIMENSION, NUMBER_OF_TEST_POINTS);
 	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
@@ -48,7 +48,8 @@ TEST_F(NaiveKnnTest, k_1000) {
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 	kNNResultQueue result = naive.kNearestNeighbors(K, query);
 
-	double* expectedResults = new double[K];
+	std::shared_ptr<double> expectedResults(new double[K]);
+
 	FileHandler::readPointsFromFile(EXPECTED_RESULTS_FILE.c_str(),
 			expectedResults, K, 1);
 
@@ -62,4 +63,5 @@ TEST_F(NaiveKnnTest, k_1000) {
 		ASSERT_DOUBLE_EQ(expectedResults[i++], actual_dist);
 
 	}
+
 }

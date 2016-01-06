@@ -20,6 +20,13 @@ public:
 			dimension_(dimension) {
 	}
 
+	PointContainer(const std::size_t dimension, double* pts,
+			std::size_t numberOfPoints) :
+			dimension_(dimension), coordinates_(pts,
+					pts[(numberOfPoints * dimension) - 1]) {
+
+	}
+
 	PointVectorAccessor operator[](std::size_t idx) {
 		const std::size_t pIndex = dimension_ * idx;
 

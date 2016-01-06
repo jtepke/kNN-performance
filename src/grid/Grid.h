@@ -1,10 +1,3 @@
-/*
- * Grid.h
- *
- *  Created on: Dec 16, 2015
- *      Author: d065325
- */
-
 #ifndef GRID_H_
 #define GRID_H_
 
@@ -66,10 +59,9 @@ public:
 	virtual ~Grid();
 
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
-	kNNResultQueue kNearestNeighbors(unsigned k,
-			PointAccessor& query) override;
+	kNNResultQueue kNearestNeighbors(unsigned k, PointAccessor& query) override;
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };
 
-#endif /* GRID_H_ */
+#endif

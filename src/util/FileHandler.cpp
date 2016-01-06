@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-bool FileHandler::writePointsToFile(const char* fileName, double * points,
+bool FileHandler::writePointsToFile(const char* fileName, std::shared_ptr<double> points,
 		std::size_t size) {
 
 	std::FILE* fout = std::fopen(fileName, "wb");
@@ -13,7 +13,7 @@ bool FileHandler::writePointsToFile(const char* fileName, double * points,
 		return false;
 	}
 
-	auto writtenItems = std::fwrite(points, sizeof(double), size, fout);
+	auto writtenItems = std::fwrite(points.get(), sizeof(double), size, fout);
 
 	if (writtenItems != size) {
 		std::cerr << "Reading file '" << fileName
@@ -33,7 +33,7 @@ bool FileHandler::writePointsToFile(const char* fileName, double * points,
 	return true;
 }
 
-bool FileHandler::readPointsFromFile(const char * fileName, double * points,
+bool FileHandler::readPointsFromFile(const char * fileName, std::shared_ptr<double> points,
 		std::size_t numberOfPoints, std::size_t dimension) {
 
 	auto numberOfCoordinates = numberOfPoints * dimension;
@@ -44,7 +44,7 @@ bool FileHandler::readPointsFromFile(const char * fileName, double * points,
 		return false;
 	}
 
-	auto readItems = std::fread(points, sizeof(double), numberOfCoordinates,
+	auto readItems = std::fread(points.get(), sizeof(double), numberOfCoordinates,
 			fin);
 
 	if (readItems != numberOfCoordinates) {

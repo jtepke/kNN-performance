@@ -1,10 +1,3 @@
-/*
- * PointContainer.cpp
- *
- *  Created on: Dec 14, 2015
- *      Author: d065325
- */
-
 #include "PointContainer.h"
 #include <iostream>
 

@@ -1,36 +1,31 @@
-/*
- * RandomGenerator.cpp
- *
- *  Created on: Dec 19, 2015
- *      Author: jan
- */
-
 #include "../util/RandomPointGenerator.h"
+#include "../util/MemoryManagement.h"
 #include <stdexcept>
 #include <cassert>
 
 void RandomPointGenerator::initUniform(MBR& m, std::size_t dimension) {
-	uniform_ = new std::uniform_real_distribution<double> *[dimension];
+	uniform_.reserve(dimension);
 
 	for (std::size_t i = 0; i < dimension; i++) {
 		auto min = m.getLowerPoint()[i];
 		auto max = m.getUpperPoint()[i];
-		uniform_[i] = new std::uniform_real_distribution<double>(min, max);
+		uniform_[i] = make_unique<std::uniform_real_distribution<double>>(min,
+				max);
 	}
 }
 
 void RandomPointGenerator::initGauss(double mean, double stddev) {
-	gauss_ = new std::normal_distribution<double>*[1];
-	gauss_[0] = new std::normal_distribution<double>(mean, stddev);
+	gauss_.reserve(1);
+	gauss_[0] = make_unique<std::normal_distribution<double>>(mean, stddev);
 }
 
 void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
 		double stddev) {
-	gauss_ = new std::normal_distribution<double>*[numberOfClusters];
+	gauss_.reserve(numberOfClusters);
 
 	for (std::size_t i = 0; i < numberOfClusters; i++) {
 		auto mean = (*uniform_[i])(randEngine_);
-		gauss_[i] = new std::normal_distribution<double>(mean, stddev);
+		gauss_[i] = make_unique<std::normal_distribution<double>>(mean, stddev);
 	}
 }
 
@@ -59,7 +54,7 @@ void RandomPointGenerator::genGaussPts(double * randPts,
 	}
 }
 
-double * RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
+std::shared_ptr<double> RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		DISTRIBUTION distrib, MBR& mbr, double mean, double stddev,
 		int numberOfClusters) {
 	assert(!mbr.empty());
@@ -67,7 +62,7 @@ double * RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 	std::size_t dimension = mbr.getLowerPoint().dimension();
 	std::size_t numberOfCoordinates = numberOfPoints * dimension;
 
-	double * randPoints = new double[numberOfCoordinates];
+	std::shared_ptr<double> randPoints(new double[numberOfCoordinates]);
 
 	switch (distrib) {
 	case GAUSS_CLUSTER:
@@ -78,8 +73,7 @@ double * RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		break;
 	case GAUSS:
 		initGauss(mean, stddev);
-		genGaussPts(randPoints, numberOfPoints, dimension, 1,
-						mbr);
+		genGaussPts(randPoints, numberOfPoints, dimension, 1, mbr);
 		break;
 	case UNIFORM:
 		initUniform(mbr, dimension);

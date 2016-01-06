@@ -1,10 +1,3 @@
-/*
- * Metrics.h
- *
- *  Created on: Dec 30, 2015
- *      Author: jan
- */
-
 #ifndef KNN_METRICS_H_
 #define KNN_METRICS_H_
 #include "../model/PointAccessor.h"
@@ -18,4 +11,4 @@ public:
 
 };
 
-#endif /* KNN_METRICS_H_ */
+#endif

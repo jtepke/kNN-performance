@@ -1,10 +1,3 @@
-/*
- * NaiveKnn.h
- *
- *  Created on: Dec 27, 2015
- *      Author: jan
- */
-
 #ifndef KNN_NAIVEKNN_H_
 #define KNN_NAIVEKNN_H_
 #include "../model/PointAccessor.h"
@@ -31,4 +24,4 @@ public:
 
 };
 
-#endif /* KNN_NAIVEKNN_H_ */
+#endif

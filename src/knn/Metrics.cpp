@@ -1,21 +1,11 @@
-/*
- * Metrics.cpp
- *
- *  Created on: Dec 30, 2015
- *      Author: jan
- */
-
 #include "Metrics.h"
 #include <cmath>
 #include <cassert>
 
 Metrics::Metrics() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Metrics::~Metrics() {
-	// TODO Auto-generated destructor stub
 }
 
 double Metrics::squared_euclidean(PointAccessor& p, PointAccessor& q) {

@@ -15,4 +15,4 @@ public:
 	virtual void to_stream(std::ostream& os) = 0;
 };
 
-#endif /* REPRESENTABLE_H_ */
+#endif

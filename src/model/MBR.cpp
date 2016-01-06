@@ -1,4 +1,5 @@
 #include "MBR.h"
+
 PointVectorAccessor MBR::getLowerPoint() {
 	return (*this)[LOWER_INDEX];
 }
