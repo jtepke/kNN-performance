@@ -23,7 +23,7 @@ public:
 	PointContainer(const std::size_t dimension, double* pts,
 			std::size_t numberOfPoints) :
 			dimension_(dimension), coordinates_(pts,
-					pts[(numberOfPoints * dimension) - 1]) {
+					(pts+(numberOfPoints * dimension) - 1)) {
 
 	}
 
