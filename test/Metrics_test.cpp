@@ -23,9 +23,9 @@ protected:
 };
 
 TEST_F(MetricsTest, squared_euclidean) {
-	ASSERT_DOUBLE_EQ(3.0, Metrics::squared_euclidean(p1_, p2_));
+	ASSERT_DOUBLE_EQ(3.0, Metrics::squared_euclidean(&p1_, &p2_));
 }
 
 TEST_F(MetricsTest, euclidean) {
-	ASSERT_DOUBLE_EQ(std::sqrt(3.0), Metrics::euclidean(p1_, p2_));
+	ASSERT_DOUBLE_EQ(std::sqrt(3.0), Metrics::euclidean(&p1_, &p2_));
 }
