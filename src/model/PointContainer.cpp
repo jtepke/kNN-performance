@@ -41,6 +41,9 @@ PointContainer PointContainer::clonePoint(std::size_t pointIndex) const {
 	return p;
 }
 
+double* PointContainer::data(){
+	return coordinates_.data();
+}
 void PointContainer::to_stream(std::ostream& os) {
 	os << "PointContainer [\n";
 

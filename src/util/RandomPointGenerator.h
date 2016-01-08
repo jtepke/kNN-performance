@@ -2,16 +2,16 @@
 #define UTIL_RANDOMPOINTGENERATOR_H_
 
 #include "../model/MBR.h"
+
 #include <random>
 #include <vector>
-#include <memory>
 
 class RandomPointGenerator {
 private:
 	std::random_device randDevice_;
 	std::default_random_engine randEngine_;
-	std::vector<std::unique_ptr<std::uniform_real_distribution<double>>>uniform_;
-	std::vector<std::unique_ptr<std::normal_distribution<double>>> gauss_;
+	std::vector<std::uniform_real_distribution<double>*>uniform_;
+	std::vector<std::normal_distribution<double>*> gauss_;
 
 	void initUniform(MBR& m, std::size_t dimension);
 	void initGauss(double mean, double stddev);
@@ -37,7 +37,7 @@ public:
 		UNIFORM, GAUSS, GAUSS_CLUSTER
 	};
 
-	std::shared_ptr<double> generatePoints(std::size_t numberOfPoints, DISTRIBUTION d,
+	PointContainer generatePoints(std::size_t numberOfPoints, DISTRIBUTION d,
 			MBR& m, double mean = 0.0, double stddev = 1.0,
 			int numberOfClusters = 1);
 };

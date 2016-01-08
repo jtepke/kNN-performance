@@ -9,14 +9,13 @@ void RandomPointGenerator::initUniform(MBR& m, std::size_t dimension) {
 	for (std::size_t i = 0; i < dimension; i++) {
 		auto min = m.getLowerPoint()[i];
 		auto max = m.getUpperPoint()[i];
-		uniform_[i] = make_unique<std::uniform_real_distribution<double>>(min,
-				max);
+		uniform_[i] = new std::uniform_real_distribution<double>(min, max);
 	}
 }
 
 void RandomPointGenerator::initGauss(double mean, double stddev) {
 	gauss_.reserve(1);
-	gauss_[0] = make_unique<std::normal_distribution<double>>(mean, stddev);
+	gauss_[0] = new std::normal_distribution<double>(mean, stddev);
 }
 
 void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
@@ -25,7 +24,7 @@ void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
 
 	for (std::size_t i = 0; i < numberOfClusters; i++) {
 		auto mean = (*uniform_[i])(randEngine_);
-		gauss_[i] = make_unique<std::normal_distribution<double>>(mean, stddev);
+		gauss_[i] = new std::normal_distribution<double>(mean, stddev);
 	}
 }
 
@@ -54,7 +53,7 @@ void RandomPointGenerator::genGaussPts(double * randPts,
 	}
 }
 
-std::shared_ptr<double> RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
+PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		DISTRIBUTION distrib, MBR& mbr, double mean, double stddev,
 		int numberOfClusters) {
 	assert(!mbr.empty());
@@ -62,7 +61,7 @@ std::shared_ptr<double> RandomPointGenerator::generatePoints(std::size_t numberO
 	std::size_t dimension = mbr.getLowerPoint().dimension();
 	std::size_t numberOfCoordinates = numberOfPoints * dimension;
 
-	std::shared_ptr<double> randPoints(new double[numberOfCoordinates]);
+	double * randPoints = new double[numberOfCoordinates];
 
 	switch (distrib) {
 	case GAUSS_CLUSTER:
@@ -84,7 +83,7 @@ std::shared_ptr<double> RandomPointGenerator::generatePoints(std::size_t numberO
 		throw std::runtime_error("Cannot handle distribution: " + distrib);
 	}
 
-	return randPoints;
+	return PointContainer(dimension, randPoints, numberOfPoints);
 
 }
 

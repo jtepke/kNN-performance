@@ -3,23 +3,27 @@
 #include <cstdio>
 #include <string>
 #include <iostream>
+#include <stdexcept>
 
-bool FileHandler::writePointsToFile(const char* fileName, std::shared_ptr<double> points,
+void FileHandler::writePointsToFile(const std::string& fileName, double* points,
 		std::size_t size) {
 
-	std::FILE* fout = std::fopen(fileName, "wb");
+	std::FILE* fout = std::fopen(fileName.c_str(), "wb");
 	if (!fout) {
 		std::cerr << "Failed to open '" << fileName << "'" << std::endl;
-		return false;
+		throw std::runtime_error("Failed to open '" + fileName + "'");
 	}
 
-	auto writtenItems = std::fwrite(points.get(), sizeof(double), size, fout);
+	auto writtenItems = std::fwrite(points, sizeof(double), size, fout);
 
 	if (writtenItems != size) {
 		std::cerr << "Reading file '" << fileName
-				<< "' did not succeed\nfread() returned: "
-				<< writtenItems << std::endl;
-		return false;
+				<< "' did not succeed\nfwrite() returned: " << writtenItems
+				<< std::endl;
+		throw std::runtime_error(
+				"Reading file '" + fileName
+						+ "' did not succeed\nfwrite() returned: "
+						+ std::to_string(writtenItems));
 	}
 
 	auto closeVal = std::fclose(fout);
@@ -27,31 +31,38 @@ bool FileHandler::writePointsToFile(const char* fileName, std::shared_ptr<double
 	if (closeVal) {
 		std::cerr << "Failed to close '" << fileName << "'" << "\terrno: "
 				<< errno << std::endl;
-		return false;
+		throw std::runtime_error(
+				"Failed to close '" + fileName + "'" + "\terrno: "
+						+ std::to_string(errno));
 	}
 
-	return true;
 }
 
-bool FileHandler::readPointsFromFile(const char * fileName, std::shared_ptr<double> points,
+PointContainer FileHandler::readPointsFromFile(const std::string& fileName,
 		std::size_t numberOfPoints, std::size_t dimension) {
 
 	auto numberOfCoordinates = numberOfPoints * dimension;
+	double * points = new double[numberOfCoordinates];
 
-	std::FILE* fin = std::fopen(fileName, "rb");
+	std::FILE* fin = std::fopen(fileName.c_str(), "rb");
 	if (!fin) {
 		std::cerr << "Failed to open '" << fileName << "'" << std::endl;
-		return false;
+		delete[] (points);
+		throw std::runtime_error("Failed to open '" + fileName + "'");
 	}
 
-	auto readItems = std::fread(points.get(), sizeof(double), numberOfCoordinates,
+	auto readItems = std::fread(points, sizeof(double), numberOfCoordinates,
 			fin);
 
 	if (readItems != numberOfCoordinates) {
 		std::cerr << "Reading file '" << fileName
-				<< "' did not succeed\nfread() returned: "
-				<< readItems << std::endl;
-		return false;
+				<< "' did not succeed\nfread() returned: " << readItems
+				<< std::endl;
+		delete[] (points);
+		throw std::runtime_error(
+				"Reading file '" + fileName
+						+ "' did not succeed\nfread() returned: "
+						+ std::to_string(readItems));
 	}
 
 	auto closeVal = std::fclose(fin);
@@ -59,8 +70,11 @@ bool FileHandler::readPointsFromFile(const char * fileName, std::shared_ptr<doub
 	if (closeVal) {
 		std::cerr << "Failed to close '" << fileName << "'" << "\terrno: "
 				<< errno << std::endl;
-		return false;
+		delete[] (points);
+		throw std::runtime_error(
+				"Failed to close '" + fileName + "'" + "\terrno: "
+						+ std::to_string(errno));
 	}
 
-	return true;
+	return PointContainer(dimension, points, numberOfPoints);
 }

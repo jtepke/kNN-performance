@@ -23,7 +23,7 @@ public:
 	PointContainer(const std::size_t dimension, double* pts,
 			std::size_t numberOfPoints) :
 			dimension_(dimension), coordinates_(pts,
-					(pts+(numberOfPoints * dimension) - 1)) {
+					(pts + (numberOfPoints * dimension))) {
 
 	}
 
@@ -39,6 +39,7 @@ public:
 	std::size_t size() const;
 	virtual bool empty();
 	PointContainer clonePoint(std::size_t pointIndex) const;
+	double* data();
 	void to_stream(std::ostream& os) override;
 };
 
