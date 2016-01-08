@@ -102,7 +102,7 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	return cellsPerDim;
 }
 
-kNNResultQueue Grid::kNearestNeighbors(unsigned k, PointAccessor& query) {
+BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 	//TODO: Implement kNN
 }
 

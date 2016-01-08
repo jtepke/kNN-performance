@@ -7,7 +7,7 @@ KnnProcessor::KnnProcessor() {
 KnnProcessor::~KnnProcessor() {
 }
 
-kNNResultQueue KnnProcessor::nearestNeighbor(PointAccessor& query) {
+BPQ KnnProcessor::nearestNeighbor(PointAccessor* query) {
 	auto nNQueue = kNearestNeighbors(1, query);
 	assert(nNQueue.size() == 1);
 	return nNQueue;

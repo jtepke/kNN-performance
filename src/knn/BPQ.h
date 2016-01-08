@@ -10,11 +10,15 @@
 #include <queue>
 
 class BPQ {
+	typedef std::function<bool(PointAccessor*, PointAccessor*)> MetricFuction;
+	typedef std::vector<PointAccessor*> QueueContainer;
+	typedef std::priority_queue<PointAccessor*, QueueContainer, MetricFuction> kNNResultQueue;
+
 private:
 	std::size_t max_size_;
 	double max_distance_;
 	PointAccessor* query_;
-	std::function<bool(PointAccessor*, PointAccessor*)> cmp_;
+	MetricFuction cmp_;
 
 	kNNResultQueue candidates_;
 
@@ -34,10 +38,12 @@ public:
 
 	}
 
-	void push(PointAccessor* pa);
+	void push(PointAccessor* pa, std::size_t distance);
 	void pop();
 	PointAccessor* top();
 	double max_dist();
+	std::size_t size();
+	bool empty();
 };
 
 #endif

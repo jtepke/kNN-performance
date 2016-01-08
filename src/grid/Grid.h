@@ -59,7 +59,7 @@ public:
 	virtual ~Grid();
 
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
-	kNNResultQueue kNearestNeighbors(unsigned k, PointAccessor& query) override;
+	BPQ kNearestNeighbors(unsigned k, PointAccessor* query) override;
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };

@@ -2,6 +2,7 @@
 #define KNN_NAIVEKNN_H_
 #include "../model/PointAccessor.h"
 #include "../model/PointContainer.h"
+
 #include "KnnProcessor.h"
 #include <cstddef>
 
@@ -20,7 +21,7 @@ public:
 	virtual ~NaiveKnn() {
 	}
 
-	kNNResultQueue kNearestNeighbors(unsigned k, PointAccessor& query) override;
+	BPQ kNearestNeighbors(unsigned k, PointAccessor* query);
 
 };
 
