@@ -16,6 +16,7 @@ public:
 			PointAccessor(pointIndexOffset, dimension), container_(container) {
 	}
 	double& operator[](std::size_t idx) override;
+	double* getData() override;
 };
 
 #endif

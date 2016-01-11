@@ -17,6 +17,7 @@ public:
 	}
 
 	double& operator[](std::size_t idx) override;
+	double* getData() override;
 };
 
 #endif

@@ -8,6 +8,10 @@ void PointAccessor::set_new_offset(std::size_t new_offset) {
 	pIndexOffset_ = new_offset;
 }
 
+std::size_t PointAccessor::offset() {
+	return pIndexOffset_;
+}
+
 void PointAccessor::to_stream(std::ostream& os) {
 	os << "Point (";
 
