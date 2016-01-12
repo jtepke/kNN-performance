@@ -44,6 +44,7 @@ public:
 	double max_dist();
 	std::size_t size();
 	bool empty();
+	bool notFull();
 };
 
 #endif

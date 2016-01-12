@@ -3,16 +3,20 @@
 
 void BPQ::push(PointAccessor* pa, std::size_t distance) {
 	assert(distance < max_distance_);
-	if (candidates_.size() == max_size_) {
+	bool is_full = candidates_.size() == max_size_;
+	//Pop top element if BQP is full and a better candidate was found.
+	if (is_full) {
 		pop();
 	}
 
 	candidates_.push(pa);
-
-	if (top() == pa) {
-		max_distance_ = distance;
-	} else {
-		max_distance_ = Metrics::squared_euclidean(top(), query_);
+	//Update max_distance_ iff BPQ is full.
+	if (is_full) {
+		if (top() == pa) {
+			max_distance_ = distance;
+		} else {
+			max_distance_ = Metrics::squared_euclidean(top(), query_);
+		}
 	}
 }
 
@@ -35,4 +39,7 @@ std::size_t BPQ::size() {
 
 bool BPQ::empty() {
 	return candidates_.empty();
+}
+bool BPQ::notFull() {
+	return candidates_.size() < max_size_;
 }
