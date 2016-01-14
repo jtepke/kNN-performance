@@ -17,6 +17,10 @@ double Metrics::squared_euclidean(PointAccessor* p, PointAccessor* q) {
 	return result;
 }
 
+double Metrics::squared_euclidean(PointVectorAccessor p, PointAccessor* q){
+	return Metrics::squared_euclidean(&p,q);
+}
+
 double Metrics::euclidean(PointAccessor* p, PointAccessor* q) {
 	return std::sqrt(Metrics::squared_euclidean(p, q));
 }

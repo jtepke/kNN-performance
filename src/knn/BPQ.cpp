@@ -40,6 +40,7 @@ std::size_t BPQ::size() {
 bool BPQ::empty() {
 	return candidates_.empty();
 }
+
 bool BPQ::notFull() {
 	return candidates_.size() < max_size_;
 }

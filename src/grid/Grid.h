@@ -8,11 +8,12 @@
 
 #include <cstddef>
 #include <vector>
+#include <utility>
 
 class Grid: public Representable, public KnnProcessor {
 private:
 	/** we assume this the optimal number points per cell */
-	static const unsigned CELL_FILL_OPTIMUM = 32;
+	static const unsigned CELL_FILL_OPTIMUM = 1024;
 	/** dimension of the grid space */
 	const std::size_t dimension_;
 	/** minimum bounding hyperrectangle around the inserted point cloud */
@@ -40,11 +41,26 @@ private:
 	/** Calculates volume of cells up to a particular dimension. */
 	std::size_t productOfCellsUpToDimension(std::size_t dimension);
 	/** Calculates the grid index (cell number) for a point. */
-	std::size_t cellNumber(double * point);
-	/** Assigns empty PointsContainer to grid_[containerIndex]. */
-	void initPointContainers(std::size_t containerIndex);
+	unsigned cellNumber(double * point);
+	/** Calculates the grid index (cell number) for a point. */
+	unsigned cellNumber(PointAccessor * point);
 	/** Allocates memory for grid_ vector. */
 	void allocPointContainers();
+
+	/** kNN lookup utility methods: */
+	/** Returns squared distance to query point.*/
+	std::pair<int, double> findClosestCellBorder(PointAccessor* query);
+	/** Return a list of cell numbers for certain kNN iteration.*/
+	std::vector<unsigned> getHyperSquareCellEnvironment(int kNN_iteration,
+			unsigned queryCell, std::vector<unsigned>& cartesianQueryCoords);
+	std::vector<unsigned> getCartesian(unsigned cellNumber);
+	void initMinAndMax(std::vector<int>& min, std::vector<int>& max,
+			int kNN_iteration,
+			const std::vector<unsigned>& cartesionQueryCoordinates);
+	void addToResult(const std::vector<int>& shifts,
+			const std::vector<unsigned>& query,
+			std::vector<unsigned>& cellNumbers);
+	unsigned calculateCellNumber(const std::vector<int>& gridCartesianCoords);
 
 public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size) :

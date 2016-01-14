@@ -1,4 +1,5 @@
 #include "PointContainer.h"
+
 #include <iostream>
 
 std::size_t PointContainer::size() const {
@@ -41,9 +42,10 @@ PointContainer PointContainer::clonePoint(std::size_t pointIndex) const {
 	return p;
 }
 
-double* PointContainer::data(){
+double* PointContainer::data() {
 	return coordinates_.data();
 }
+
 void PointContainer::to_stream(std::ostream& os) {
 	os << "PointContainer [\n";
 
@@ -51,5 +53,5 @@ void PointContainer::to_stream(std::ostream& os) {
 		(*this)[i].to_stream(os);
 	}
 
-	os << std::endl;
+	os << ']' << std::endl;
 }
