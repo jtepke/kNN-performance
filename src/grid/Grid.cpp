@@ -65,14 +65,11 @@ unsigned Grid::cellNumber(double * point) {
 }
 
 unsigned Grid::cellNumber(PointAccessor* pa) {
-	return cellNumber(pa->getData() + pa->offset());
+	return cellNumber(pa->getData() + pa->getOffset());
 }
 
 void Grid::insert(double * point) {
 	if (!mbr_.isWithin(point)) {
-		PointArrayAccessor pa(point, 0, 3);
-		mbr_.to_stream(std::cout);
-		pa.to_stream(std::cout);
 		throw std::runtime_error("Point is not within MBR bounds.");
 	} else {
 		int cellNr = cellNumber(point);
@@ -92,7 +89,8 @@ const std::vector<double> Grid::widthPerDimension() {
 	return widthPerDim;
 }
 
-const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
+const std::vector<std::size_t> Grid::calculateCellsPerDimension(
+		std::size_t cellFillOptimum) const {
 	std::vector<std::size_t> cellsPerDim(dimension_);
 	double volume = 1.0;
 
@@ -101,7 +99,7 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension() const {
 	}
 
 	double cellWidth = std::pow(
-			volume / (numberOfPoints_ / Grid::CELL_FILL_OPTIMUM),
+			volume / ((double) numberOfPoints_ / cellFillOptimum),
 			1.0 / dimension_);
 
 	for (std::size_t i = 0; i < dimension_; i++) {
@@ -115,6 +113,7 @@ std::pair<int, double> Grid::findClosestCellBorder(PointAccessor* query) {
 	int closestDistInDim = 0;
 	double closestDist = std::numeric_limits<double>::infinity();
 	PointVectorAccessor lowerPoint = mbr_.getLowerPoint();
+
 	for (std::size_t d = 0; d < dimension_; d++) {
 		double cellWidth = gridWidthPerDim_[d] / cellsPerDimension_[d];
 		double queryDistToLowPoint = (*query)[d] - lowerPoint[d];
@@ -162,6 +161,7 @@ void Grid::initMinAndMax(std::vector<int>& min, std::vector<int>& max,
 			min[d] = -(diff + kNN_iteration);
 		}
 
+		std::cout << "cells per dim: " << cellsPerDimension_[d] << std::endl;
 	}
 }
 unsigned Grid::calculateCellNumber(
@@ -321,12 +321,15 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 				queryCellNo, cartesianQueryCoords)) {
 			std::cout << "grid size: " << grid_.size() << std::endl;
 			PointContainer& pc = grid_[cNumber];
-			std::cout << "size of pointContainer[" << cNumber << "]: "
-					<< pc.size() << std::endl;
+			std::cout << "size of pointContainer[";
+			for (auto c : getCartesian(cNumber)) {
+				std::cout << c << ' ';
+			}
+			std::cout << "]: " << pc.size() << std::endl;
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
 				auto point = pc[p_idx];
 				auto candidate = new PointArrayAccessor(point.getData(),
-						point.offset(), point.dimension());
+						point.getOffset(), point.dimension());
 				double current_dist = Metrics::squared_euclidean(candidate,
 						query);
 				if (current_dist < closestDistToCellBorder) {

@@ -16,8 +16,8 @@ public:
 	}
 
 	std::size_t dimension() const;
-	void set_new_offset(std::size_t new_offset);
-	std::size_t offset();
+	void setOffset(std::size_t new_offset);
+	std::size_t getOffset();
 	void to_stream(std::ostream& os) override;
 	virtual double& operator[](std::size_t idx) = 0;
 	virtual double* getData() = 0;

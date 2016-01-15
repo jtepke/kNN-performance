@@ -46,7 +46,7 @@ TEST_F(NaiveKnnTest, k_1000) {
 	NaiveKnn naive(points_.data(), DIMENSION, NUMBER_OF_TEST_POINTS);
 	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
-	BPQ result = naive.kNearestNeighbors(K, &query);
+	BPQ actualResult = naive.kNearestNeighbors(K, &query);
 
 	PointContainer expectedResults = FileHandler::readPointsFromFile(
 			EXPECTED_SPATIAL_GRID_TEST_RESULTS, K, 1);
@@ -54,9 +54,9 @@ TEST_F(NaiveKnnTest, k_1000) {
 	double actual_dist;
 	int i = 0;
 
-	while (!(result.empty())) {
-		actual_dist = Metrics::squared_euclidean(result.top(), &query);
-		result.pop();
+	while (!(actualResult.empty())) {
+		actual_dist = Metrics::squared_euclidean(actualResult.top(), &query);
+		actualResult.pop();
 
 		ASSERT_DOUBLE_EQ(expectedResults[i++][0], actual_dist);
 

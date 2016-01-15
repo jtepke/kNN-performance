@@ -11,9 +11,7 @@
 #include <utility>
 
 class Grid: public Representable, public KnnProcessor {
-private:
-	/** we assume this the optimal number points per cell */
-	static const unsigned CELL_FILL_OPTIMUM = 1024;
+public:
 	/** dimension of the grid space */
 	const std::size_t dimension_;
 	/** minimum bounding hyperrectangle around the inserted point cloud */
@@ -26,6 +24,8 @@ private:
 	const std::vector<std::size_t> cellsPerDimension_;
 	/** the grid is a vector of buckets containing points */
 	std::vector<PointContainer> grid_;
+	/** we assume this the optimal number points per cell */
+	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
 
 	/** Create an MBR around the grid points. */
 	static MBR initGridMBR(double * coordinates, std::size_t size,
@@ -37,7 +37,8 @@ private:
 	/** Calculates gridWith per dimension. */
 	const std::vector<double> widthPerDimension();
 	/** Returns vector containing number of cells per dimension. */
-	const std::vector<std::size_t> calculateCellsPerDimension() const;
+	//TODO: make static
+	const std::vector<std::size_t> calculateCellsPerDimension(std::size_t cellFillOptimum) const;
 	/** Calculates volume of cells up to a particular dimension. */
 	std::size_t productOfCellsUpToDimension(std::size_t dimension);
 	/** Calculates the grid index (cell number) for a point. */
@@ -47,7 +48,7 @@ private:
 	/** Allocates memory for grid_ vector. */
 	void allocPointContainers();
 
-	/** kNN lookup utility methods: */
+	/** kNN utility methods: */
 	/** Returns squared distance to query point.*/
 	std::pair<int, double> findClosestCellBorder(PointAccessor* query);
 	/** Return a list of cell numbers for certain kNN iteration.*/
@@ -62,12 +63,13 @@ private:
 			std::vector<unsigned>& cellNumbers);
 	unsigned calculateCellNumber(const std::vector<int>& gridCartesianCoords);
 
-public:
-	Grid(const std::size_t dimension, double * coordinates, std::size_t size) :
+//public:
+	Grid(const std::size_t dimension, double * coordinates, std::size_t size,
+			std::size_t cellFillOptimum = Grid::CELL_FILL_OPTIMUM_DEFAULT) :
 			dimension_(dimension), mbr_(
 					Grid::initGridMBR(coordinates, size, dimension)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
-					calculateCellsPerDimension()) {
+					calculateCellsPerDimension(cellFillOptimum)) {
 		allocPointContainers();
 		insert(coordinates, size);
 	}
