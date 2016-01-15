@@ -35,7 +35,9 @@ public:
 	}
 
 	virtual ~BPQ() {
-
+		while (!empty()) {
+			pop();
+		}
 	}
 
 	void push(PointAccessor* pa, std::size_t distance);
