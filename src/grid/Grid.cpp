@@ -199,15 +199,10 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 		//determine cell environment for non-trivial cases:
 		initMinAndMax(min, max, kNN_iteration, cartesianQueryCoords);
 		std::vector<int> fix_bounds;
+		unsigned lastIndex = dimension_ - 1;
 
-		for (auto& m : min) {
-			std::cout << "min: " << m << std::endl;
-		}
-		for (auto& m : max) {
-			std::cout << "max: " << m << std::endl;
-		}
-		for (std::size_t fix_dim = 0; fix_dim < dimension_; fix_dim++) {
-			std::vector<int> coordinateShifts(std::begin(min), std::end(min));
+		for (std::size_t fix_dim = 0; fix_dim < dimension_; ++fix_dim) {
+			std::vector<int> coordinateShifts;
 			if (max[fix_dim] != kNN_iteration
 					&& min[fix_dim] != -kNN_iteration) {
 				continue;
@@ -219,48 +214,58 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 			if (max[fix_dim] == kNN_iteration) {
 				fix_bounds.push_back(kNN_iteration);
 			}
-			std::cout << "fix_bounds: " << std::endl;
-			for (auto& f : fix_bounds) {
-				std::cout << "\t" << f;
-			}
-			std::cout << std::endl;
+
 			//Iterate through possible fixed states
 			for (int fix_coord : fix_bounds) {
+				coordinateShifts.assign(std::begin(min), std::end(min));
 				coordinateShifts[fix_dim] = fix_coord;
-				for (std::size_t before_fixed_dim = 0;
-						before_fixed_dim < fix_dim; before_fixed_dim++) {
-					//Add [min-ish,...,min-ish,fix-val,min,...,min]
+				//Add [min-ish,...,min-ish,fix-val,min,...,min]
+				addToResult(coordinateShifts, cartesianQueryCoords,
+						cellNumbers);
+
+				bool overflow = false;
+
+				unsigned i = fix_dim != lastIndex ? lastIndex : lastIndex - 1;
+				while (!overflow && fix_dim != dimension_ - 1) {
+					++coordinateShifts[dimension_ - 1];
 					addToResult(coordinateShifts, cartesianQueryCoords,
 							cellNumbers);
-					int start_val =
-							min[before_fixed_dim] == -kNN_iteration ?
-									-kNN_iteration + 1 : min[before_fixed_dim];
 
-					int end_val =
-							max[before_fixed_dim] == kNN_iteration ?
-									kNN_iteration - 1 : max[before_fixed_dim];
+					while (coordinateShifts[i] >= max[i] && i > 1) {
+						coordinateShifts[i] = min[i];
+						//no need to return this result since it would be a dupe.
+						if (i == fix_dim + 1) {
+							if (fix_dim == 0) {
+								break;
+							} else {
+								i -= 2;
+							}
+						} else {
+							--i;
+						}
 
-					//Add everything before fixed dimension in range: min-ish ... max-ish
-					while (start_val <= end_val) {
-						coordinateShifts[before_fixed_dim] = start_val;
+						if (fix_dim == 0 && coordinateShifts[1] + 1 > max[1]) {
+							overflow = true;
+							break;
+						} else if (fix_dim != 0
+								&& coordinateShifts[0] + 1 > max[0]) {
+							overflow = true;
+							break;
+						}
+
+						++coordinateShifts[i];
 						addToResult(coordinateShifts, cartesianQueryCoords,
 								cellNumbers);
-						start_val++;
-					}
-				}
-				//Add everything after fixed dimension in range min ... max
-				for (std::size_t after_fixed_dim = fix_dim + 1;
-						after_fixed_dim < dimension_; after_fixed_dim++) {
-					int start_val = min[after_fixed_dim];
-					int end_val = max[after_fixed_dim];
-					while (start_val < end_val) {
-						coordinateShifts[after_fixed_dim] = start_val;
-						addToResult(coordinateShifts, cartesianQueryCoords,
-								cellNumbers);
-						start_val++;
+
 					}
 				}
 			}
+			max[fix_dim] =
+					(max[fix_dim] == kNN_iteration) ?
+							kNN_iteration - 1 : max[fix_dim];
+			min[fix_dim] =
+					(min[fix_dim] == -kNN_iteration) ?
+							-kNN_iteration + 1 : min[fix_dim];
 		}
 
 	}
@@ -284,9 +289,9 @@ std::vector<unsigned> Grid::getCartesian(unsigned cellNumber) {
 BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 	BPQ candidates(k, query);
 	auto squared_cell_border_dist = findClosestCellBorder(query);
-	//Dimension of closest border;
+//Dimension of closest border;
 	int closestDistDim = squared_cell_border_dist.first;
-	//Euclidian squared dist to closest border
+//Euclidian squared dist to closest border
 	double closestDistToCellBorder = squared_cell_border_dist.second;
 
 	int kNN_iteration = 0;
@@ -325,7 +330,7 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 			for (auto c : getCartesian(cNumber)) {
 				std::cout << c << ' ';
 			}
-			std::cout << "]: " << pc.size() << std::endl;
+			std::cout << "]: " << cNumber << std::endl;
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
 				auto point = pc[p_idx];
 				auto candidate = new PointArrayAccessor(point.getData(),
