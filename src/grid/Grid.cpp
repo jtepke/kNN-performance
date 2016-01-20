@@ -118,21 +118,38 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension(
 	return cellsPerDim;
 }
 
-std::pair<int, double> Grid::findClosestCellBorder(PointAccessor* query) {
-	int closestDistInDim = 0;
-	double closestDist = std::numeric_limits<double>::infinity();
+double Grid::findNextClosestCellBorder(PointAccessor* query, int kNNiteration) {
+
+	double infinity = std::numeric_limits<double>::infinity();
+	double closestDist = infinity;
 	PointVectorAccessor lowPoint = mbr_.getLowerPoint();
 	PointVectorAccessor highPoint = mbr_.getUpperPoint();
 
 	for (std::size_t d = 0; d < dimension_; d++) {
 		double cellWidth = gridWidthPerDim_[d] / cellsPerDimension_[d];
 		double queryDistToLowPoint = (*query)[d] - lowPoint[d];
-		int cellNumberOfLeftBorder = std::floor(
+		unsigned cellNumberOfLeftBorder = std::floor(
 				queryDistToLowPoint / cellWidth);
+
+		assert(cellNumberOfLeftBorder >= 0);
+		assert(cellNumberOfLeftBorder < grid_.size());
+
 		double distToLeftBorder = queryDistToLowPoint
-				- (cellNumberOfLeftBorder * cellWidth);
-		double distToRightBorder = ((cellNumberOfLeftBorder + 1) * cellWidth)
-				- queryDistToLowPoint;
+				- ((cellNumberOfLeftBorder + kNNiteration) * cellWidth);
+		double distToRightBorder = ((cellNumberOfLeftBorder + 1 + kNNiteration)
+				* cellWidth) - queryDistToLowPoint;
+
+		if (distToLeftBorder < lowPoint[d]) {
+			distToLeftBorder = infinity;
+		}
+		if (distToRightBorder > highPoint[d]) {
+			distToRightBorder = infinity;
+		}
+
+		if (distToLeftBorder == infinity
+				&& distToLeftBorder == distToRightBorder) {
+			break;
+		}
 
 		if (distToLeftBorder < distToRightBorder) {
 			closestDist =
@@ -145,9 +162,9 @@ std::pair<int, double> Grid::findClosestCellBorder(PointAccessor* query) {
 		}
 	}
 
-	assert(closestDist < std::numeric_limits<double>::infinity());
+	assert(closestDist < infinity);
 
-	return std::make_pair(closestDistInDim, closestDist * closestDist);
+	return closestDist * closestDist;
 }
 
 void Grid::initMinAndMax(std::vector<int>& min, std::vector<int>& max,
@@ -173,7 +190,7 @@ void Grid::initMinAndMax(std::vector<int>& min, std::vector<int>& max,
 
 		assert(max[d] < static_cast<int>(cellsPerDimension_[d]));
 		assert(min[d] + kNN_iteration >= 0);
-		std::cout << "cells per dim: " << cellsPerDimension_[d] << std::endl;
+//		std::cout << "cells per dim: " << cellsPerDimension_[d] << std::endl;
 	}
 }
 unsigned Grid::calculateCellNumber(
@@ -185,10 +202,10 @@ unsigned Grid::calculateCellNumber(
 
 	assert(cellNumber >= 0);
 	if (cellNumber >= grid_.size()) {
-		std::cout << "for grid coords: " << std::endl;
+//		std::cout << "for grid coords: " << std::endl;
 		print_vector<int>(gridCartesianCoords);
-		std::cout << "calculated cellNumber: " << cellNumber << std::endl;
-		std::cout << "grid size: " << grid_.size() << std::endl;
+//		std::cout << "calculated cellNumber: " << cellNumber << std::endl;
+//		std::cout << "grid size: " << grid_.size() << std::endl;
 	}
 	assert(cellNumber < grid_.size());
 
@@ -240,7 +257,7 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 
 			//Iterate through possible fixed states
 			for (int fix_coord : fix_bounds) {
-				std::cout << "fix coord: " << fix_coord << std::endl;
+//				std::cout << "fix coord: " << fix_coord << std::endl;
 				coordinateShifts.assign(std::begin(min), std::end(min));
 				coordinateShifts[fix_dim] = fix_coord;
 
@@ -296,21 +313,18 @@ std::vector<unsigned> Grid::getCartesian(unsigned cellNumber) {
 
 BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 	BPQ candidates(k, query);
-	auto squared_cell_border_dist = findClosestCellBorder(query);
-//Dimension of closest border;
-	int closestDistDim = squared_cell_border_dist.first;
-//Euclidian squared dist to closest border
-	double closestDistToCellBorder = squared_cell_border_dist.second;
 
 	int kNN_iteration = 0;
+	auto closestDistToCellBorder = findNextClosestCellBorder(query,
+			kNN_iteration);
 	std::multimap<double, PointArrayAccessor*> unconsidered_pts;
 	unsigned queryCellNo = cellNumber(query);
 	std::vector<unsigned> cartesianQueryCoords = getCartesian(queryCellNo);
 	while (candidates.notFull()) {
-		std::cout << "closest distance to border: " << closestDistToCellBorder
-				<< std::endl;
-		std::cout << "unconsidered size: " << unconsidered_pts.size()
-				<< std::endl;
+//		std::cout << "closest distance to border: " << closestDistToCellBorder
+//				<< std::endl;
+//		std::cout << "unconsidered size: " << unconsidered_pts.size()
+//				<< std::endl;
 
 		for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
 				) {
@@ -327,21 +341,21 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 			} else {
 				//points from this part are not considerable since they reach
 				//out of the radius of valid points.
-				std::cout << "breaking out of unconsidered loop" << std::endl;
+//				std::cout << "breaking out of unconsidered loop" << std::endl;
 				break;
 			}
 		}
-		std::cout << "considered unconsidered points here." << std::endl;
+//		std::cout << "considered unconsidered points here." << std::endl;
 		for (unsigned cNumber : getHyperSquareCellEnvironment(kNN_iteration,
 				queryCellNo, cartesianQueryCoords)) {
 			PointContainer& pc = grid_[cNumber];
-			std::cout << "PointContainer[";
+//			std::cout << "PointContainer[";
 			for (auto c : getCartesian(cNumber)) {
 				std::cout << c << ' ';
 			}
 
-			std::cout << "]: " << "CellNumber: " << cNumber << " Size: "
-					<< pc.size() << std::endl;
+//			std::cout << "]: " << "CellNumber: " << cNumber << " Size: "
+//					<< pc.size() << std::endl;
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
 				auto point = pc[p_idx];
 				auto candidate = new PointArrayAccessor(point.getData(),
@@ -358,11 +372,11 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 				}
 			}
 		}
-		std::cout << "processed all cells in iteration: " << kNN_iteration
-				<< std::endl;
-		closestDistToCellBorder += (gridWidthPerDim_[closestDistDim]
-				/ cellsPerDimension_[closestDistDim]);
+//		std::cout << "processed all cells in iteration: " << kNN_iteration
+//				<< std::endl;
 		kNN_iteration++;
+		closestDistToCellBorder = findNextClosestCellBorder(query,
+				kNN_iteration);
 	}
 	return candidates;
 }

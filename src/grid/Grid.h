@@ -50,7 +50,7 @@ public:
 
 	/** kNN utility methods: */
 	/** Returns squared distance to query point.*/
-	std::pair<int, double> findClosestCellBorder(PointAccessor* query);
+	double findNextClosestCellBorder(PointAccessor* query, int kNNiteration);
 	/** Return a list of cell numbers for certain kNN iteration.*/
 	std::vector<unsigned> getHyperSquareCellEnvironment(int kNN_iteration,
 			unsigned queryCell, std::vector<unsigned>& cartesianQueryCoords);
