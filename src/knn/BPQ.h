@@ -40,7 +40,7 @@ public:
 		}
 	}
 
-	void push(PointAccessor* pa, std::size_t distance);
+	void push(PointAccessor* pa, double distance);
 	void pop();
 	PointAccessor* top();
 	double max_dist();

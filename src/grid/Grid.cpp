@@ -13,6 +13,15 @@
 #include <utility>
 #include <vector>
 
+template<typename T>
+void print_vector(const std::vector<T>& vec) {
+	std::cout << "Vector: [ ";
+	for (const auto& item : vec) {
+		std::cout << item << ' ';
+	}
+	std::cout << ']' << std::endl;
+}
+
 Grid::~Grid() {
 }
 
@@ -112,11 +121,12 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension(
 std::pair<int, double> Grid::findClosestCellBorder(PointAccessor* query) {
 	int closestDistInDim = 0;
 	double closestDist = std::numeric_limits<double>::infinity();
-	PointVectorAccessor lowerPoint = mbr_.getLowerPoint();
+	PointVectorAccessor lowPoint = mbr_.getLowerPoint();
+	PointVectorAccessor highPoint = mbr_.getUpperPoint();
 
 	for (std::size_t d = 0; d < dimension_; d++) {
 		double cellWidth = gridWidthPerDim_[d] / cellsPerDimension_[d];
-		double queryDistToLowPoint = (*query)[d] - lowerPoint[d];
+		double queryDistToLowPoint = (*query)[d] - lowPoint[d];
 		int cellNumberOfLeftBorder = std::floor(
 				queryDistToLowPoint / cellWidth);
 		double distToLeftBorder = queryDistToLowPoint
@@ -147,12 +157,12 @@ void Grid::initMinAndMax(std::vector<int>& min, std::vector<int>& max,
 	for (std::size_t d = 0; d < dimension_; d++) {
 		int queryCoord = cartesionQueryCoordinates[d];
 		int diff = (queryCoord - kNN_iteration);
-		int sum = (queryCoord + kNN_iteration);
+		unsigned sum = (queryCoord + kNN_iteration);
 
-		if (sum > kNN_iteration) {
-			max[d] = kNN_iteration;
+		if (sum >= cellsPerDimension_[d]) {
+			max[d] = (cellsPerDimension_[d] - 1) - queryCoord;
 		} else {
-			max[d] = sum < cellsPerDimension_[d] ? sum : max[d];
+			max[d] = kNN_iteration;
 		}
 
 		if (diff > 0) {
@@ -161,6 +171,8 @@ void Grid::initMinAndMax(std::vector<int>& min, std::vector<int>& max,
 			min[d] = -(diff + kNN_iteration);
 		}
 
+		assert(max[d] < static_cast<int>(cellsPerDimension_[d]));
+		assert(min[d] + kNN_iteration >= 0);
 		std::cout << "cells per dim: " << cellsPerDimension_[d] << std::endl;
 	}
 }
@@ -172,6 +184,12 @@ unsigned Grid::calculateCellNumber(
 	}
 
 	assert(cellNumber >= 0);
+	if (cellNumber >= grid_.size()) {
+		std::cout << "for grid coords: " << std::endl;
+		print_vector<int>(gridCartesianCoords);
+		std::cout << "calculated cellNumber: " << cellNumber << std::endl;
+		std::cout << "grid size: " << grid_.size() << std::endl;
+	}
 	assert(cellNumber < grid_.size());
 
 	return cellNumber;
@@ -187,6 +205,7 @@ void Grid::addToResult(const std::vector<int>& shifts,
 
 	cellNumbers.push_back(calculateCellNumber(query_cp));
 }
+
 std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 		unsigned queryCellNumber, std::vector<unsigned>& cartesianQueryCoords) {
 	std::vector<unsigned> cellNumbers;
@@ -199,8 +218,8 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 		//determine cell environment for non-trivial cases:
 		initMinAndMax(min, max, kNN_iteration, cartesianQueryCoords);
 		std::vector<int> fix_bounds;
-		unsigned lastIndex = dimension_ - 1;
 
+		unsigned last_idx = dimension_ - 1;
 		for (std::size_t fix_dim = 0; fix_dim < dimension_; ++fix_dim) {
 			std::vector<int> coordinateShifts;
 			if (max[fix_dim] != kNN_iteration
@@ -215,48 +234,37 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 				fix_bounds.push_back(kNN_iteration);
 			}
 
+			unsigned last_it_idx =
+					(last_idx == fix_dim) ? last_idx - 1 : last_idx;
+			unsigned overflow_idx = (fix_dim == 0) ? 1 : 0;
+
 			//Iterate through possible fixed states
 			for (int fix_coord : fix_bounds) {
+				std::cout << "fix coord: " << fix_coord << std::endl;
 				coordinateShifts.assign(std::begin(min), std::end(min));
 				coordinateShifts[fix_dim] = fix_coord;
-				//Add [min-ish,...,min-ish,fix-val,min,...,min]
-				addToResult(coordinateShifts, cartesianQueryCoords,
-						cellNumbers);
 
-				bool overflow = false;
+				while (coordinateShifts[overflow_idx] <= max[overflow_idx]) {
+					if (fix_coord == -9) {
+						print_vector<int>(coordinateShifts);
+					}
 
-				unsigned i = fix_dim != lastIndex ? lastIndex : lastIndex - 1;
-				while (!overflow && fix_dim != dimension_ - 1) {
-					++coordinateShifts[dimension_ - 1];
 					addToResult(coordinateShifts, cartesianQueryCoords,
 							cellNumbers);
 
-					while (coordinateShifts[i] >= max[i] && i > 1) {
+					++coordinateShifts[last_it_idx];
+
+					unsigned i = last_it_idx;
+					while (i > overflow_idx && coordinateShifts[i] > max[i]) {
 						coordinateShifts[i] = min[i];
 						//no need to return this result since it would be a dupe.
 						if (i == fix_dim + 1) {
-							if (fix_dim == 0) {
-								break;
-							} else {
-								i -= 2;
-							}
+							assert(fix_dim != 0);
+							i -= 2;
 						} else {
 							--i;
 						}
-
-						if (fix_dim == 0 && coordinateShifts[1] + 1 > max[1]) {
-							overflow = true;
-							break;
-						} else if (fix_dim != 0
-								&& coordinateShifts[0] + 1 > max[0]) {
-							overflow = true;
-							break;
-						}
-
 						++coordinateShifts[i];
-						addToResult(coordinateShifts, cartesianQueryCoords,
-								cellNumbers);
-
 					}
 				}
 			}
@@ -306,8 +314,9 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 
 		for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
 				) {
-			auto current_dist = it->first;
+			double current_dist = it->first;
 			auto candidate = it->second;
+
 			if (current_dist < closestDistToCellBorder) {
 				if (current_dist < candidates.max_dist()) {
 					candidates.push(candidate, current_dist);
@@ -318,19 +327,21 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 			} else {
 				//points from this part are not considerable since they reach
 				//out of the radius of valid points.
+				std::cout << "breaking out of unconsidered loop" << std::endl;
 				break;
 			}
 		}
 		std::cout << "considered unconsidered points here." << std::endl;
 		for (unsigned cNumber : getHyperSquareCellEnvironment(kNN_iteration,
 				queryCellNo, cartesianQueryCoords)) {
-			std::cout << "grid size: " << grid_.size() << std::endl;
 			PointContainer& pc = grid_[cNumber];
-			std::cout << "size of pointContainer[";
+			std::cout << "PointContainer[";
 			for (auto c : getCartesian(cNumber)) {
 				std::cout << c << ' ';
 			}
-			std::cout << "]: " << cNumber << std::endl;
+
+			std::cout << "]: " << "CellNumber: " << cNumber << " Size: "
+					<< pc.size() << std::endl;
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
 				auto point = pc[p_idx];
 				auto candidate = new PointArrayAccessor(point.getData(),

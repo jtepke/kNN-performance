@@ -1,22 +1,26 @@
 #include "BPQ.h"
 #include <cassert>
 
-void BPQ::push(PointAccessor* pa, std::size_t distance) {
+void BPQ::push(PointAccessor* pa, double distance) {
 	assert(distance < max_distance_);
-	bool is_full = candidates_.size() == max_size_;
+
 	//Pop top element if BQP is full and a better candidate was found.
-	if (is_full) {
+	if (candidates_.size() == max_size_) {
+		assert(candidates_.size() + 1 > max_size_);
 		pop();
+		assert(candidates_.size() == max_size_ - 1);
 	}
 
 	candidates_.push(pa);
+
 	//Update max_distance_ iff BPQ is full.
-	if (is_full) {
+	if (candidates_.size() == max_size_) {
 		if (top() == pa) {
 			max_distance_ = distance;
 		} else {
 			max_distance_ = Metrics::squared_euclidean(top(), query_);
 		}
+		assert(max_distance_ < std::numeric_limits<double>::infinity());
 	}
 }
 
