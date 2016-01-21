@@ -27,6 +27,10 @@ public:
 
 	}
 
+	PointContainer(const std::size_t dimension, std::vector<double>& coordinates) :
+			dimension_(dimension), coordinates_(coordinates) {
+
+	}
 	PointVectorAccessor operator[](std::size_t idx) {
 		const std::size_t pIndex = dimension_ * idx;
 
