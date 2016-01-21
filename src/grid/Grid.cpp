@@ -203,7 +203,7 @@ unsigned Grid::calculateCellNumber(
 	assert(cellNumber >= 0);
 	if (cellNumber >= grid_.size()) {
 //		std::cout << "for grid coords: " << std::endl;
-		print_vector<int>(gridCartesianCoords);
+//		print_vector<int>(gridCartesianCoords);
 //		std::cout << "calculated cellNumber: " << cellNumber << std::endl;
 //		std::cout << "grid size: " << grid_.size() << std::endl;
 	}
@@ -257,14 +257,10 @@ std::vector<unsigned> Grid::getHyperSquareCellEnvironment(int kNN_iteration,
 
 			//Iterate through possible fixed states
 			for (int fix_coord : fix_bounds) {
-//				std::cout << "fix coord: " << fix_coord << std::endl;
 				coordinateShifts.assign(std::begin(min), std::end(min));
 				coordinateShifts[fix_dim] = fix_coord;
 
 				while (coordinateShifts[overflow_idx] <= max[overflow_idx]) {
-					if (fix_coord == -9) {
-						print_vector<int>(coordinateShifts);
-					}
 
 					addToResult(coordinateShifts, cartesianQueryCoords,
 							cellNumbers);
@@ -350,10 +346,10 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 				queryCellNo, cartesianQueryCoords)) {
 			PointContainer& pc = grid_[cNumber];
 //			std::cout << "PointContainer[";
-			for (auto c : getCartesian(cNumber)) {
-				std::cout << c << ' ';
-			}
-
+//			for (auto c : getCartesian(cNumber)) {
+//				std::cout << c << ' ';
+//			}
+//
 //			std::cout << "]: " << "CellNumber: " << cNumber << " Size: "
 //					<< pc.size() << std::endl;
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
