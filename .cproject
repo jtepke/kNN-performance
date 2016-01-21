@@ -55,6 +55,16 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.177807390.1808583522" name="/" resourcePath="performance-test">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1439719799" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1565189988" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1846576948"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.199181502" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1922010064"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.829136349" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.1684873775"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.621319603" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.747959657"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1625807374" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.1744708059"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.1680030257" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.251093381"/>
+						</toolChain>
+					</folderInfo>
 					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.177807390.404042050" name="/" resourcePath="test">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1980427175" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
@@ -97,7 +107,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="gtest_src|grid|test|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="performance-test|gtest_src|grid|test|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gtest_src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="test"/>
@@ -162,7 +172,14 @@
 		<project id="SpatialGrid2.cdt.managedbuild.target.gnu.cross.exe.1072596274" name="Executable" projectType="cdt.managedbuild.target.gnu.cross.exe"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/kNNBaThesis"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/kNNBaThesis"/>
+		</configuration>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.1368849651;cdt.managedbuild.config.gnu.cross.exe.release.1368849651.;cdt.managedbuild.tool.gnu.cross.c.compiler.1556572053;cdt.managedbuild.tool.gnu.c.compiler.input.1008997738">
