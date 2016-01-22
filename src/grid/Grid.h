@@ -38,7 +38,8 @@ public:
 	const std::vector<double> widthPerDimension();
 	/** Returns vector containing number of cells per dimension. */
 	//TODO: make static
-	const std::vector<std::size_t> calculateCellsPerDimension(std::size_t cellFillOptimum) const;
+	const std::vector<std::size_t> calculateCellsPerDimension(
+			std::size_t cellFillOptimum) const;
 	/** Calculates volume of cells up to a particular dimension. */
 	std::size_t productOfCellsUpToDimension(std::size_t dimension);
 	/** Calculates the grid index (cell number) for a point. */
@@ -74,7 +75,8 @@ public:
 		insert(coordinates, size);
 	}
 
-	virtual ~Grid();
+	virtual ~Grid() {
+	}
 
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
 	BPQ kNearestNeighbors(unsigned k, PointAccessor* query) override;

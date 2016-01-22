@@ -236,6 +236,5 @@ TEST_F(GridKnnTest, grid_returns_corrects_results_for_another_k) {
 		results_naive.pop();
 
 		ASSERT_DOUBLE_EQ(naive_dist, grid_dist);
-
 	}
 }

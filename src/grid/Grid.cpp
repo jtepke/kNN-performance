@@ -22,9 +22,6 @@ void print_vector(const std::vector<T>& vec) {
 	std::cout << ']' << std::endl;
 }
 
-Grid::~Grid() {
-}
-
 MBR Grid::initGridMBR(double * coordinates, std::size_t size,
 		std::size_t dimension) {
 	GridMBR m = GridMBR(dimension);
@@ -317,45 +314,38 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 	unsigned queryCellNo = cellNumber(query);
 	std::vector<unsigned> cartesianQueryCoords = getCartesian(queryCellNo);
 	while (candidates.notFull()) {
-//		std::cout << "closest distance to border: " << closestDistToCellBorder
-//				<< std::endl;
-//		std::cout << "unconsidered size: " << unconsidered_pts.size()
-//				<< std::endl;
 
 		for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
-				) {
+				it = unconsidered_pts.erase(it)) {
 			double current_dist = it->first;
-			auto candidate = it->second;
+			PointArrayAccessor* candidate = it->second;
 
-			if (current_dist < closestDistToCellBorder) {
-				if (current_dist < candidates.max_dist()) {
-					candidates.push(candidate, current_dist);
-				}
-				//remove, since point was within radius of considerable
-				//points.
-				it = unconsidered_pts.erase(it);
-			} else {
+			if (!(current_dist < closestDistToCellBorder)) {
+				break;
 				//points from this part are not considerable since they reach
 				//out of the radius of valid points.
-//				std::cout << "breaking out of unconsidered loop" << std::endl;
-				break;
+			} else {
+				if (current_dist < candidates.max_dist()) {
+					candidates.push(candidate, current_dist);
+				} else {
+					//remove, since point was within radius of considerable
+					//points. This is important! Otherwise kNN look-up will/may
+					//not terminate.
+					delete (candidate);
+					candidate = NULL;
+				}
 			}
 		}
-//		std::cout << "considered unconsidered points here." << std::endl;
+
 		for (unsigned cNumber : getHyperSquareCellEnvironment(kNN_iteration,
 				queryCellNo, cartesianQueryCoords)) {
 			PointContainer& pc = grid_[cNumber];
-//			std::cout << "PointContainer[";
-//			for (auto c : getCartesian(cNumber)) {
-//				std::cout << c << ' ';
-//			}
-//
-//			std::cout << "]: " << "CellNumber: " << cNumber << " Size: "
-//					<< pc.size() << std::endl;
+
 			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
 				auto point = pc[p_idx];
 				auto candidate = new PointArrayAccessor(point.getData(),
 						point.getOffset(), point.dimension());
+
 				double current_dist = Metrics::squared_euclidean(candidate,
 						query);
 				if (current_dist < closestDistToCellBorder) {
@@ -368,12 +358,18 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 				}
 			}
 		}
-//		std::cout << "processed all cells in iteration: " << kNN_iteration
-//				<< std::endl;
 		kNN_iteration++;
 		closestDistToCellBorder = findNextClosestCellBorder(query,
 				kNN_iteration);
 	}
+
+	for(auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
+				++it){
+		auto canidate = it->second;
+		delete(canidate);
+		canidate = NULL;
+	}
+
 	return candidates;
 }
 
