@@ -6,7 +6,7 @@
 #include "util/RandomPointGenerator.h"
 #include "knn/NaiveKnn.h"
 
-#include "cmath"
+#include <cmath>
 #include <array>
 #include <vector>
 #include <utility>
@@ -145,19 +145,20 @@ class GridKnnTest: public ::testing::Test {
 protected:
 	PointContainer points_;
 	static const unsigned DIMENSION = 3;
-	const unsigned NUMBER_OF_TEST_POINTS = 1000000;
-	const unsigned K = 1000;
-	const unsigned ANOTHER_K = 15401;
+	const unsigned NUMBER_OF_TEST_POINTS = 100000;
+	const unsigned NUMBER_OF_QUERIES = 400;
+	const unsigned MAX_K = 1000;
 	const unsigned SEED = 12345;
 	Grid* kNN_test_grid_;
+	RandomPointGenerator queryGenerator { };
+	MBR m { DIMENSION };
 
 	virtual void SetUp() {
 		RandomPointGenerator rg(SEED);
 		unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
-		double mbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
+		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
 
-		MBR m = MBR(DIMENSION);
-		m = m.createMBR(mbrCoords, NUMBER_OF_MBR_COORDINATES);
+		m = m.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, m);
 		kNN_test_grid_ = new Grid(DIMENSION, points_.data(),
@@ -165,6 +166,12 @@ protected:
 	}
 	virtual void TearDown() {
 	}
+
+	PointContainer genQuerie(std::size_t numberOfQueries) {
+		return queryGenerator.generatePoints(numberOfQueries,
+				RandomPointGenerator::UNIFORM, m);
+	}
+
 };
 
 ///////////////////////////////////
@@ -184,57 +191,41 @@ TEST_F(GridKnnTest, kNN_lookup_ends_with_k_results) {
 
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
-	BPQ result = kNN_test_grid_->kNearestNeighbors(K, &query);
+	BPQ result = kNN_test_grid_->kNearestNeighbors(MAX_K, &query);
 
-	ASSERT_EQ(static_cast<std::size_t>(K), result.size());
-	std::cout << Metrics::squared_euclidean(result.top(), &query);
+	EXPECT_EQ(static_cast<std::size_t>(MAX_K), result.size());
 }
 
 TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
-	Grid grid(DIMENSION, points_.data(), NUMBER_OF_TEST_POINTS * DIMENSION);
 	NaiveKnn naive(points_.data(), DIMENSION, NUMBER_OF_TEST_POINTS);
 
 	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
-	BPQ results_naive = naive.kNearestNeighbors(K, &query);
-	BPQ result_grid = grid.kNearestNeighbors(K, &query);
+	for (unsigned current_k = 1; current_k <= MAX_K; current_k += 13) {
+		auto&& pc = genQuerie(NUMBER_OF_QUERIES);
+		for (unsigned queryNumber = 0; queryNumber < NUMBER_OF_QUERIES;
+				++queryNumber) {
+			auto query = pc[queryNumber];
+			BPQ results_naive = naive.kNearestNeighbors(current_k, &query);
+			BPQ results_grid = kNN_test_grid_->kNearestNeighbors(current_k,
+					&query);
 
-	double naive_dist;
-	double grid_dist;
+			double naive_dist;
+			double grid_dist;
 
-	while (!(results_naive.empty())) {
-		naive_dist = Metrics::squared_euclidean(results_naive.top(), &query);
-		grid_dist = Metrics::squared_euclidean(result_grid.top(), &query);
+			while (!(results_naive.empty())) {
+				naive_dist = Metrics::squared_euclidean(results_naive.top(),
+						&query);
+				grid_dist = Metrics::squared_euclidean(results_grid.top(),
+						&query);
 
-		result_grid.pop();
-		results_naive.pop();
+				results_grid.pop();
+				results_naive.pop();
 
-		ASSERT_DOUBLE_EQ(naive_dist, grid_dist);
+				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
 
-	}
-}
-
-TEST_F(GridKnnTest, grid_returns_corrects_results_for_another_k) {
-	Grid grid(DIMENSION, points_.data(), NUMBER_OF_TEST_POINTS * DIMENSION);
-	NaiveKnn naive(points_.data(), DIMENSION, NUMBER_OF_TEST_POINTS);
-
-	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
-	PointArrayAccessor query(queryCoords, 0, DIMENSION);
-
-	BPQ results_naive = naive.kNearestNeighbors(ANOTHER_K, &query);
-	BPQ results_grid = grid.kNearestNeighbors(ANOTHER_K, &query);
-
-	double naive_dist;
-	double grid_dist;
-
-	while (!(results_naive.empty())) {
-		naive_dist = Metrics::squared_euclidean(results_naive.top(), &query);
-		grid_dist = Metrics::squared_euclidean(results_grid.top(), &query);
-
-		results_grid.pop();
-		results_naive.pop();
-
-		ASSERT_DOUBLE_EQ(naive_dist, grid_dist);
+			}
+		}
 	}
 }
