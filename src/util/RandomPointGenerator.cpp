@@ -29,12 +29,13 @@ void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
 }
 
 void RandomPointGenerator::genUniformPts(std::vector<double>& randPts,
-		std::size_t numberOfPoints, std::size_t dimension) {
+		std::size_t numberOfPoints, std::size_t dimension, MBR& mbr) {
 
 	for (std::size_t i = 0; i < numberOfPoints; i++) {
 		for (std::size_t j = 0; j < dimension; j++) {
 			randPts[(i * dimension) + j] = (*uniform_[j])(randEngine_);
 		}
+		assert(mbr.isWithin(&randPts[i * dimension]));
 	}
 }
 
@@ -57,6 +58,7 @@ PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		DISTRIBUTION distrib, MBR& mbr, double mean, double stddev,
 		int numberOfClusters) {
 	assert(!mbr.empty());
+	assert(mbr.getLowerPoint().dimension() == mbr.getUpperPoint().dimension());
 
 	std::size_t dimension = mbr.getLowerPoint().dimension();
 	std::size_t numberOfCoordinates = numberOfPoints * dimension;
@@ -76,14 +78,13 @@ PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		break;
 	case UNIFORM:
 		initUniform(mbr, dimension);
-		genUniformPts(randPoints, numberOfPoints, dimension);
+		genUniformPts(randPoints, numberOfPoints, dimension, mbr);
 		break;
 	default:
 		//this should never happen...
 		throw std::runtime_error("Cannot handle distribution: " + distrib);
 	}
 	return PointContainer(dimension, randPoints);
-//		return PointContainer(dimension, randPoints, numberOfPoints);
 
 }
 
