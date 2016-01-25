@@ -57,8 +57,6 @@ MBR MBR::createMBR(double * coordinates, std::size_t size) {
 		lower[i] = upper[i] = coordinates[i];
 	}
 
-	std::size_t array_size = 2 * dimension_;
-
 	for (std::size_t i = 0; i < size; i++) {
 		std::size_t coordinateDimension = (i % dimension_);
 		if (coordinates[i] < lower[coordinateDimension]) {
