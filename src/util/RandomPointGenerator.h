@@ -17,7 +17,7 @@ private:
 	void initGauss(double mean, double stddev);
 	void initGaussCluster(std::size_t dimension, double stddev);
 	void genUniformPts(std::vector<double>& randPts, std::size_t numberOfPoints,
-			std::size_t dimension);
+			std::size_t dimension, MBR& m);
 	void genGaussPts(std::vector<double>& randPts, std::size_t numberOfPoints,
 			std::size_t dimension, std::size_t numberOfClusters, MBR& m);
 public:
