@@ -6,10 +6,11 @@
 #include "util/RandomPointGenerator.h"
 #include "knn/NaiveKnn.h"
 
-#include <cmath>
+#include <algorithm>
 #include <array>
-#include <vector>
+#include <cmath>
 #include <utility>
+#include <vector>
 
 class GridTest: public ::testing::Test {
 protected:
@@ -143,33 +144,41 @@ TEST_F(GridTest, A_Grid_throws_expections_if_points_outside_of_the_grid_are_inse
 
 class GridKnnTest: public ::testing::Test {
 protected:
-	PointContainer points_;
 	static const unsigned DIMENSION = 3;
-	const unsigned NUMBER_OF_TEST_POINTS = 100000;
-	const unsigned NUMBER_OF_QUERIES = 400;
-	const unsigned MAX_K = 1000;
+
+	const unsigned NUMBER_OF_TEST_POINTS = 10000;
+	const unsigned NUMBER_OF_QUERIES = 5;
+	const unsigned MAX_K = NUMBER_OF_TEST_POINTS;
 	const unsigned SEED = 12345;
+
 	Grid* kNN_test_grid_;
 	RandomPointGenerator queryGenerator { };
-	MBR m { DIMENSION };
+	PointContainer points_;
+
+	MBR grid_mbr { DIMENSION };
+	MBR query_mbr { DIMENSION };
 
 	virtual void SetUp() {
 		RandomPointGenerator rg(SEED);
 		unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
+		double queryMbrCoords[] = { -90.0, 0.5, -48.0, 100.0, 6.5, 40.0 };
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
+		query_mbr = query_mbr.createMBR(queryMbrCoords,
+				NUMBER_OF_MBR_COORDINATES);
 
-		m = m.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
-				RandomPointGenerator::UNIFORM, m);
+				RandomPointGenerator::UNIFORM, grid_mbr);
 		kNN_test_grid_ = new Grid(DIMENSION, points_.data(),
 				NUMBER_OF_TEST_POINTS * DIMENSION);
 	}
+
 	virtual void TearDown() {
 	}
 
-	PointContainer genQuerie(std::size_t numberOfQueries) {
+	PointContainer genQueries(std::size_t numberOfQueries) {
 		return queryGenerator.generatePoints(numberOfQueries,
-				RandomPointGenerator::UNIFORM, m);
+				RandomPointGenerator::UNIFORM, query_mbr);
 	}
 
 };
@@ -177,13 +186,116 @@ protected:
 ///////////////////////////////////
 /////////// kNN Tests /////////////
 ///////////////////////////////////
-TEST_F(GridKnnTest, kNN_grid_scenario_has_no_duplicate_points) {
+TEST_F(GridKnnTest, kNN_grid_scenario_does_not_contain_duplicate_points) {
 	unsigned actual_number_of_stored_points = 0;
 	for (const auto& pc : kNN_test_grid_->grid_) {
 		actual_number_of_stored_points += pc.size();
 	}
 
 	EXPECT_EQ(actual_number_of_stored_points, NUMBER_OF_TEST_POINTS);
+}
+
+TEST_F(GridKnnTest, getHyperSquareEnvironment_returns_all_cells_eventually) {
+	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
+	PointArrayAccessor query(queryCoords, 0, DIMENSION);
+	unsigned cellNumber = kNN_test_grid_->cellNumber(&query);
+	std::vector<unsigned> cartesionQueryCoords = kNN_test_grid_->getCartesian(
+			cellNumber);
+	std::vector<unsigned> unexpected;
+
+	//Iteration 0, same cell number should be returned:
+	auto result_0 = kNN_test_grid_->getHyperSquareCellEnvironment(0, cellNumber,
+			cartesionQueryCoords);
+	EXPECT_EQ(result_0.size(), 1);
+	EXPECT_EQ(result_0.front(), cellNumber);
+	unexpected.push_back(result_0.front());
+
+	//Iteration 1:
+	auto result_1 = kNN_test_grid_->getHyperSquareCellEnvironment(1, cellNumber,
+			cartesionQueryCoords);
+
+	std::vector<unsigned> expected_1 { 12, 21, 30, 14, 23, 32, 13, 31 };
+	EXPECT_EQ(result_1.size(), expected_1.size());
+
+	for (unsigned actual : result_1) {
+		EXPECT_TRUE(
+				std::find(std::begin(expected_1), std::end(expected_1), actual)
+						!= std::end(result_1));
+	}
+
+	//Iteration 2:
+	auto result_2 = kNN_test_grid_->getHyperSquareCellEnvironment(2, cellNumber,
+			cartesionQueryCoords);
+
+	std::vector<unsigned> expected_2 { 2, 11, 20, 29, 6, 15, 24, 33, 3, 4, 5 };
+	EXPECT_EQ(result_2.size(), expected_2.size());
+
+	for (unsigned actual : result_2) {
+		EXPECT_TRUE(
+				std::find(std::begin(expected_2), std::end(expected_2), actual)
+						!= std::end(result_2));
+	}
+
+	//Iteration 3:
+	auto result_3 = kNN_test_grid_->getHyperSquareCellEnvironment(3, cellNumber,
+			cartesionQueryCoords);
+
+	std::vector<unsigned> expected_3 { 1, 10, 19, 28, 7, 16, 25, 34 };
+	EXPECT_EQ(result_3.size(), expected_3.size());
+
+	for (unsigned actual : result_3) {
+		EXPECT_TRUE(
+				std::find(std::begin(expected_3), std::end(expected_3), actual)
+						!= std::end(result_3));
+	}
+
+	//Iteration 4:
+	auto result_4 = kNN_test_grid_->getHyperSquareCellEnvironment(4, cellNumber,
+			cartesionQueryCoords);
+
+	std::vector<unsigned> expected_4 { 0, 9, 18, 27, 8, 17, 26, 35 };
+	EXPECT_EQ(result_4.size(), expected_4.size());
+
+	for (unsigned actual : result_4) {
+		EXPECT_TRUE(
+				std::find(std::begin(expected_4), std::end(expected_4), actual)
+						!= std::end(result_4));
+	}
+
+	//Iteration > 5:
+	for (unsigned k_iteration = 5; k_iteration < 100; ++k_iteration) {
+		EXPECT_EQ(
+				kNN_test_grid_->getHyperSquareCellEnvironment(k_iteration,
+						cellNumber, cartesionQueryCoords).size(), 0);
+	}
+
+	std::size_t sum_of_points = 0;
+	std::size_t sum_of_cells = 0;
+	for (unsigned k_iteration = 0; k_iteration < 5; ++k_iteration) {
+		auto results = kNN_test_grid_->getHyperSquareCellEnvironment(
+				k_iteration, cellNumber, cartesionQueryCoords);
+		for (auto cellId : results) {
+			sum_of_points += kNN_test_grid_->grid_[cellId].size();
+		}
+		sum_of_cells += results.size();
+	}
+
+	EXPECT_EQ(sum_of_cells, kNN_test_grid_->grid_.size());
+	EXPECT_EQ(sum_of_points, kNN_test_grid_->numberOfPoints_);
+}
+
+TEST_F(GridKnnTest, kNN_radius_of_valid_points_is_enlarged_correctly) {
+	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
+	PointArrayAccessor query(queryCoords, 0, DIMENSION);
+	double last_result = 0.0;
+	double current_result;
+	for (int k_it = 0; k_it < 6; k_it++) {
+		current_result = kNN_test_grid_->findNextClosestCellBorder(&query,
+				k_it);
+		EXPECT_GT(current_result, last_result);
+		last_result = current_result;
+	}
+	EXPECT_TRUE(last_result == std::numeric_limits<double>::infinity());
 }
 
 TEST_F(GridKnnTest, kNN_lookup_ends_with_k_results) {
@@ -202,8 +314,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
-	for (unsigned current_k = 1; current_k <= MAX_K; current_k += 13) {
-		auto&& pc = genQuerie(NUMBER_OF_QUERIES);
+	for (unsigned current_k = 1; current_k <= MAX_K; ++current_k) {
+		auto pc = genQueries(NUMBER_OF_QUERIES);
 		for (unsigned queryNumber = 0; queryNumber < NUMBER_OF_QUERIES;
 				++queryNumber) {
 			auto query = pc[queryNumber];
@@ -214,18 +326,55 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 			double naive_dist;
 			double grid_dist;
 
+			EXPECT_EQ(results_naive.size(), results_grid.size());
 			while (!(results_naive.empty())) {
 				naive_dist = Metrics::squared_euclidean(results_naive.top(),
 						&query);
 				grid_dist = Metrics::squared_euclidean(results_grid.top(),
 						&query);
 
+				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
+				//Error log
+				if (naive_dist != grid_dist) {
+					std::cerr << "-----------------------\n";
+					std::cerr << "found mismatch for k: " << current_k
+							<< " of max. k: " << MAX_K << '\n';
+					std::cerr << "the current number of queries: "
+							<< queryNumber << '\n';
+					std::cerr << "for query: ";
+					query.to_stream(std::cerr);
+					std::cerr << "the current size of BPQ is: "
+							<< results_grid.size() << '\n';
+					std::cerr << "naive top(): ";
+					results_naive.top()->to_stream(std::cerr);
+					std::cerr << "grid top(): ";
+					results_grid.top()->to_stream(std::cerr);
+					std::cerr << "-----------------------\n";
+					std::cerr << std::endl;
+					goto error_abort;
+				}
 				results_grid.pop();
 				results_naive.pop();
-
-				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
-
 			}
 		}
+
+		//Hack, to speed up test without breaking others
+		if (current_k >= 500) {
+			current_k += 39;
+		}
+
+		switch (current_k) {
+		case 2019:
+			current_k += 2960;
+			break;
+		case 5539:
+			current_k += 1860;
+			break;
+		case 7559:
+			current_k += 2370;
+			break;
+		}
+		//End hack
 	}
+	error_abort: ;
 }
