@@ -1,4 +1,5 @@
 #include "MBR.h"
+#include "PointAccessor.h"
 
 PointVectorAccessor MBR::getLowerPoint() {
 	return (*this)[LOWER_INDEX];
@@ -41,23 +42,27 @@ void MBR::addUpper(std::vector<double>& point) {
 bool MBR::isWithin(double * point) {
 	bool isWithin = true;
 
-	for (std::size_t i = 0; i < dimension_; i++) {
+	for (std::size_t i = 0; i < dimension_ && isWithin; i++) {
 		isWithin = isWithin && point[i] >= getLowerPoint()[i];
-		isWithin = isWithin && point[i] <= getUpperPoint()[i];
+		isWithin = isWithin && point[i] < getUpperPoint()[i];
 	}
 
 	return isWithin;
+}
+
+bool MBR::isWithin(PointAccessor * point) {
+	return isWithin(&(*point)[0]);
 }
 
 MBR MBR::createMBR(double * coordinates, std::size_t size) {
 	std::vector<double> lower(dimension_);
 	std::vector<double> upper(dimension_);
 
-	for (std::size_t i = 0; i < dimension_; i++) {
+	for (std::size_t i = 0; i < dimension_; ++i) {
 		lower[i] = upper[i] = coordinates[i];
 	}
 
-	for (std::size_t i = 0; i < size; i++) {
+	for (std::size_t i = 0; i < size; ++i) {
 		std::size_t coordinateDimension = (i % dimension_);
 		if (coordinates[i] < lower[coordinateDimension]) {
 			lower[coordinateDimension] = coordinates[i];
