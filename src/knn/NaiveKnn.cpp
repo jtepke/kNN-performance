@@ -9,10 +9,11 @@
 #include <vector>
 #include <limits>
 
-BPQ NaiveKnn::kNearestNeighbors(unsigned k, PointAccessor* query) {
+
+BPQ<PointAccessor*> NaiveKnn::kNearestNeighbors(unsigned k, PointAccessor* query) {
 	assert(dimension_ == query->dimension());
 
-	BPQ candidates(k, query);
+	BPQ<PointAccessor*> candidates(k, query);
 
 	PointArrayAccessor current_point(points_, 0, dimension_);
 	double current_dist;

@@ -10,7 +10,7 @@
 #include <vector>
 #include <utility>
 
-class Grid: public Representable, public KnnProcessor {
+class Grid: public Representable, public KnnProcessor<PointVectorAccessor> {
 public:
 	/** dimension of the grid space */
 	const std::size_t dimension_;
@@ -75,11 +75,9 @@ public:
 		insert(coordinates, size);
 	}
 
-	virtual ~Grid() {
-	}
 
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
-	BPQ kNearestNeighbors(unsigned k, PointAccessor* query) override;
+	BPQ<PointVectorAccessor> kNearestNeighbors(unsigned k, PointAccessor* query) override;
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };

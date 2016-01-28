@@ -8,7 +8,7 @@ public:
 	Metrics();
 	virtual ~Metrics();
 	static double squared_euclidean(PointAccessor* p, PointAccessor* q);
-	static double squared_euclidean(PointVectorAccessor p, PointAccessor* q);
+	static double squared_euclidean(PointVectorAccessor& p, PointAccessor* q);
 	static double euclidean(PointAccessor* p, PointAccessor* q);
 
 };

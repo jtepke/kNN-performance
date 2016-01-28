@@ -8,12 +8,12 @@
 
 class PointVectorAccessor: public PointAccessor {
 private:
-	std::vector<double>& container_;
+	std::vector<double>* container_;
 
 public:
 	PointVectorAccessor(std::vector<double>& container,
 			std::size_t pointIndexOffset, std::size_t dimension) :
-			PointAccessor(pointIndexOffset, dimension), container_(container) {
+			PointAccessor(pointIndexOffset, dimension), container_(&container) {
 	}
 	double& operator[](std::size_t idx) override;
 	double* getData() override;

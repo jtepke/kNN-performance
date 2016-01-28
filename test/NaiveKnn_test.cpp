@@ -37,7 +37,7 @@ TEST_F(NaiveKnnTest, k_1000_contains_1000_results) {
 	NaiveKnn naive(points_.data(), DIMENSION, NUMBER_OF_TEST_POINTS);
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
-	BPQ result = naive.kNearestNeighbors(K, &query);
+	auto result = naive.kNearestNeighbors(K, &query);
 
 	ASSERT_EQ(static_cast<std::size_t>(K), result.size());
 }
@@ -46,7 +46,7 @@ TEST_F(NaiveKnnTest, k_1000) {
 	NaiveKnn naive(points_.data(), DIMENSION, NUMBER_OF_TEST_POINTS);
 	double queryCoords[DIMENSION] = { 1.0, 1.0, 1.0 };
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
-	BPQ actualResult = naive.kNearestNeighbors(K, &query);
+	auto actualResult = naive.kNearestNeighbors(K, &query);
 
 	PointContainer expectedResults = FileHandler::readPointsFromFile(
 			EXPECTED_SPATIAL_GRID_TEST_RESULTS, K, 1);

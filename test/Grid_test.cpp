@@ -303,7 +303,7 @@ TEST_F(GridKnnTest, kNN_lookup_ends_with_k_results) {
 
 	PointArrayAccessor query(queryCoords, 0, DIMENSION);
 
-	BPQ result = kNN_test_grid_->kNearestNeighbors(MAX_K, &query);
+	auto result = kNN_test_grid_->kNearestNeighbors(MAX_K, &query);
 
 	EXPECT_EQ(static_cast<std::size_t>(MAX_K), result.size());
 }
@@ -319,8 +319,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 		for (unsigned queryNumber = 0; queryNumber < NUMBER_OF_QUERIES;
 				++queryNumber) {
 			auto query = pc[queryNumber];
-			BPQ results_naive = naive.kNearestNeighbors(current_k, &query);
-			BPQ results_grid = kNN_test_grid_->kNearestNeighbors(current_k,
+			auto results_naive = naive.kNearestNeighbors(current_k, &query);
+			auto results_grid = kNN_test_grid_->kNearestNeighbors(current_k,
 					&query);
 
 			double naive_dist;
@@ -330,7 +330,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 			while (!(results_naive.empty())) {
 				naive_dist = Metrics::squared_euclidean(results_naive.top(),
 						&query);
-				grid_dist = Metrics::squared_euclidean(results_grid.top(),
+				auto top = results_grid.top();
+				grid_dist = Metrics::squared_euclidean(top,
 						&query);
 
 				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
@@ -347,8 +348,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 							<< results_grid.size() << '\n';
 					std::cerr << "naive top(): ";
 					results_naive.top()->to_stream(std::cerr);
-					std::cerr << "grid top(): ";
-					results_grid.top()->to_stream(std::cerr);
+//					std::cerr << "grid top(): ";
+//					results_grid.top()->to_stream(std::cerr);
 					std::cerr << "-----------------------\n";
 					std::cerr << std::endl;
 					goto error_abort;

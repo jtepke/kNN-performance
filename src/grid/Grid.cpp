@@ -318,12 +318,12 @@ std::vector<unsigned> Grid::getCartesian(unsigned cellNumber) {
 	return cartesianCoordinates;
 }
 
-BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
-	BPQ candidates(k, query);
+BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
+	BPQ<PointVectorAccessor> candidates(k, query);
 
 	int kNN_iteration = 0;
 	double closestDistToCellBorder;
-	std::multimap<double, PointArrayAccessor*> unconsidered_pts;
+	std::multimap<double, PointVectorAccessor> unconsidered_pts;
 	unsigned queryCellNo = cellNumber(query);
 	std::vector<unsigned> cartesianQueryCoords = getCartesian(queryCellNo);
 	while (candidates.notFull()) {
@@ -332,7 +332,7 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 		for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
 				it = unconsidered_pts.erase(it)) {
 			double current_dist = it->first;
-			PointArrayAccessor* candidate = it->second;
+			PointVectorAccessor candidate = it->second;
 
 			if (!(current_dist < closestDistToCellBorder)) {
 				break;
@@ -345,8 +345,8 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 					//remove, since point was within radius of considerable
 					//points. This is important! Otherwise kNN look-up will/may
 					//not terminate.
-					delete (candidate);
-					candidate = NULL;
+//					delete (candidate);
+//					candidate = NULL;
 				}
 			}
 		}
@@ -355,20 +355,19 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 				queryCellNo, cartesianQueryCoords)) {
 			PointContainer& pc = grid_[cNumber];
 
-			for (std::size_t p_idx = 0; p_idx < pc.size(); p_idx++) {
+			for (std::size_t p_idx = 0; p_idx < pc.size(); ++p_idx) {
 				auto point = pc[p_idx];
-				auto candidate = new PointArrayAccessor(point.getData(),
-						point.getOffset(), point.dimension());
 
-				double current_dist = Metrics::squared_euclidean(candidate,
+
+				double current_dist = Metrics::squared_euclidean(point,
 						query);
 				if (current_dist < closestDistToCellBorder) {
 					if (current_dist < candidates.max_dist()) {
-						candidates.push(candidate, current_dist);
+						candidates.push(point, current_dist);
 					}
 				} else {
 					unconsidered_pts.insert(
-							std::make_pair(current_dist, candidate));
+							std::make_pair(current_dist, point));
 				}
 			}
 		}
@@ -377,12 +376,12 @@ BPQ Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
 
 	//delete unconsidered points
 	//TODO: extract into method
-	for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
-			++it) {
-		auto canidate = it->second;
-		delete (canidate);
-		canidate = NULL;
-	}
+//	for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
+//			++it) {
+//		auto canidate = it->second;
+//		delete (canidate);
+//		canidate = NULL;
+//	}
 
 	return candidates;
 }

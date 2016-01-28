@@ -6,7 +6,7 @@
 #include "KnnProcessor.h"
 #include <cstddef>
 
-class NaiveKnn: public KnnProcessor {
+class NaiveKnn: public KnnProcessor<PointAccessor*> {
 private:
 	double * points_;
 	const std::size_t dimension_;
@@ -18,10 +18,8 @@ public:
 					numberOfPoints) {
 
 	}
-	virtual ~NaiveKnn() {
-	}
 
-	BPQ kNearestNeighbors(unsigned k, PointAccessor* query);
+	BPQ<PointAccessor*> kNearestNeighbors(unsigned k, PointAccessor* query);
 
 };
 
