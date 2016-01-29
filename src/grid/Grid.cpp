@@ -5,11 +5,13 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <chrono>
 #include <iterator>
 #include <iostream>
 #include <map>
 #include <stdexcept>
 #include <string>
+#include <thread>
 #include <utility>
 #include <vector>
 
@@ -24,11 +26,53 @@ void Grid::allocPointContainers() {
 	grid_.resize(numberOfCells, PointContainer(dimension_));
 }
 
+void Grid::insertMultiThreaded(double* coordinates, std::size_t size) {
+	for (std::size_t i = 0; i < size; i += dimension_) {
+		insert(&coordinates[i], true);
+	}
+}
+
 void Grid::insert(double * coordinates, std::size_t size) {
 	assert((size % dimension_) == 0);
+	unsigned maxThreadLoad = 100000000;
+	unsigned numberOfThreads = 10;
+	std::vector<std::thread>(numberOfThreads);
+	if (size > maxThreadLoad) {
+		std::cout << "parallel";
+		for (unsigned i = 0; i < grid_.size(); i++) {
+			insertLocks_.push_back(new std::mutex());
+		}
 
-	for (std::size_t i = 0; i < size; i += dimension_) {
-		insert(&coordinates[i]);
+		std::size_t thread_offset = (size / 3);
+		std::size_t end1 = thread_offset + dimension_
+				- (thread_offset % dimension_);
+		std::size_t end2 = 2 * end1;
+		std::size_t end3 = size - end2;
+
+//		std::cout << "size: " << size << std::endl;
+//		std::cout << "end1: " << end1 << std::endl;
+//		std::cout << "end2: " << end2 << std::endl;
+//		std::cout << "end3: " << end3 << std::endl;
+
+		std::thread t1(&Grid::insertMultiThreaded, this, &coordinates[0], end1);
+//		std::cout << "Thread 1 ceated:" << std::endl;
+		std::thread t2(&Grid::insertMultiThreaded, this, &coordinates[end1],
+				end1);
+//		std::cout << "Thread 2 ceated:" << std::endl;
+		std::thread t3(&Grid::insertMultiThreaded, this, &coordinates[end2],
+				end3);
+//		std::cout << "Thread 3 ceated:" << std::endl;
+
+		t1.join();
+//		std::cout << "T1 finished" << std::endl;
+		t2.join();
+//		std::cout << "T2 finished" << std::endl;
+		t3.join();
+//		std::cout << "T3 finished" << std::endl;
+	} else {
+		for (std::size_t i = 0; i < size; i += dimension_) {
+			insert(&coordinates[i], false);
+		}
 	}
 
 }
@@ -65,12 +109,21 @@ unsigned Grid::cellNumber(PointAccessor* pa) {
 	return cellNumber(pa->getData() + pa->getOffset());
 }
 
-void Grid::insert(double * point) {
+void Grid::insert(double * point, bool isMultiThreaded) {
 	if (!mbr_.isWithin(point)) {
 		throw std::runtime_error("Point is not within MBR bounds.");
 	} else {
 		int cellNr = cellNumber(point);
-		grid_[cellNr].addPoint(point);
+
+		if (isMultiThreaded) {
+			insertLocks_[cellNr]->lock();
+			grid_[cellNr].addPoint(point);
+			insertLocks_[cellNr]->unlock();
+//			std::cout << "insert into: " << cellNr << std::endl;
+		} else {
+			grid_[cellNr].addPoint(point);
+		}
+
 	}
 }
 
@@ -318,7 +371,8 @@ std::vector<unsigned> Grid::getCartesian(unsigned cellNumber) {
 	return cartesianCoordinates;
 }
 
-BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k, PointAccessor* query) {
+BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
+		PointAccessor* query) {
 	BPQ<PointVectorAccessor> candidates(k, query);
 
 	int kNN_iteration = 0;
@@ -358,9 +412,7 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k, PointAccessor* quer
 			for (std::size_t p_idx = 0; p_idx < pc.size(); ++p_idx) {
 				auto point = pc[p_idx];
 
-
-				double current_dist = Metrics::squared_euclidean(point,
-						query);
+				double current_dist = Metrics::squared_euclidean(point, query);
 				if (current_dist < closestDistToCellBorder) {
 					if (current_dist < candidates.max_dist()) {
 						candidates.push(point, current_dist);
@@ -374,8 +426,8 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k, PointAccessor* quer
 		kNN_iteration++;
 	}
 
-	//delete unconsidered points
-	//TODO: extract into method
+//delete unconsidered points
+//TODO: extract into method
 //	for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
 //			++it) {
 //		auto canidate = it->second;

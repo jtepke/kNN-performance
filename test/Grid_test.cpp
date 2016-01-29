@@ -9,8 +9,11 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <chrono>
 #include <utility>
 #include <vector>
+
+typedef std::chrono::milliseconds mili_sec;
 
 class GridTest: public ::testing::Test {
 protected:
@@ -139,7 +142,7 @@ TEST_F(GridTest, A_Grid_computes_cell_numbers_for_coordinates_correctly) {
 
 TEST_F(GridTest, A_Grid_throws_expections_if_points_outside_of_the_grid_are_inserted) {
 	double point_outside_of_grid[] = { -1.0, -2.0, -3.0 };
-	EXPECT_THROW(g1_->insert(point_outside_of_grid), std::runtime_error);
+	EXPECT_THROW(g1_->insert(point_outside_of_grid, false), std::runtime_error);
 }
 
 class GridKnnTest: public ::testing::Test {
@@ -182,6 +185,43 @@ protected:
 	}
 
 };
+
+class GridInsertTest: public ::testing::Test {
+protected:
+	static const unsigned DIMENSION = 3;
+
+	const unsigned NUMBER_OF_TEST_POINTS = 100000000;
+
+	Grid* kNN_test_grid_;
+	RandomPointGenerator pointGenerator { };
+	PointContainer points_;
+
+	MBR grid_mbr { DIMENSION };
+	MBR query_mbr { DIMENSION };
+
+	virtual void SetUp() {
+		unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
+		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
+
+		points_ = pointGenerator.generatePoints(NUMBER_OF_TEST_POINTS,
+				RandomPointGenerator::UNIFORM, grid_mbr);
+		auto start_grid_build = std::chrono::system_clock::now();
+		kNN_test_grid_ = new Grid(DIMENSION, points_.data(),
+				NUMBER_OF_TEST_POINTS * DIMENSION);
+		long grid_build_duration = static_cast<long>(std::chrono::duration_cast
+					< mili_sec
+					> (std::chrono::system_clock::now() - start_grid_build).count());
+		std::cout << "Grid build up time: " << grid_build_duration << std::endl;
+	}
+
+	virtual void TearDown() {
+	}
+};
+
+TEST_F(GridInsertTest, GridHandlesParallelInsertsProperly) {
+	EXPECT_EQ(kNN_test_grid_->numberOfPoints_, NUMBER_OF_TEST_POINTS);
+}
 
 ///////////////////////////////////
 /////////// kNN Tests /////////////
@@ -331,8 +371,7 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 				naive_dist = Metrics::squared_euclidean(results_naive.top(),
 						&query);
 				auto top = results_grid.top();
-				grid_dist = Metrics::squared_euclidean(top,
-						&query);
+				grid_dist = Metrics::squared_euclidean(top, &query);
 
 				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
 				//Error log

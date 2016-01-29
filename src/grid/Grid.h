@@ -7,6 +7,7 @@
 #include "GridMBR.h"
 
 #include <cstddef>
+#include <mutex>
 #include <vector>
 #include <utility>
 
@@ -24,6 +25,9 @@ public:
 	const std::vector<std::size_t> cellsPerDimension_;
 	/** the grid is a vector of buckets containing points */
 	std::vector<PointContainer> grid_;
+	std::mutex insertLocksLock_;
+	/** locks for multi-threaded insert operation*/
+	std::vector<std::mutex*> insertLocks_;
 	/** we assume this the optimal number points per cell */
 	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
 
@@ -33,7 +37,9 @@ public:
 	/** Insert a set of points into the grid. */
 	void insert(double * coordinates, std::size_t size);
 	/** Insert single point into grid. */
-	void insert(double * point);
+	void insert(double * point, bool isMultiThreaded);
+	/** insert, using locks*/
+	void insertMultiThreaded(double* coordinates, std::size_t size);
 	/** Calculates gridWith per dimension. */
 	const std::vector<double> widthPerDimension();
 	/** Returns vector containing number of cells per dimension. */
@@ -48,6 +54,7 @@ public:
 	unsigned cellNumber(PointAccessor * point);
 	/** Allocates memory for grid_ vector. */
 	void allocPointContainers();
+
 
 	/** kNN utility methods: */
 	/** Returns squared distance to query point.*/
