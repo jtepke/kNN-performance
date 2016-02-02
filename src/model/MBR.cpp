@@ -1,20 +1,20 @@
 #include "MBR.h"
 #include "PointAccessor.h"
 
-PointVectorAccessor MBR::getLowerPoint() {
-	return (*this)[LOWER_INDEX];
+PointVectorAccessor MBR::getLowPoint() {
+	return (*this)[LOW_INDEX];
 }
 
-PointVectorAccessor MBR::getUpperPoint() {
-	return (*this)[UPPERD_INDEX];
+PointVectorAccessor MBR::getHighPoint() {
+	return (*this)[HIGH_INDEX];
 }
 
 void MBR::to_stream(std::ostream& os) {
 	os << "MBR [\n";
 	os << "lower: ";
-	getLowerPoint().to_stream(os);
+	getLowPoint().to_stream(os);
 	os << "upper: ";
-	getUpperPoint().to_stream(os);
+	getHighPoint().to_stream(os);
 
 	os << "]" << std::endl;
 }
@@ -29,22 +29,22 @@ void MBR::resizeContainerToMBRSize() {
 	}
 }
 
-void MBR::addLower(std::vector<double>& point) {
+void MBR::addLowPoint(std::vector<double>& point) {
 	resizeContainerToMBRSize();
-	addPointAtIndex(point, LOWER_INDEX);
+	addPointAtIndex(point, LOW_INDEX);
 }
 
-void MBR::addUpper(std::vector<double>& point) {
+void MBR::addHighPoint(std::vector<double>& point) {
 	resizeContainerToMBRSize();
-	addPointAtIndex(point, UPPERD_INDEX);
+	addPointAtIndex(point, HIGH_INDEX);
 }
 
 bool MBR::isWithin(double * point) {
 	bool isWithin = true;
 
 	for (std::size_t i = 0; i < dimension_ && isWithin; i++) {
-		isWithin = isWithin && point[i] >= getLowerPoint()[i];
-		isWithin = isWithin && point[i] < getUpperPoint()[i];
+		isWithin = isWithin && point[i] >= getLowPoint()[i];
+		isWithin = isWithin && point[i] < getHighPoint()[i];
 	}
 
 	return isWithin;
@@ -54,7 +54,7 @@ bool MBR::isWithin(PointAccessor * point) {
 	return isWithin(&(*point)[0]);
 }
 
-MBR MBR::createMBR(double * coordinates, std::size_t size) {
+MBR MBR::createMBR(double * coordinates) {
 	std::vector<double> lower(dimension_);
 	std::vector<double> upper(dimension_);
 
@@ -62,7 +62,7 @@ MBR MBR::createMBR(double * coordinates, std::size_t size) {
 		lower[i] = upper[i] = coordinates[i];
 	}
 
-	for (std::size_t i = 0; i < size; ++i) {
+	for (std::size_t i = 0; i < 2 * dimension_; ++i) {
 		std::size_t coordinateDimension = (i % dimension_);
 		if (coordinates[i] < lower[coordinateDimension]) {
 			lower[coordinateDimension] = coordinates[i];
@@ -72,8 +72,8 @@ MBR MBR::createMBR(double * coordinates, std::size_t size) {
 		}
 	}
 
-	this->addLower(lower);
-	this->addUpper(upper);
+	this->addLowPoint(lower);
+	this->addHighPoint(upper);
 
 	return (*this);
 }

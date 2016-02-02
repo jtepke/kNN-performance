@@ -18,7 +18,7 @@ public:
 
 	}
 
-	virtual void addUpper(std::vector<double>& point) override;
+	virtual void addHighPoint(std::vector<double>& point) override;
 };
 
 #endif

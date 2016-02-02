@@ -20,6 +20,9 @@ public:
 			dimension_(dimension) {
 	}
 
+	PointContainer(const std::size_t dimension, const std::size_t vectorInitSize) :
+			dimension_(dimension), coordinates_(vectorInitSize) {
+	}
 	PointContainer(const std::size_t dimension, double* pts,
 			std::size_t numberOfPoints) :
 			dimension_(dimension), coordinates_(pts,
@@ -27,7 +30,8 @@ public:
 
 	}
 
-	PointContainer(const std::size_t dimension, std::vector<double>& coordinates) :
+	PointContainer(const std::size_t dimension,
+			std::vector<double>& coordinates) :
 			dimension_(dimension), coordinates_(coordinates) {
 
 	}

@@ -7,8 +7,8 @@ void RandomPointGenerator::initUniform(MBR& m, std::size_t dimension) {
 	uniform_.reserve(dimension);
 
 	for (std::size_t i = 0; i < dimension; i++) {
-		auto min = m.getLowerPoint()[i];
-		auto max = m.getUpperPoint()[i];
+		auto min = m.getLowPoint()[i];
+		auto max = m.getHighPoint()[i];
 		uniform_[i] = new std::uniform_real_distribution<double>(min, max);
 	}
 }
@@ -58,9 +58,9 @@ PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		DISTRIBUTION distrib, MBR& mbr, double mean, double stddev,
 		int numberOfClusters) {
 	assert(!mbr.empty());
-	assert(mbr.getLowerPoint().dimension() == mbr.getUpperPoint().dimension());
+	assert(mbr.getLowPoint().dimension() == mbr.getHighPoint().dimension());
 
-	std::size_t dimension = mbr.getLowerPoint().dimension();
+	std::size_t dimension = mbr.getLowPoint().dimension();
 	std::size_t numberOfCoordinates = numberOfPoints * dimension;
 
 	std::vector<double> randPoints(numberOfCoordinates);

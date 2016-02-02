@@ -66,9 +66,9 @@ TEST_F(GridTest, A_Grid_can_determine_its_width) {
 
 TEST_F(GridTest, A_Grid_determines_the_exact_low_point_of_all_coordinates) {
 	//Assert Grid MBR: lower point
-	EXPECT_GT(g1_->mbr_.getUpperPoint()[0], 4.5);
-	EXPECT_GT(g1_->mbr_.getUpperPoint()[1], 1.0);
-	EXPECT_GT(g1_->mbr_.getUpperPoint()[2], 5.0);
+	EXPECT_GT(g1_->mbr_.getHighPoint()[0], 4.5);
+	EXPECT_GT(g1_->mbr_.getHighPoint()[1], 1.0);
+	EXPECT_GT(g1_->mbr_.getHighPoint()[2], 5.0);
 }
 
 TEST_F(GridTest, A_Grid_chooses_proper_partitioning_for_differing_space_fill_parameter) {
@@ -163,12 +163,10 @@ protected:
 
 	virtual void SetUp() {
 		RandomPointGenerator rg(SEED);
-		unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
 		double queryMbrCoords[] = { -90.0, 0.5, -48.0, 100.0, 6.5, 40.0 };
-		grid_mbr = grid_mbr.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
-		query_mbr = query_mbr.createMBR(queryMbrCoords,
-				NUMBER_OF_MBR_COORDINATES);
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords);
+		query_mbr = query_mbr.createMBR(queryMbrCoords);
 
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);
@@ -200,9 +198,8 @@ protected:
 	MBR query_mbr { DIMENSION };
 
 	virtual void SetUp() {
-		unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
-		grid_mbr = grid_mbr.createMBR(gridMbrCoords, NUMBER_OF_MBR_COORDINATES);
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords);
 
 		points_ = pointGenerator.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);

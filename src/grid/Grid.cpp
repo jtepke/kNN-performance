@@ -15,10 +15,9 @@
 #include <utility>
 #include <vector>
 
-MBR Grid::initGridMBR(double * coordinates, std::size_t size,
-		std::size_t dimension) {
+MBR Grid::initGridMBR(double * coordinates, std::size_t dimension) {
 	GridMBR m = GridMBR(dimension);
-	return m.createMBR(coordinates, size);
+	return m.createMBR(coordinates);
 }
 
 void Grid::allocPointContainers() {
@@ -35,10 +34,9 @@ void Grid::insertMultiThreaded(double* coordinates, std::size_t size) {
 void Grid::insert(double * coordinates, std::size_t size) {
 	assert((size % dimension_) == 0);
 	unsigned maxThreadLoad = 100000000;
-	unsigned numberOfThreads = 10;
-	std::vector<std::thread>(numberOfThreads);
+
 	if (size > maxThreadLoad) {
-		std::cout << "parallel";
+		std::cout << "parallel ";
 		for (unsigned i = 0; i < grid_.size(); i++) {
 			insertLocks_.push_back(new std::mutex());
 		}
@@ -96,7 +94,7 @@ unsigned Grid::cellNumber(double * point) {
 		cellNr +=
 				productOfCellsUpToDimension(i)
 						* std::floor(
-								(point[i] - mbr_.getLowerPoint()[i])
+								(point[i] - mbr_.getLowPoint()[i])
 										/ (gridWidthPerDim_[i]
 												/ cellsPerDimension_[i]));
 
@@ -131,8 +129,7 @@ const std::vector<double> Grid::widthPerDimension() {
 	std::vector<double> widthPerDim;
 
 	for (std::size_t i = 0; i < dimension_; i++) {
-		double resInCurrentDim = mbr_.getUpperPoint()[i]
-				- mbr_.getLowerPoint()[i];
+		double resInCurrentDim = mbr_.getHighPoint()[i] - mbr_.getLowPoint()[i];
 		widthPerDim.push_back(resInCurrentDim);
 	}
 
@@ -166,8 +163,8 @@ double Grid::findNextClosestCellBorder(PointAccessor* query, int kNNiteration) {
 
 	double infinity = std::numeric_limits<double>::infinity();
 	double closestDist = infinity;
-	PointVectorAccessor lowPoint = mbr_.getLowerPoint();
-	PointVectorAccessor highPoint = mbr_.getUpperPoint();
+	PointVectorAccessor lowPoint = mbr_.getLowPoint();
+	PointVectorAccessor highPoint = mbr_.getHighPoint();
 
 	for (std::size_t d = 0; d < dimension_; d++) {
 		double cellWidth = gridWidthPerDim_[d] / cellsPerDimension_[d];

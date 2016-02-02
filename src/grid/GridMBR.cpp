@@ -8,8 +8,8 @@ void GridMBR::addEpsilon(std::vector<double>& upper) {
 	}
 }
 
-void GridMBR::addUpper(std::vector<double>& point) {
+void GridMBR::addHighPoint(std::vector<double>& point) {
 	resizeContainerToMBRSize();
 	addEpsilon(point);
-	addPointAtIndex(point, UPPERD_INDEX);
+	addPointAtIndex(point, HIGH_INDEX);
 }

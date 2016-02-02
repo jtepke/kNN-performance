@@ -32,8 +32,7 @@ public:
 	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
 
 	/** Create an MBR around the grid points. */
-	static MBR initGridMBR(double * coordinates, std::size_t size,
-			std::size_t dimension);
+	static MBR initGridMBR(double * coordinates, std::size_t dimension);
 	/** Insert a set of points into the grid. */
 	void insert(double * coordinates, std::size_t size);
 	/** Insert single point into grid. */
@@ -55,7 +54,6 @@ public:
 	/** Allocates memory for grid_ vector. */
 	void allocPointContainers();
 
-
 	/** kNN utility methods: */
 	/** Returns squared distance to query point.*/
 	double findNextClosestCellBorder(PointAccessor* query, int kNNiteration);
@@ -75,16 +73,16 @@ public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size,
 			std::size_t cellFillOptimum = Grid::CELL_FILL_OPTIMUM_DEFAULT) :
 			dimension_(dimension), mbr_(
-					Grid::initGridMBR(coordinates, size, dimension)), numberOfPoints_(
+					Grid::initGridMBR(coordinates, dimension)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
 					calculateCellsPerDimension(cellFillOptimum)) {
 		allocPointContainers();
 		insert(coordinates, size);
 	}
 
-
 	/** Returns a vector of the k-nearest neighbors for a given query point. */
-	BPQ<PointVectorAccessor> kNearestNeighbors(unsigned k, PointAccessor* query) override;
+	BPQ<PointVectorAccessor> kNearestNeighbors(unsigned k, PointAccessor* query)
+			override;
 	/** Returns string representation of grid object. */
 	void to_stream(std::ostream& os) override;
 };
