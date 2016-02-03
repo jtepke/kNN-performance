@@ -20,26 +20,28 @@ protected:
 	static const unsigned THREE_DIMENSIONS = 3;
 	static const unsigned SIZE_POINT_SET_1 = 5;
 	static const unsigned NUMBER_OF_EXAMPLE_GRIDS = 3;
+	static const unsigned NUMBER_OF_COORDINATES_SET_1 = SIZE_POINT_SET_1
+			* THREE_DIMENSIONS;
 	static const unsigned ONE_POINT_PER_CELL = 1;
 	static const unsigned THREE_POINTS_PER_CELL = 3;
 	static const unsigned FIVE_POINTS_PER_CELL = 5;
 
 	std::vector<Grid*> testGrids_;
-	std::array<double, SIZE_POINT_SET_1 * THREE_DIMENSIONS> point_set_1 { { 0.0,
-			0.0, 0.0, 1.0, 1.0, 1.0, 2.0, 0.0, -1.0, 3.5, 1.0, 0.0, 4.5, -2.5,
-			5.0 } };
+	std::array<double, NUMBER_OF_COORDINATES_SET_1> point_set_1 { { 0.0, 0.0,
+			0.0, 1.0, 1.0, 1.0, 2.0, 0.0, -1.0, 3.5, 1.0, 0.0, 4.5, -2.5, 5.0 } };
 
 	Grid* g1_;
 	Grid* g2_;
 	Grid* g3_;
 
 	virtual void SetUp() {
+
 		g1_ = new Grid(THREE_DIMENSIONS, point_set_1.data(),
-				SIZE_POINT_SET_1 * THREE_DIMENSIONS, ONE_POINT_PER_CELL);
+				NUMBER_OF_COORDINATES_SET_1, ONE_POINT_PER_CELL);
 		g2_ = new Grid(THREE_DIMENSIONS, point_set_1.data(),
-				SIZE_POINT_SET_1 * THREE_DIMENSIONS, THREE_POINTS_PER_CELL);
+				NUMBER_OF_COORDINATES_SET_1, THREE_POINTS_PER_CELL);
 		g3_ = new Grid(THREE_DIMENSIONS, point_set_1.data(),
-				SIZE_POINT_SET_1 * THREE_DIMENSIONS, FIVE_POINTS_PER_CELL);
+				NUMBER_OF_COORDINATES_SET_1, FIVE_POINTS_PER_CELL);
 
 		testGrids_.push_back(g1_);
 		testGrids_.push_back(g2_);
@@ -165,8 +167,8 @@ protected:
 		RandomPointGenerator rg(SEED);
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
 		double queryMbrCoords[] = { -90.0, 0.5, -48.0, 100.0, 6.5, 40.0 };
-		grid_mbr = grid_mbr.createMBR(gridMbrCoords);
-		query_mbr = query_mbr.createMBR(queryMbrCoords);
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords, 6);
+		query_mbr = query_mbr.createMBR(queryMbrCoords, 6);
 
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);
@@ -199,7 +201,7 @@ protected:
 
 	virtual void SetUp() {
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
-		grid_mbr = grid_mbr.createMBR(gridMbrCoords);
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords, 6);
 
 		points_ = pointGenerator.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);
@@ -207,8 +209,8 @@ protected:
 		kNN_test_grid_ = new Grid(DIMENSION, points_.data(),
 				NUMBER_OF_TEST_POINTS * DIMENSION);
 		long grid_build_duration = static_cast<long>(std::chrono::duration_cast
-					< mili_sec
-					> (std::chrono::system_clock::now() - start_grid_build).count());
+				< mili_sec
+				> (std::chrono::system_clock::now() - start_grid_build).count());
 		std::cout << "Grid build up time: " << grid_build_duration << std::endl;
 	}
 
@@ -365,8 +367,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 
 			EXPECT_EQ(results_naive.size(), results_grid.size());
 			while (!(results_naive.empty())) {
-				naive_dist = Metrics::squared_euclidean(results_naive.top(),
-						&query);
+				auto&& pa = results_naive.top();
+				naive_dist = Metrics::squared_euclidean(pa, &query);
 				auto top = results_grid.top();
 				grid_dist = Metrics::squared_euclidean(top, &query);
 
@@ -383,7 +385,7 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 					std::cerr << "the current size of BPQ is: "
 							<< results_grid.size() << '\n';
 					std::cerr << "naive top(): ";
-					results_naive.top()->to_stream(std::cerr);
+					results_naive.top().to_stream(std::cerr);
 //					std::cerr << "grid top(): ";
 //					results_grid.top()->to_stream(std::cerr);
 					std::cerr << "-----------------------\n";

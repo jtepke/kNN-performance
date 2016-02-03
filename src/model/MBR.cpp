@@ -1,6 +1,8 @@
 #include "MBR.h"
 #include "PointAccessor.h"
 
+#include <cassert>
+
 PointVectorAccessor MBR::getLowPoint() {
 	return (*this)[LOW_INDEX];
 }
@@ -42,9 +44,9 @@ void MBR::addHighPoint(std::vector<double>& point) {
 bool MBR::isWithin(double * point) {
 	bool isWithin = true;
 
-	for (std::size_t i = 0; i < dimension_ && isWithin; i++) {
+	for (std::size_t i = 0; (i < dimension_) && isWithin; i++) {
 		isWithin = isWithin && point[i] >= getLowPoint()[i];
-		isWithin = isWithin && point[i] < getHighPoint()[i];
+		isWithin = isWithin && point[i] <= getHighPoint()[i];
 	}
 
 	return isWithin;
@@ -54,7 +56,8 @@ bool MBR::isWithin(PointAccessor * point) {
 	return isWithin(&(*point)[0]);
 }
 
-MBR MBR::createMBR(double * coordinates) {
+MBR MBR::createMBR(double * coordinates, std::size_t input_array_size) {
+	assert((input_array_size % dimension_) == 0);
 	std::vector<double> lower(dimension_);
 	std::vector<double> upper(dimension_);
 
@@ -62,7 +65,7 @@ MBR MBR::createMBR(double * coordinates) {
 		lower[i] = upper[i] = coordinates[i];
 	}
 
-	for (std::size_t i = 0; i < 2 * dimension_; ++i) {
+	for (std::size_t i = 0; i < input_array_size; ++i) {
 		std::size_t coordinateDimension = (i % dimension_);
 		if (coordinates[i] < lower[coordinateDimension]) {
 			lower[coordinateDimension] = coordinates[i];

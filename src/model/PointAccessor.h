@@ -20,6 +20,7 @@ public:
 	std::size_t getOffset();
 	void to_stream(std::ostream& os) override;
 	virtual double& operator[](std::size_t idx) = 0;
+	virtual const double& operator[](std::size_t idx) const = 0;
 	virtual double* getData() = 0;
 };
 

@@ -16,7 +16,16 @@ public:
 			PointAccessor(pointIndexOffset, dimension), container_(&container) {
 	}
 	double& operator[](std::size_t idx) override;
+	const double& operator[](std::size_t idx) const override;
 	double* getData() override;
 };
+
+inline double& PointVectorAccessor::operator[](std::size_t idx) {
+	return (*container_)[pIndexOffset_ + idx];
+}
+
+inline const double& PointVectorAccessor::operator[](std::size_t idx) const {
+	return (*container_)[pIndexOffset_ + idx];
+}
 
 #endif

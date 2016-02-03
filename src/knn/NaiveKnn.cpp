@@ -9,11 +9,11 @@
 #include <vector>
 #include <limits>
 
-
-BPQ<PointAccessor*> NaiveKnn::kNearestNeighbors(unsigned k, PointAccessor* query) {
+BPQ<PointArrayAccessor> NaiveKnn::kNearestNeighbors(unsigned k,
+		PointAccessor* query) {
 	assert(dimension_ == query->dimension());
 
-	BPQ<PointAccessor*> candidates(k, query);
+	BPQ<PointArrayAccessor> candidates(k, query);
 
 	PointArrayAccessor current_point(points_, 0, dimension_);
 	double current_dist;
@@ -21,12 +21,11 @@ BPQ<PointAccessor*> NaiveKnn::kNearestNeighbors(unsigned k, PointAccessor* query
 	for (std::size_t point = 0; point < numberOfPoints_; point++) {
 		std::size_t pIndexOffset = point * dimension_;
 		current_point.setOffset(pIndexOffset);
-		current_dist = Metrics::squared_euclidean(&current_point,query);
+		current_dist = Metrics::squared_euclidean(&current_point, query);
 
 		if (current_dist < candidates.max_dist()) {
-			PointArrayAccessor* current_pa = new PointArrayAccessor(points_, pIndexOffset,
-					dimension_);
-			candidates.push(current_pa, current_dist);
+			candidates.push(PointArrayAccessor { points_, pIndexOffset,
+					dimension_ }, current_dist);
 		}
 	}
 

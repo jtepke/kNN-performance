@@ -17,7 +17,16 @@ public:
 	}
 
 	double& operator[](std::size_t idx) override;
+	const double& operator[](std::size_t idx) const override;
 	double* getData() override;
 };
+
+inline double& PointArrayAccessor::operator[](std::size_t idx) {
+	return container_[pIndexOffset_ + idx];
+}
+
+inline const double& PointArrayAccessor::operator[](std::size_t idx) const {
+	return container_[pIndexOffset_ + idx];
+}
 
 #endif

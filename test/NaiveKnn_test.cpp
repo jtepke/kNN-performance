@@ -23,7 +23,7 @@ protected:
 		double mbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
 
 		MBR m = MBR(DIMENSION);
-		m = m.createMBR(mbrCoords);
+		m = m.createMBR(mbrCoords, 6);
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, m);
 	}
@@ -59,6 +59,5 @@ TEST_F(NaiveKnnTest, k_1000) {
 		actualResult.pop();
 
 		ASSERT_DOUBLE_EQ(expectedResults[i++][0], actual_dist);
-
 	}
 }

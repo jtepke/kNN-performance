@@ -26,7 +26,7 @@ public:
 	bool isWithin(PointAccessor * point);
 	void to_stream(std::ostream& os) override;
 	bool empty() override;
-	MBR createMBR(double * pts);
+	MBR createMBR(double * pts, std::size_t input_array_size);
 
 };
 
