@@ -190,7 +190,7 @@ class GridInsertTest: public ::testing::Test {
 protected:
 	static const unsigned DIMENSION = 3;
 
-	const unsigned NUMBER_OF_TEST_POINTS = 100000000;
+	const unsigned NUMBER_OF_TEST_POINTS = 10000000;
 
 	Grid* kNN_test_grid_;
 	RandomPointGenerator pointGenerator { };
@@ -201,7 +201,7 @@ protected:
 
 	virtual void SetUp() {
 		double gridMbrCoords[] = { -100.0, 0.0, -50.0, 100.0, 7.0, 42.1235896 };
-		grid_mbr = grid_mbr.createMBR(gridMbrCoords, 6);
+		grid_mbr = grid_mbr.createMBR(gridMbrCoords, 2 * DIMENSION);
 
 		points_ = pointGenerator.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);
@@ -211,14 +211,21 @@ protected:
 		long grid_build_duration = static_cast<long>(std::chrono::duration_cast
 				< mili_sec
 				> (std::chrono::system_clock::now() - start_grid_build).count());
-		std::cout << "Grid build up time: " << grid_build_duration << std::endl;
+		std::cout << "Grid build up time (ms): " << grid_build_duration
+				<< std::endl;
 	}
 
 	virtual void TearDown() {
 	}
 };
 
-TEST_F(GridInsertTest, GridHandlesParallelInsertsProperly) {
+TEST_F(GridInsertTest, Grid_handles_parallel_inserts_properly) {
+	unsigned sumOfPointsInCells = 0;
+	for (const auto& pc : kNN_test_grid_->grid_) {
+		sumOfPointsInCells += pc.size();
+	}
+
+	EXPECT_EQ(sumOfPointsInCells, NUMBER_OF_TEST_POINTS);
 	EXPECT_EQ(kNN_test_grid_->numberOfPoints_, NUMBER_OF_TEST_POINTS);
 }
 
@@ -301,7 +308,7 @@ TEST_F(GridKnnTest, getHyperSquareEnvironment_returns_all_cells_eventually) {
 						!= std::end(result_4));
 	}
 
-	//Iteration > 5:
+	//Iterations >= 5:
 	for (unsigned k_iteration = 5; k_iteration < 100; ++k_iteration) {
 		EXPECT_EQ(
 				kNN_test_grid_->getHyperSquareCellEnvironment(k_iteration,

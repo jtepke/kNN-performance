@@ -23,16 +23,18 @@ public:
 	const std::vector<double> gridWidthPerDim_;
 	/** number if cells per row in each dimension */
 	const std::vector<std::size_t> cellsPerDimension_;
+	/** product of cells up to dimension, necessary for several numerical calculations*/
+	const std::vector<std::size_t> productOfCellsUpToDimension_;
 	/** the grid is a vector of buckets containing points */
 	std::vector<PointContainer> grid_;
-	std::mutex insertLocksLock_;
 	/** locks for multi-threaded insert operation*/
 	std::vector<std::mutex*> insertLocks_;
 	/** we assume this the optimal number points per cell */
 	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
 
 	/** Create an MBR around the grid points. */
-	static MBR initGridMBR(double * coordinates, std::size_t dimension);
+	static MBR initGridMBR(double * coordinates, std::size_t dimension,
+			std::size_t size);
 	/** Insert a set of points into the grid. */
 	void insert(double * coordinates, std::size_t size);
 	/** Insert single point into grid. */
@@ -46,7 +48,8 @@ public:
 	const std::vector<std::size_t> calculateCellsPerDimension(
 			std::size_t cellFillOptimum) const;
 	/** Calculates volume of cells up to a particular dimension. */
-	std::size_t productOfCellsUpToDimension(std::size_t dimension);
+	std::vector<std::size_t> initProductOfCellsUpToDimension(
+			std::size_t dimension) const;
 	/** Calculates the grid index (cell number) for a point. */
 	unsigned cellNumber(double * point);
 	/** Calculates the grid index (cell number) for a point. */
@@ -73,9 +76,11 @@ public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size,
 			std::size_t cellFillOptimum = Grid::CELL_FILL_OPTIMUM_DEFAULT) :
 			dimension_(dimension), mbr_(
-					Grid::initGridMBR(coordinates, dimension)), numberOfPoints_(
+					Grid::initGridMBR(coordinates, dimension, size)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
-					calculateCellsPerDimension(cellFillOptimum)) {
+					calculateCellsPerDimension(cellFillOptimum)), productOfCellsUpToDimension_(
+					initProductOfCellsUpToDimension(dimension)) {
+
 		allocPointContainers();
 		insert(coordinates, size);
 	}

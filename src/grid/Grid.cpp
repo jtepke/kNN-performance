@@ -15,13 +15,27 @@
 #include <utility>
 #include <vector>
 
-MBR Grid::initGridMBR(double * coordinates, std::size_t dimension) {
+MBR Grid::initGridMBR(double * coordinates, std::size_t dimension,
+		std::size_t size) {
 	GridMBR m = GridMBR(dimension);
-	return m.createMBR(coordinates);
+	return m.createMBR(coordinates, size);
+}
+
+std::vector<std::size_t> Grid::initProductOfCellsUpToDimension(
+		std::size_t dimension) const {
+	assert(dimension <= dimension_);
+	std::vector<std::size_t> pOfCellsUpToD(dimension + 1);
+	pOfCellsUpToD[0] = 1;
+
+	for (std::size_t i = 0; i < dimension; i++) {
+		pOfCellsUpToD[i + 1] = pOfCellsUpToD[i] * cellsPerDimension_[i];
+	}
+
+	return pOfCellsUpToD;
 }
 
 void Grid::allocPointContainers() {
-	std::size_t numberOfCells = productOfCellsUpToDimension(dimension_);
+	std::size_t numberOfCells = productOfCellsUpToDimension_.at(dimension_);
 	grid_.resize(numberOfCells, PointContainer(dimension_));
 }
 
@@ -36,37 +50,42 @@ void Grid::insert(double * coordinates, std::size_t size) {
 	unsigned maxThreadLoad = 100000000;
 
 	if (size > maxThreadLoad) {
-		std::cout << "parallel ";
+		std::vector<std::thread> insertThreads;
+		unsigned MAX_NUMBER_OF_THREADS = 20;
+		unsigned numberOfThreads =
+				(size / maxThreadLoad) > MAX_NUMBER_OF_THREADS ?
+						MAX_NUMBER_OF_THREADS : (size / maxThreadLoad);
+
+		//Init locks
 		for (unsigned i = 0; i < grid_.size(); i++) {
 			insertLocks_.push_back(new std::mutex());
 		}
 
-		std::size_t thread_offset = (size / 3);
-		std::size_t end1 = thread_offset + dimension_
+		//Make some offset calculations
+		std::size_t thread_offset = (size / numberOfThreads);
+		std::size_t step = thread_offset + dimension_
 				- (thread_offset % dimension_);
-		std::size_t end2 = 2 * end1;
-		std::size_t end3 = size - end2;
+		std::size_t lastFullStepOffset = (numberOfThreads - 1) * step;
+		std::size_t endStep = size - lastFullStepOffset;
 
-//		std::cout << "size: " << size << std::endl;
-//		std::cout << "end1: " << end1 << std::endl;
-//		std::cout << "end2: " << end2 << std::endl;
-//		std::cout << "end3: " << end3 << std::endl;
+		//Start the first n-1 threads
+		for (unsigned threadId = 0; threadId < numberOfThreads - 1;
+				++threadId) {
+			insertThreads.push_back(
+					std::thread(&Grid::insertMultiThreaded, this,
+							&coordinates[threadId * step], step));
 
-		std::thread t1(&Grid::insertMultiThreaded, this, &coordinates[0], end1);
-//		std::cout << "Thread 1 ceated:" << std::endl;
-		std::thread t2(&Grid::insertMultiThreaded, this, &coordinates[end1],
-				end1);
-//		std::cout << "Thread 2 ceated:" << std::endl;
-		std::thread t3(&Grid::insertMultiThreaded, this, &coordinates[end2],
-				end3);
-//		std::cout << "Thread 3 ceated:" << std::endl;
+		}
 
-		t1.join();
-//		std::cout << "T1 finished" << std::endl;
-		t2.join();
-//		std::cout << "T2 finished" << std::endl;
-		t3.join();
-//		std::cout << "T3 finished" << std::endl;
+		//Handle last thread separately
+		insertThreads.push_back(
+				std::thread(&Grid::insertMultiThreaded, this,
+						&coordinates[lastFullStepOffset], endStep));
+
+		//Join threads
+		for (unsigned threadId = 0; threadId < numberOfThreads; ++threadId) {
+			insertThreads[threadId].join();
+		}
 	} else {
 		for (std::size_t i = 0; i < size; i += dimension_) {
 			insert(&coordinates[i], false);
@@ -75,24 +94,12 @@ void Grid::insert(double * coordinates, std::size_t size) {
 
 }
 
-std::size_t Grid::productOfCellsUpToDimension(std::size_t dimension) {
-	assert(dimension <= dimension_);
-
-	std::size_t cellProduct = 1;
-	for (std::size_t i = 0; i < dimension; i++) {
-		cellProduct *= cellsPerDimension_[i];
-	}
-
-	assert(cellProduct >= 1);
-	return cellProduct;
-}
-
 unsigned Grid::cellNumber(double * point) {
 	unsigned cellNr = 0;
 	for (std::size_t i = 0; i < dimension_; i++) {
 
 		cellNr +=
-				productOfCellsUpToDimension(i)
+				productOfCellsUpToDimension_.at(i)
 						* std::floor(
 								(point[i] - mbr_.getLowPoint()[i])
 										/ (gridWidthPerDim_[i]
@@ -117,7 +124,6 @@ void Grid::insert(double * point, bool isMultiThreaded) {
 			insertLocks_[cellNr]->lock();
 			grid_[cellNr].addPoint(point);
 			insertLocks_[cellNr]->unlock();
-//			std::cout << "insert into: " << cellNr << std::endl;
 		} else {
 			grid_[cellNr].addPoint(point);
 		}
@@ -157,7 +163,6 @@ const std::vector<std::size_t> Grid::calculateCellsPerDimension(
 }
 
 double Grid::findNextClosestCellBorder(PointAccessor* query, int kNNiteration) {
-
 	assert(mbr_.isWithin(query));
 	assert(kNNiteration >= 0);
 
@@ -264,7 +269,8 @@ unsigned Grid::calculateCellNumber(
 	unsigned cellNumber = 0;
 
 	for (unsigned d = 0; d < dimension_; d++) {
-		cellNumber += gridCartesianCoords[d] * productOfCellsUpToDimension(d);
+		cellNumber += gridCartesianCoords[d]
+				* productOfCellsUpToDimension_.at(d);
 	}
 
 	assert(cellNumber >= 0);
@@ -387,19 +393,12 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 
 			if (!(current_dist < closestDistToCellBorder)) {
 				break;
-				//points from this part are not considerable since they reach
-				//out of the radius of valid points.
-			} else {
-				if (current_dist < candidates.max_dist()) {
-					candidates.push(candidate, current_dist);
-				} else {
-					//remove, since point was within radius of considerable
-					//points. This is important! Otherwise kNN look-up will/may
-					//not terminate.
-//					delete (candidate);
-//					candidate = NULL;
-				}
+				//points from this part are not considerable since they not
+				//in the radius of valid points.
+			} else if (current_dist < candidates.max_dist()) {
+				candidates.push(candidate, current_dist);
 			}
+
 		}
 
 		for (unsigned cNumber : getHyperSquareCellEnvironment(kNN_iteration,
@@ -422,15 +421,6 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 		}
 		kNN_iteration++;
 	}
-
-//delete unconsidered points
-//TODO: extract into method
-//	for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
-//			++it) {
-//		auto canidate = it->second;
-//		delete (canidate);
-//		canidate = NULL;
-//	}
 
 	return candidates;
 }
