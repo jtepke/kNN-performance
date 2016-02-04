@@ -374,10 +374,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 
 			EXPECT_EQ(results_naive.size(), results_grid.size());
 			while (!(results_naive.empty())) {
-				auto&& pa = results_naive.top();
-				naive_dist = Metrics::squared_euclidean(pa, &query);
-				auto top = results_grid.top();
-				grid_dist = Metrics::squared_euclidean(top, &query);
+				naive_dist = results_naive.topDistance();
+				grid_dist = results_grid.topDistance();
 
 				EXPECT_DOUBLE_EQ(naive_dist, grid_dist);
 				//Error log
@@ -392,7 +390,7 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 					std::cerr << "the current size of BPQ is: "
 							<< results_grid.size() << '\n';
 					std::cerr << "naive top(): ";
-					results_naive.top().to_stream(std::cerr);
+					results_naive.topPoint().to_stream(std::cerr);
 //					std::cerr << "grid top(): ";
 //					results_grid.top()->to_stream(std::cerr);
 					std::cerr << "-----------------------\n";

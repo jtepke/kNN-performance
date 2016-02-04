@@ -55,9 +55,9 @@ TEST_F(NaiveKnnTest, k_1000) {
 	int i = 0;
 
 	while (!(actualResult.empty())) {
-		actual_dist = Metrics::squared_euclidean(actualResult.top(), &query);
-		actualResult.pop();
-
+		actual_dist = actualResult.topDistance();
 		ASSERT_DOUBLE_EQ(expectedResults[i++][0], actual_dist);
+
+		actualResult.pop();
 	}
 }

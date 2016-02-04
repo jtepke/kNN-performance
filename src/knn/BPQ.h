@@ -9,27 +9,29 @@
 #include <functional>
 #include <limits>
 #include <queue>
+#include <utility>
+
 template<class T>
 class BPQ {
-	typedef std::function<bool(T, T)> MetricFunction;
-	typedef std::vector<T> QueueContainer;
-	typedef std::priority_queue<T, QueueContainer, MetricFunction> kNNResultQueue;
+	typedef std::pair<T, double> PointDistance;
+	typedef std::function<bool(PointDistance, PointDistance)> MetricFunction;
+	typedef std::vector<PointDistance> QueueContainer;
+	typedef std::priority_queue<PointDistance, QueueContainer, MetricFunction> kNNResultQueue;
 
 private:
 	std::size_t max_size_;
 	double max_distance_;
-	PointAccessor* query_;
 	MetricFunction cmp_;
 
 	kNNResultQueue candidates_;
 
 public:
-	BPQ(std::size_t max_size, PointAccessor* query) :
+	BPQ(std::size_t max_size) :
 			max_size_(max_size), max_distance_(
-					std::numeric_limits<double>::infinity()), query_(query), cmp_(
-					[query](T left, T right) {
+					std::numeric_limits<double>::infinity()), cmp_(
+					[](PointDistance left, PointDistance right) {
 						return (
-								Metrics::squared_euclidean(left, query) < Metrics::squared_euclidean(right, query)
+								left.second < right.second
 						);
 					}), candidates_(cmp_) {
 
@@ -37,7 +39,8 @@ public:
 
 	void push(T pa, double distance);
 	void pop();
-	T top();
+	T topPoint();
+	double topDistance();
 	double max_dist();
 	std::size_t size();
 	bool empty();
@@ -48,17 +51,17 @@ template<class T>
 void BPQ<T>::push(T pa, double distance) {
 	assert(distance < max_distance_);
 
-	//Pop top element if BQP is full and a better candidate was found.
+	//Pop top element if BQP is full and a better candidate exists.
 	if (candidates_.size() == max_size_) {
 		pop();
 		assert(candidates_.size() == max_size_ - 1);
 	}
 
-	candidates_.push(pa);
+	candidates_.push(std::make_pair(pa, distance));
 
 	//Update max_distance_ iff BPQ is full.
 	if (candidates_.size() == max_size_) {
-		max_distance_ = Metrics::squared_euclidean(top(), query_);
+		max_distance_ = topDistance();
 		assert(max_distance_ < std::numeric_limits<double>::infinity());
 	}
 }
@@ -69,8 +72,13 @@ void BPQ<T>::pop() {
 }
 
 template<class T>
-T BPQ<T>::top() {
-	return candidates_.top();
+T BPQ<T>::topPoint() {
+	return candidates_.top().first;
+}
+
+template<class T>
+double BPQ<T>::topDistance() {
+	return candidates_.top().second;
 }
 
 template<class T>

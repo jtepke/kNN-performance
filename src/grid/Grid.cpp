@@ -376,7 +376,7 @@ std::vector<unsigned> Grid::getCartesian(unsigned cellNumber) {
 
 BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 		PointAccessor* query) {
-	BPQ<PointVectorAccessor> candidates(k, query);
+	BPQ<PointVectorAccessor> candidates(k);
 
 	int kNN_iteration = 0;
 	double closestDistToCellBorder;

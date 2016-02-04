@@ -60,13 +60,11 @@ TEST_F(NaiveMapReduceKnnTest, distributed_run_produces_same_results_as_single_th
 
 	while (!(naiveResult.empty())) {
 
-		naive_top_dist = Metrics::squared_euclidean(naiveResult.top(), &query);
-		naive_map_reduce_top_dist = Metrics::squared_euclidean(
-				naiveMapReduceResult.top(), &query);
+		naive_top_dist = naiveResult.topDistance();
+		naive_map_reduce_top_dist = naiveMapReduceResult.topDistance();
 
 		ASSERT_DOUBLE_EQ(naive_top_dist, naive_map_reduce_top_dist);
 		naiveResult.pop();
-
 		naiveMapReduceResult.pop();
 	}
 }

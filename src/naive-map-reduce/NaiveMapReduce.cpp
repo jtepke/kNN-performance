@@ -33,7 +33,7 @@ BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 
 	//Init map result vector
 	std::vector<BPQ<PointArrayAccessor>> mapResult;
-	mapResult.resize(numberOfThreads, BPQ<PointArrayAccessor> { k, query });
+	mapResult.resize(numberOfThreads, BPQ<PointArrayAccessor> { k });
 
 	//Offset calculations for map chunks
 	std::size_t thread_offset = (arraySize / numberOfThreads);
@@ -93,11 +93,11 @@ BPQ<PointArrayAccessor> NaiveMapReduce::reduce(
 	for (unsigned bpq_idx = 1; bpq_idx < mapResult.size(); ++bpq_idx) {
 
 		while (!mapResult[bpq_idx].empty()) {
-			auto top = mapResult[bpq_idx].top();
-			double current_dist = Metrics::squared_euclidean(top, query);
+			double topDistance = mapResult[bpq_idx].topDistance();
 
-			if (current_dist < mapResult[resultQueueIdx].max_dist()) {
-				mapResult[resultQueueIdx].push(top, current_dist);
+			if (topDistance < mapResult[resultQueueIdx].topDistance()) {
+				mapResult[resultQueueIdx].push(mapResult[bpq_idx].topPoint(),
+						topDistance);
 			}
 
 			mapResult[bpq_idx].pop();

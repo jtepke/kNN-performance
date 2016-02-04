@@ -13,7 +13,7 @@ BPQ<PointArrayAccessor> NaiveKnn::kNearestNeighbors(unsigned k,
 		PointAccessor* query) {
 	assert(dimension_ == query->dimension());
 
-	BPQ<PointArrayAccessor> candidates(k, query);
+	BPQ<PointArrayAccessor> candidates(k);
 
 	PointArrayAccessor current_point(points_, 0, dimension_);
 	double current_dist;
@@ -21,7 +21,7 @@ BPQ<PointArrayAccessor> NaiveKnn::kNearestNeighbors(unsigned k,
 	for (std::size_t point = 0; point < numberOfPoints_; point++) {
 		std::size_t pIndexOffset = point * dimension_;
 		current_point.setOffset(pIndexOffset);
-		current_dist = Metrics::squared_euclidean(&current_point, query);
+		current_dist = Metrics::squared_euclidean(current_point, query);
 
 		if (current_dist < candidates.max_dist()) {
 			candidates.push(PointArrayAccessor { points_, pIndexOffset,
