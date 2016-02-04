@@ -7,7 +7,7 @@
 #include <cstddef>
 
 class NaiveKnn: public KnnProcessor<PointArrayAccessor> {
-private:
+protected:
 	double * points_;
 	const std::size_t dimension_;
 	const std::size_t numberOfPoints_;
@@ -19,7 +19,7 @@ public:
 
 	}
 
-	BPQ<PointArrayAccessor> kNearestNeighbors(unsigned k, PointAccessor* query);
+	virtual BPQ<PointArrayAccessor> kNearestNeighbors(unsigned k, PointAccessor* query) override;
 
 };
 
