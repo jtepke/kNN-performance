@@ -4,20 +4,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/knn/BPQ.cpp \
-../src/knn/KnnProcessor.cpp \
 ../src/knn/Metrics.cpp \
 ../src/knn/NaiveKnn.cpp 
 
 OBJS += \
-./src/knn/BPQ.o \
-./src/knn/KnnProcessor.o \
 ./src/knn/Metrics.o \
 ./src/knn/NaiveKnn.o 
 
 CPP_DEPS += \
-./src/knn/BPQ.d \
-./src/knn/KnnProcessor.d \
 ./src/knn/Metrics.d \
 ./src/knn/NaiveKnn.d 
 

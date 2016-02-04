@@ -25,6 +25,6 @@ C_UPPER_DEPS :=
 SUBDIRS := \
 src/util \
 src/model \
-src/knn \
 src/grid \
+src/knn \
 performance-test \
