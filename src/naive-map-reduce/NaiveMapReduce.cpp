@@ -23,7 +23,7 @@ BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 		return NaiveKnn::kNearestNeighbors(k, query);
 	}
 
-	unsigned maxThreadLoad = 20000;
+	unsigned maxThreadLoad = 200000 < k ? k : 200000;
 	std::vector<std::thread> mapThreads;
 	unsigned MAX_NUMBER_OF_THREADS = 20;
 
@@ -42,6 +42,7 @@ BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 	std::size_t lastFullStepOffset = (numberOfThreads - 1) * step;
 	std::size_t endStep = arraySize - lastFullStepOffset;
 
+	std::cout << "number of threads: " << numberOfThreads << std::endl;
 	assert(endStep + lastFullStepOffset == dimension_ * numberOfPoints_);
 	assert(numberOfThreads * step >= numberOfPoints_);
 

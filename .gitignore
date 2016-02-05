@@ -8,6 +8,7 @@ Release/src/knn/*
 Release/src/grid/*
 Release/src/util/*
 Release/src/model/*
+Release/src/naive-map-reduce/*
 
 #Allow
 !Release/makefile
@@ -17,3 +18,4 @@ Release/src/model/*
 !Release/src/grid/*.mk
 !Release/src/util/*.mk
 !Release/src/model/*.mk
+!Release/src/naive-map-reduce/*.mk

@@ -4,21 +4,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../performance-test/grid_performance.cpp 
+../src/naive-map-reduce/NaiveMapReduce.cpp
 
 OBJS += \
-./performance-test/grid_performance.o 
+./src/naive-map-reduce/NaiveMapReduce.o
 
 CPP_DEPS += \
-./performance-test/grid_performance.d
+./src/naive-map-reduce/NaiveMapReduce.d
 
 
 # Each subdirectory must supply rules for building sources it contributes
-performance-test/%.o: ../performance-test/%.cpp
+src/naive-map-reduce/%.o: ../src/naive-map-reduce/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
 	g++ -O3 -DNDEBUG -Wall -c -fmessage-length=0 -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
+	echo 'Finished building: $<'
+	echo ' '
 
 

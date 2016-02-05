@@ -1,6 +1,7 @@
 #include "../src/knn/BPQ.h"
 #include "../src/grid/Grid.h"
 #include "../src/knn/NaiveKnn.h"
+#include "../src/naive-map-reduce/NaiveMapReduce.h"
 #include "../src/util/RandomPointGenerator.h"
 #include "../src/model/PointContainer.h"
 #include "../src/model/PointArrayAccessor.h"
@@ -78,12 +79,24 @@ void determineGridCellFillSize(unsigned k, unsigned dimension,
 	std::cout << "#### Determine Grid Cell Fill Optimum Ended ###" << std::endl;
 }
 
+long testNaiveMapReduce(unsigned k, PointAccessor* query,
+		PointContainer& points, unsigned dimension, unsigned numberOfPoints) {
+	NaiveMapReduce naiveMR(points.data(), dimension, numberOfPoints);
+
+	auto start_knn = std::chrono::system_clock::now();
+	naiveMR.kNearestNeighbors(k, query);
+	long knn_duration = static_cast<long>(std::chrono::duration_cast < mili_sec
+			> (std::chrono::system_clock::now() - start_knn).count());
+
+	return knn_duration;
+}
+
 int main(int argc, char** argv) {
 	long SEED = 62345l;
 	const unsigned DIMENSION = 3;
-	unsigned NUMBER_OF_TEST_POINTS = 400000000;
+	unsigned NUMBER_OF_TEST_POINTS = 300000000;
 	unsigned NUMBER_OF_QUERIES = 1;
-	unsigned K = 500000;
+	unsigned K = 5000000;
 
 	RandomPointGenerator rg(SEED);
 	unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
@@ -105,9 +118,10 @@ int main(int argc, char** argv) {
 	for (unsigned nrOfPts = 20000000; nrOfPts <= NUMBER_OF_TEST_POINTS;
 			nrOfPts += 20000000) {
 		std::cout << "Number Of Points: " << nrOfPts << std::endl;
-		auto res_pair = testNaive(DIMENSION, K, nrOfPts, queries, points);
-		std::cout << "build time: " << res_pair.first << std::endl;
-		std::cout << "kNN lookup time: " << res_pair.second << std::endl;
+		auto query = queries[0];
+		double duration = testNaiveMapReduce(K, &query, points, DIMENSION,
+				nrOfPts);
+		std::cout << "kNN lookup time: " << duration << std::endl;
 	}
 
 	return EXIT_SUCCESS;

@@ -11,6 +11,7 @@ RM := rm -rf
 -include src/model/subdir.mk
 -include src/util/subdir.mk
 -include src/knn/subdir.mk
+-include src/naive-map-reduce/subdir.mk
 -include src/grid/subdir.mk
 -include performance-test/subdir.mk
 -include subdir.mk
@@ -48,7 +49,7 @@ all: kNNBaThesis
 kNNBaThesis: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++  -o "kNNBaThesis" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -std=c++11 -pthread -O3 -o "kNNBaThesis" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

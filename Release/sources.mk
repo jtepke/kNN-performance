@@ -27,4 +27,5 @@ src/util \
 src/model \
 src/grid \
 src/knn \
+src/naive-map-reduce \
 performance-test \
