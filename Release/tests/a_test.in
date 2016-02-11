@@ -1,0 +1,42 @@
+dimension 3
+numberOfRefPoints 100000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform 
+
+numberOfQueryPoints 10
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform 
+
+genReferencePoints
+genQueryPoints
+
+gridCellSize 100
+buildGrid
+#buildNaive
+#maxNumberOfThreads 8
+#buildNaiveMapReduce
+
+k 10000
+runGridKnn
+k 3000
+runGridKnn
+k 2000
+runGridKnn
+k 1000
+runGridKnn
+k 500
+runGridKnn
+k 300
+runGridKnn
+k 150
+runGridKnn
+k 100
+runGridKnn
+k 50
+runGridKnn
+k 20
+runGridKnn
+k 10
+runGridKnn
+k 1
+runGridKnn

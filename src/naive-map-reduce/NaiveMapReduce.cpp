@@ -6,30 +6,21 @@
 #include <thread>
 #include <vector>
 
-NaiveMapReduce::NaiveMapReduce(double * points, std::size_t dimension,
-		std::size_t numberOfPoints) :
-		NaiveKnn::NaiveKnn(points, dimension, numberOfPoints) {
-}
-
-NaiveMapReduce::~NaiveMapReduce() {
-
-}
 BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 		PointAccessor* query) {
 
 	unsigned arraySize = numberOfPoints_ * dimension_;
-	unsigned singleThreadedThreshold = 1000000;
-	if (arraySize < singleThreadedThreshold) {
+
+	if (arraySize < singleThreadedThreashold_) {
 		return NaiveKnn::kNearestNeighbors(k, query);
 	}
 
-	unsigned maxThreadLoad = 200000 < k ? k : 200000;
+	unsigned threadLoad = maxThreadLoad_ < k ? k : maxThreadLoad_;
 	std::vector<std::thread> mapThreads;
-	unsigned MAX_NUMBER_OF_THREADS = 20;
 
 	unsigned numberOfThreads =
-			std::ceil(arraySize / maxThreadLoad) > MAX_NUMBER_OF_THREADS ?
-					MAX_NUMBER_OF_THREADS : (arraySize / maxThreadLoad);
+			std::ceil(arraySize / threadLoad) > maxThreads_ ?
+					maxThreads_ : (arraySize / threadLoad);
 
 	//Init map result vector
 	std::vector<BPQ<PointArrayAccessor>> mapResult;
@@ -42,7 +33,6 @@ BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 	std::size_t lastFullStepOffset = (numberOfThreads - 1) * step;
 	std::size_t endStep = arraySize - lastFullStepOffset;
 
-	std::cout << "number of threads: " << numberOfThreads << std::endl;
 	assert(endStep + lastFullStepOffset == dimension_ * numberOfPoints_);
 	assert(numberOfThreads * step >= numberOfPoints_);
 

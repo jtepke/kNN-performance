@@ -13,9 +13,6 @@ public:
 					pointsContainer) {
 	}
 
-	virtual ~PointArrayAccessor() {
-	}
-
 	double& operator[](std::size_t idx) override;
 	const double& operator[](std::size_t idx) const override;
 	double* getData() override;

@@ -1,0 +1,7 @@
+dimension 3
+numberOfRefPoints 100000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform
+genReferencePoints
+
+writeReferencePointsToFile 100MRef_uniform_3d.pts

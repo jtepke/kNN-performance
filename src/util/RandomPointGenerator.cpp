@@ -62,7 +62,6 @@ PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 
 	std::size_t dimension = mbr.getLowPoint().dimension();
 	std::size_t numberOfCoordinates = numberOfPoints * dimension;
-
 	std::vector<double> randPoints(numberOfCoordinates);
 
 	switch (distrib) {

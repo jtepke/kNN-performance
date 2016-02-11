@@ -26,7 +26,7 @@ public:
 
 	}
 
-	RandomPointGenerator(unsigned seed) :
+	RandomPointGenerator(std::size_t seed) :
 			randEngine_(seed) {
 	}
 

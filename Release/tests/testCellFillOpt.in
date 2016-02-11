@@ -1,0 +1,14 @@
+dimension 3
+numberOfQueryPoints 10
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform 
+
+genQueryPoints
+numberOfRefPoints 10000000
+readReferencePointsFromFile 100MRef_gauss_3d.pts 10000000
+
+gridCellSize 10
+buildGrid
+
+k 10
+runGridKnn

@@ -407,7 +407,6 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 
 			for (std::size_t p_idx = 0; p_idx < pc.size(); ++p_idx) {
 				auto point = pc[p_idx];
-
 				double current_dist = Metrics::squared_euclidean(point, query);
 				if (current_dist < closestDistToCellBorder) {
 					if (current_dist < candidates.max_dist()) {
@@ -419,7 +418,7 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 				}
 			}
 		}
-		kNN_iteration++;
+		++kNN_iteration;
 	}
 
 	return candidates;

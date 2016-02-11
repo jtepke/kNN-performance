@@ -17,7 +17,7 @@ CPP_DEPS += \
 src/naive-map-reduce/%.o: ../src/naive-map-reduce/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -O3 -DNDEBUG -Wall -c -fmessage-length=0 -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -O3 -DNDEBUG -Wall -c -g -fmessage-length=0 -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	echo 'Finished building: $<'
 	echo ' '
 

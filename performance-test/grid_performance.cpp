@@ -1,10 +1,10 @@
-#include "../src/knn/BPQ.h"
 #include "../src/grid/Grid.h"
+#include "../src/knn/BPQ.h"
 #include "../src/knn/NaiveKnn.h"
-#include "../src/naive-map-reduce/NaiveMapReduce.h"
-#include "../src/util/RandomPointGenerator.h"
 #include "../src/model/PointContainer.h"
 #include "../src/model/PointArrayAccessor.h"
+#include "../src/naive-map-reduce/NaiveMapReduce.h"
+#include "../src/util/RandomPointGenerator.h"
 
 #include <chrono>
 #include <cstddef>
@@ -79,50 +79,50 @@ void determineGridCellFillSize(unsigned k, unsigned dimension,
 	std::cout << "#### Determine Grid Cell Fill Optimum Ended ###" << std::endl;
 }
 
-long testNaiveMapReduce(unsigned k, PointAccessor* query,
-		PointContainer& points, unsigned dimension, unsigned numberOfPoints) {
-	NaiveMapReduce naiveMR(points.data(), dimension, numberOfPoints);
+//long testNaiveMapReduce(unsigned k, PointAccessor* query,
+//		PointContainer& points, unsigned dimension, unsigned numberOfPoints) {
+//	NaiveMapReduce naiveMR(points.data(), dimension, numberOfPoints);
+//
+//	auto start_knn = std::chrono::system_clock::now();
+//	naiveMR.kNearestNeighbors(k, query);
+//	long knn_duration = static_cast<long>(std::chrono::duration_cast < mili_sec
+//			> (std::chrono::system_clock::now() - start_knn).count());
+//
+//	return knn_duration;
+//}
 
-	auto start_knn = std::chrono::system_clock::now();
-	naiveMR.kNearestNeighbors(k, query);
-	long knn_duration = static_cast<long>(std::chrono::duration_cast < mili_sec
-			> (std::chrono::system_clock::now() - start_knn).count());
-
-	return knn_duration;
-}
-
-int main(int argc, char** argv) {
-	long SEED = 62345l;
-	const unsigned DIMENSION = 3;
-	unsigned NUMBER_OF_TEST_POINTS = 300000000;
-	unsigned NUMBER_OF_QUERIES = 1;
-	unsigned K = 5000000;
-
-	RandomPointGenerator rg(SEED);
-	unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
-	double mbrCoords[] = { -100.0, -100.0, -100.0, 100.0, 100.0, 100.0 };
-	double query_mbrCoords[] = { -99.0, -99.0, -99.0, 99.0, 99.0, 99.0 };
-
-	MBR mbr = MBR(DIMENSION);
-	mbr = mbr.createMBR(mbrCoords, NUMBER_OF_MBR_COORDINATES);
-
-	MBR query_mbr = MBR(DIMENSION);
-	query_mbr = query_mbr.createMBR(query_mbrCoords, NUMBER_OF_MBR_COORDINATES);
-
-	PointContainer points = rg.generatePoints(NUMBER_OF_TEST_POINTS,
-			RandomPointGenerator::UNIFORM, mbr);
-
-	PointContainer queries = rg.generatePoints(NUMBER_OF_QUERIES,
-			RandomPointGenerator::UNIFORM, query_mbr);
-
-	for (unsigned nrOfPts = 20000000; nrOfPts <= NUMBER_OF_TEST_POINTS;
-			nrOfPts += 20000000) {
-		std::cout << "Number Of Points: " << nrOfPts << std::endl;
-		auto query = queries[0];
-		double duration = testNaiveMapReduce(K, &query, points, DIMENSION,
-				nrOfPts);
-		std::cout << "kNN lookup time: " << duration << std::endl;
-	}
-
-	return EXIT_SUCCESS;
-}
+//int main(int argc, char** argv) {
+//	long SEED = 62345l;
+//	const unsigned DIMENSION = 3;
+//	unsigned NUMBER_OF_TEST_POINTS = 300000000;
+//	unsigned NUMBER_OF_QUERIES = 1;
+//	unsigned K = 5000000;
+//
+//	RandomPointGenerator rg(SEED);
+//	unsigned NUMBER_OF_MBR_COORDINATES = 2 * DIMENSION;
+//	double mbrCoords[] = { -100.0, -100.0, -100.0, 100.0, 100.0, 100.0 };
+//	double query_mbrCoords[] = { -99.0, -99.0, -99.0, 99.0, 99.0, 99.0 };
+//
+//	MBR mbr = MBR(DIMENSION);
+//	mbr = mbr.createMBR(mbrCoords, NUMBER_OF_MBR_COORDINATES);
+//
+//	MBR query_mbr = MBR(DIMENSION);
+//	query_mbr = query_mbr.createMBR(query_mbrCoords, NUMBER_OF_MBR_COORDINATES);
+//
+//	PointContainer points = rg.generatePoints(NUMBER_OF_TEST_POINTS,
+//			RandomPointGenerator::UNIFORM, mbr);
+//
+//	PointContainer queries = rg.generatePoints(NUMBER_OF_QUERIES,
+//			RandomPointGenerator::UNIFORM, query_mbr);
+//
+//	for (unsigned nrOfPts = 20000000; nrOfPts <= NUMBER_OF_TEST_POINTS;
+//			nrOfPts += 20000000) {
+//		std::cout << "Number Of Points: " << nrOfPts << std::endl;
+//		auto query = queries[0];
+//		double duration = testNaiveMapReduce(K, &query, points, DIMENSION,
+//				nrOfPts);
+//		std::cout << "kNN lookup time: " << duration << std::endl;
+//	}
+//
+//	return EXIT_SUCCESS;
+//}
