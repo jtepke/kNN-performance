@@ -120,7 +120,7 @@ void printStats(const std::string & indexName, bool verbose, StopWatch& watch) {
 	std::cout << "Indexed points: " << numberOfRefPoints << "\n";
 
 	auto sumRuntimes = watch.getLastSplit();
-	auto avgRuntime = sumRuntimes/numberOfQueryPoints;
+	auto avgRuntime = sumRuntimes / numberOfQueryPoints;
 
 	std::cout << "Query avg. runtime (micro sec.): " << avgRuntime << "\n";
 	std::cout << "Query whole runtime (micro sec.): " << sumRuntimes << "\n";
@@ -132,6 +132,22 @@ void printStats(const std::string & indexName, bool verbose, StopWatch& watch) {
 	}
 
 	std::cout << std::endl;
+}
+
+Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
+		std::size_t cellSize) {
+	std::cout << "Building grid index (cell size = " << cellSize
+			<< ") ... this may take a while ..." << std::endl;
+	if (grid) {
+		delete (grid);
+	}
+	watch.start();
+	grid = new Grid { dimension, refPtsArray, numberOfRefPoints * dimension,
+			cellSize };
+	watch.stop();
+	std::cout << "Finished grid construction! (" << watch.getLastSplit()
+			<< " micro sec.)\n" << std::endl;
+	return grid;
 }
 int main(int argc, char** argv) {
 	char directive[50];		// input directive
@@ -274,22 +290,41 @@ int main(int argc, char** argv) {
 		} else if (!strcmp(directive, "singleThreadedThreshold")) {
 			std::cin >> singleThreadedThreshold;
 		} else if (!strcmp(directive, "buildGrid")) {
-			std::cout << "Building grid index (cell size = " << gridCellSize
-					<< ") ... this may take a while ..." << std::endl;
-			watch.start();
-			grid = new Grid { dimension, refPoints.data(), numberOfRefPoints
-					* dimension, gridCellSize };
-			watch.stop();
-			std::cout << "Finished grid construction! (" << watch.getLastSplit()
-					<< " micro sec.)\n" << std::endl;
+			grid = buildUpGrid(grid, watch, refPoints.data(), gridCellSize);
 		} else if (!strcmp(directive, "buildNaive")) {
+			if (naive) {
+				delete (naive);
+			}
 			naive = new NaiveKnn { refPoints.data(), dimension,
 					numberOfRefPoints };
 		} else if (!strcmp(directive, "buildNaiveMapReduce")) {
+			if (naiveMR) {
+				delete (naiveMR);
+			}
 			naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
 					numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
 					singleThreadedThreshold };
 		} else if (!strcmp(directive, "runGridKnn")) {
+			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,
+					grid);
+			printStats("Spatial Grid", verboseStats, gridKnnTime);
+		} else if (!strcmp(directive, "runGridCellSizeTest")) {
+			//format: runGridCellSizeTest <start> <end> <step size>
+			unsigned start = 0;
+			unsigned end = 0;
+			unsigned stepSize = 0;
+			std::cin >> start;
+			std::cin >> end;
+			std::cin >> stepSize;
+
+			while (start < end) {
+				grid = buildUpGrid(grid, watch, refPoints.data(), start);
+
+				auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints,
+						k, grid);
+				printStats("Spatial Grid", verboseStats, gridKnnTime);
+				start += stepSize;
+			}
 			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,
 					grid);
 			printStats("Spatial Grid", verboseStats, gridKnnTime);
@@ -302,7 +337,7 @@ int main(int argc, char** argv) {
 					naiveMR);
 			printStats("Naive Map Reduce Approach", verboseStats, naiveMRtime);
 		} else if (!strcmp(directive, "verboseStats")) {
-			std::cin >> singleThreadedThreshold;
+			std::cin >> verboseStats;
 		} else {
 			std::cerr << "Did not recognize: " << directive << std::endl;
 		}

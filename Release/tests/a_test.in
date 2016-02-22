@@ -10,20 +10,20 @@ queryDistribution uniform
 genReferencePoints
 genQueryPoints
 
-gridCellSize 100
+gridCellSize 1000000
 buildGrid
 #buildNaive
 #maxNumberOfThreads 8
 #buildNaiveMapReduce
 
-k 10000
-runGridKnn
-k 3000
-runGridKnn
-k 2000
-runGridKnn
-k 1000
-runGridKnn
+# k 10000
+# runGridKnn
+# k 3000
+# runGridKnn
+# k 2000
+# runGridKnn
+# k 1000
+# runGridKnn
 k 500
 runGridKnn
 k 300
