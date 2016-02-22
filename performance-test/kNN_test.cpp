@@ -324,6 +324,7 @@ int main(int argc, char** argv) {
 						k, grid);
 				printStats("Spatial Grid", verboseStats, gridKnnTime);
 				start += stepSize;
+				std::cout << "####New Step in cell size test!" << std::endl;
 			}
 			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,
 					grid);
