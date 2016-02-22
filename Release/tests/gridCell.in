@@ -1,0 +1,53 @@
+dimension 3
+numberOfRefPoints 100000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 10
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints
+
+gridCellSize 1000000
+#runGridCellSizeTest 5 100 5
+
+k 5
+runGridCellSizeTest 5 100 5
+k 10
+runGridCellSizeTest 5 100 5
+k 15
+runGridCellSizeTest 5 100 5
+k 20
+runGridCellSizeTest 5 100 5
+k 25
+runGridCellSizeTest 5 100 5
+k 35
+runGridCellSizeTest 5 100 5
+k 40
+runGridCellSizeTest 5 100 5
+k 45
+runGridCellSizeTest 5 100 5
+k 50
+runGridCellSizeTest 5 100 5
+k 55
+runGridCellSizeTest 5 100 5
+k 60
+runGridCellSizeTest 5 100 5
+k 65
+runGridCellSizeTest 5 100 5
+k 70
+runGridCellSizeTest 5 100 5
+k 75
+runGridCellSizeTest 5 100 5
+k 80
+runGridCellSizeTest 5 100 5
+k 85
+runGridCellSizeTest 5 100 5
+k 90
+runGridCellSizeTest 5 100 5
+k 95
+runGridCellSizeTest 5 100 5
+k 100
+runGridCellSizeTest 5 100 5
