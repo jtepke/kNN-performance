@@ -135,9 +135,11 @@ void printStats(const std::string & indexName, bool verbose, StopWatch& watch) {
 }
 
 Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
-		std::size_t cellSize) {
-	std::cout << "Building grid index (cell size = " << cellSize
-			<< ") ... this may take a while ..." << std::endl;
+		std::size_t cellSize, bool printCSV = false) {
+	if (!printCSV) {
+		std::cout << "Building grid index (cell size = " << cellSize
+				<< ") ... this may take a while ..." << std::endl;
+	}
 	if (grid) {
 		delete (grid);
 	}
@@ -145,10 +147,15 @@ Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
 	grid = new Grid { dimension, refPtsArray, numberOfRefPoints * dimension,
 			cellSize };
 	watch.stop();
-	std::cout << "Finished grid construction! (" << watch.getLastSplit()
-			<< " micro sec.)\n" << std::endl;
+	if (!printCSV) {
+		std::cout << "Finished grid construction! (" << watch.getLastSplit()
+				<< " micro sec.)\n" << std::endl;
+	} else {
+		std::cout << cellSize << ',' << watch.getLastSplit() << std::endl;
+	}
 	return grid;
 }
+
 int main(int argc, char** argv) {
 	char directive[50];		// input directive
 	char arg[50];			// all-purpose argument
@@ -166,10 +173,10 @@ int main(int argc, char** argv) {
 			<< "kNN Tester: Please specify input \n"
 			<< "###############################################################\n\n";
 
-	//--------------------------------------------------------------------
-	//	Main input loop
-	//--------------------------------------------------------------------
-	// read input directive
+//--------------------------------------------------------------------
+//	Main input loop
+//--------------------------------------------------------------------
+// read input directive
 	while (getDirective(std::cin, directive)) {
 		if (!strcmp(directive, "k")) {
 			std::cin >> k;
@@ -324,11 +331,27 @@ int main(int argc, char** argv) {
 						k, grid);
 				printStats("Spatial Grid", verboseStats, gridKnnTime);
 				start += stepSize;
-				std::cout << "####New Step in cell size test!" << std::endl;
 			}
 			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,
 					grid);
 			printStats("Spatial Grid", verboseStats, gridKnnTime);
+		} else if (!strcmp(directive, "runGridBuildUpTest")) {
+			//test various cell sizes:
+			//format: runGridBuildUpTest <start> <end> <step size> <output csv>
+			unsigned start = 0;
+			unsigned end = 0;
+			unsigned stepSize = 0;
+			bool outputCSV;
+			std::cin >> start;
+			std::cin >> end;
+			std::cin >> stepSize;
+			std::cin >> outputCSV;
+
+			while (start < end) {
+				grid = buildUpGrid(grid, watch, refPoints.data(), start,
+						outputCSV);
+				start += stepSize;
+			}
 		} else if (!strcmp(directive, "runNaiveKnn")) {
 			auto naiveKnntime = executeKnn<PointArrayAccessor>(queryPoints, k,
 					naive);
