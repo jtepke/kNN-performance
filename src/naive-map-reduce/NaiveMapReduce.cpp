@@ -98,6 +98,7 @@ BPQ<PointArrayAccessor> NaiveMapReduce::kNearestNeighbors(unsigned k,
 		mapThreads[threadId].join();
 	}
 
+	//Switch to appropriate kNN strategy
 	switch (knnStrategy_) {
 	case NAIVE: {
 		return reduceNaive(mapNaiveResult, query);
@@ -139,9 +140,7 @@ void NaiveMapReduce::mapGrid(double* points, PointAccessor* query, unsigned k,
 		std::size_t step, unsigned storeId,
 		std::vector<BPQ<PointVectorAccessor>>& mapResult) {
 	assert(dimension_ == query->dimension());
-	//TODO: find better way to determine cell optimum!!!
-	std::size_t cellFillOpt = 10;
-	Grid grid = Grid { dimension_, points, step, cellFillOpt };
+	Grid grid = Grid { dimension_, points, step, Grid::determineCellSize(k) };
 	mapResult[storeId] = grid.kNearestNeighbors(k, query);
 }
 

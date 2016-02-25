@@ -15,14 +15,9 @@ public:
 					pointsContainer) {
 	}
 
-	//TODO: remove constructor hack!
-	PointArrayAccessor(const PointVectorAccessor& accessor) :
-			PointAccessor(0, accessor.dimension()) {
-		container_ = new double[dimension_];
-
-		for (std::size_t i = 0; i < dimension_; ++i) {
-			container_[i] = accessor[i];
-		}
+	PointArrayAccessor(PointVectorAccessor&& vectAccessor) :
+			PointAccessor(vectAccessor.getOffset(), vectAccessor.dimension()), container_(
+					vectAccessor.getData()) {
 	}
 
 	double& operator[](std::size_t idx) override;
