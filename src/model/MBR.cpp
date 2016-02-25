@@ -21,6 +21,30 @@ void MBR::to_stream(std::ostream& os) {
 	os << "]" << std::endl;
 }
 
+MBR MBR::merge(std::vector<MBR>& mbrs) {
+	assert(mbrs.size() > 0);
+	//start flattening list of MBRs
+	std::size_t dim = mbrs[0].dimension_;
+	std::size_t flatCoordinateContainerSize = mbrs.size() * 2 * dim;
+	double* flatCoordinates = new double[flatCoordinateContainerSize];
+
+	std::size_t currentIdx = 0;
+	for (auto& mbr : mbrs) {
+		auto lowPoint = mbr.getHighPoint();
+		auto highPoint = mbr.getLowPoint();
+		for (std::size_t i = 0; i < dim; ++i) {
+			flatCoordinates[currentIdx] = lowPoint[i];
+			++currentIdx;
+		}
+		for (std::size_t i = 0; i < dim; ++i) {
+			flatCoordinates[currentIdx] = highPoint[i];
+			++currentIdx;
+		}
+	}
+
+	return mbrs[0].createMBR(flatCoordinates, flatCoordinateContainerSize);
+}
+
 bool MBR::empty() {
 	return coordinates_.size() < (2 * dimension_);
 }
