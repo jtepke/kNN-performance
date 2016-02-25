@@ -32,6 +32,8 @@ RandomPointGenerator::DISTRIBUTION refDistrib;
 
 //Grid parameters
 std::size_t gridCellSize = Grid::CELL_FILL_OPTIMUM_DEFAULT;	// grid bucket size
+unsigned gridMaxNumberOfInsertThreads = Grid::MAX_NUMBER_OF_THREADS_DEFAULT;
+unsigned gridInsertThreadLoad = Grid::THREAD_LOAD_DEFAULT;
 
 //Naive MapReduce parameters
 unsigned maxNumberOfThreads = NaiveMapReduce::MAX_NUMBER_OF_THREADS;
@@ -137,15 +139,18 @@ void printStats(const std::string & indexName, bool verbose, StopWatch& watch) {
 Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
 		std::size_t cellSize, bool printCSV = false) {
 	if (!printCSV) {
-		std::cout << "Building grid index (cell size = " << cellSize
-				<< ") ... this may take a while ..." << std::endl;
+		std::cout << "Building grid index (cell size = " << cellSize;
+		if (numberOfRefPoints > gridInsertThreadLoad) {
+			std::cout << ", max. number of threads = " << maxNumberOfThreads;
+		}
+		std::cout << ") ... this may take a while ..." << std::endl;
 	}
 	if (grid) {
 		delete (grid);
 	}
 	watch.start();
 	grid = new Grid { dimension, refPtsArray, numberOfRefPoints * dimension,
-			cellSize };
+			cellSize, gridMaxNumberOfInsertThreads, gridInsertThreadLoad };
 	watch.stop();
 	if (!printCSV) {
 		std::cout << "Finished grid construction! (" << watch.getLastSplit()
@@ -290,6 +295,10 @@ int main(int argc, char** argv) {
 					<< watch.getLastSplit() << " micro sec.)\n" << std::endl;
 		} else if (!strcmp(directive, "gridCellSize")) {
 			std::cin >> gridCellSize;
+		} else if (!strcmp(directive, "gridMaxNumberOfThreads")) {
+			std::cin >> gridMaxNumberOfInsertThreads;
+		} else if (!strcmp(directive, "gridThreadLoad")) {
+			std::cin >> gridInsertThreadLoad;
 		} else if (!strcmp(directive, "maxNumberOfThreads")) {
 			std::cin >> maxNumberOfThreads;
 		} else if (!strcmp(directive, "maxThreadLoad")) {
@@ -347,7 +356,7 @@ int main(int argc, char** argv) {
 			std::cin >> stepSize;
 			std::cin >> outputCSV;
 
-			while (start < end) {
+			while (start <= end) {
 				grid = buildUpGrid(grid, watch, refPoints.data(), start,
 						outputCSV);
 				start += stepSize;
