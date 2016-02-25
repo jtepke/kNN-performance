@@ -31,10 +31,20 @@ public:
 	std::vector<std::mutex*> insertLocks_;
 	/** we assume this the optimal number points per cell */
 	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
-
+	/** Default value for max number of insert threads*/
+	static const unsigned MAX_NUMBER_OF_THREADS_DEFAULT = 20;
+	/** Default value for max points to be inserted single-threaded*/
+	static const unsigned THREAD_LOAD_DEFAULT = 100000000;
+	/** Maximum number of insert threads*/
+	unsigned maxNumberOfThreads_;
+	/** Threshold to switch from single- to multi-threaded*/
+	unsigned threadLoad_;
 	/** Create an MBR around the grid points. */
 	static MBR initGridMBR(double * coordinates, std::size_t dimension,
 			std::size_t size);
+	/** Determine ideal cell size for given value k */
+	/** Caveat: Only works properly with uniformly distributed points and k < 1000-ish*/
+	static std::size_t determineCellSize(unsigned k);
 	/** Insert a set of points into the grid. */
 	void insert(double * coordinates, std::size_t size);
 	/** Insert single point into grid. */
@@ -74,12 +84,12 @@ public:
 
 //public:
 	Grid(const std::size_t dimension, double * coordinates, std::size_t size,
-			std::size_t cellFillOptimum = Grid::CELL_FILL_OPTIMUM_DEFAULT) :
+			std::size_t cellFillOptimum = Grid::CELL_FILL_OPTIMUM_DEFAULT, unsigned maxNumberOfThreads = MAX_NUMBER_OF_THREADS_DEFAULT, unsigned threadLoad = THREAD_LOAD_DEFAULT) :
 			dimension_(dimension), mbr_(
 					Grid::initGridMBR(coordinates, dimension, size)), numberOfPoints_(
 					size / dimension), gridWidthPerDim_(widthPerDimension()), cellsPerDimension_(
 					calculateCellsPerDimension(cellFillOptimum)), productOfCellsUpToDimension_(
-					initProductOfCellsUpToDimension(dimension)) {
+					initProductOfCellsUpToDimension(dimension)), maxNumberOfThreads_(maxNumberOfThreads), threadLoad_(threadLoad) {
 
 		allocPointContainers();
 		insert(coordinates, size);

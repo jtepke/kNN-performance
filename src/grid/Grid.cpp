@@ -15,6 +15,11 @@
 #include <utility>
 #include <vector>
 
+std::size_t Grid::determineCellSize(unsigned k) {
+	//Magic *hukuspukus fidibus!*
+	return std::floor(0.27 * k + 1.4);
+}
+
 MBR Grid::initGridMBR(double * coordinates, std::size_t dimension,
 		std::size_t size) {
 	GridMBR m = GridMBR(dimension);
@@ -47,14 +52,13 @@ void Grid::insertMultiThreaded(double* coordinates, std::size_t size) {
 
 void Grid::insert(double * coordinates, std::size_t size) {
 	assert((size % dimension_) == 0);
-	unsigned maxThreadLoad = 100000000;
 
-	if (size > maxThreadLoad) {
+	if (size > threadLoad_) {
 		std::vector<std::thread> insertThreads;
-		unsigned MAX_NUMBER_OF_THREADS = 20;
+
 		unsigned numberOfThreads =
-				(size / maxThreadLoad) > MAX_NUMBER_OF_THREADS ?
-						MAX_NUMBER_OF_THREADS : (size / maxThreadLoad);
+				(size / threadLoad_) > maxNumberOfThreads_ ?
+						maxNumberOfThreads_ : (size / threadLoad_);
 
 		//Init locks
 		for (unsigned i = 0; i < grid_.size(); i++) {
