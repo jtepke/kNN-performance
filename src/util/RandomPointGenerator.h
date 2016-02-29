@@ -13,6 +13,7 @@ private:
 	std::vector<std::uniform_real_distribution<double>*> uniform_;
 	std::vector<std::normal_distribution<double>*> gauss_;
 
+	bool checkMBR_;
 	void initUniform(MBR& m, std::size_t dimension);
 	void initGauss(double mean, double stddev);
 	void initGaussCluster(std::size_t dimension, double stddev);
@@ -22,12 +23,12 @@ private:
 			std::size_t dimension, std::size_t numberOfClusters, MBR& m);
 public:
 	RandomPointGenerator() :
-			randEngine_(randDevice_()) {
+			randEngine_(randDevice_()), checkMBR_(false) {
 
 	}
 
-	RandomPointGenerator(std::size_t seed) :
-			randEngine_(seed) {
+	RandomPointGenerator(std::size_t seed, bool checkMBR = false) :
+			randEngine_(seed), checkMBR_(checkMBR) {
 	}
 
 	virtual ~RandomPointGenerator() {
@@ -47,6 +48,13 @@ public:
 	PointContainer generatePoints(std::size_t numberOfPoints, DISTRIBUTION d,
 			MBR& m, double mean = 0.0, double stddev = 1.0,
 			int numberOfClusters = 1);
+
+	void setCheckMBR(bool checkFlag) {
+		checkMBR_ = checkFlag;
+	}
+	bool getCheckMBR() {
+		return checkMBR_;
+	}
 };
 
 #endif

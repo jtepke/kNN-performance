@@ -23,7 +23,7 @@ void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
 	gauss_.reserve(numberOfClusters);
 
 	for (std::size_t i = 0; i < numberOfClusters; i++) {
-		auto mean = (*uniform_[i])(randEngine_);
+		auto mean = (*uniform_[0])(randEngine_);
 		gauss_[i] = new std::normal_distribution<double>(mean, stddev);
 	}
 }
@@ -47,9 +47,12 @@ void RandomPointGenerator::genGaussPts(std::vector<double>& randPts,
 
 	for (std::size_t point = 0; point < numberOfPoints; point++) {
 		clusterID = point % numberOfClusters;
-		for (std::size_t dim = 0; dim < dimension; dim++) {
-			coordIndex = (point * dimension) + dim;
+		for (std::size_t c_dim = 0; c_dim < dimension; c_dim++) {
+			coordIndex = (point * dimension) + c_dim;
 			randPts[coordIndex] = (*gauss_[clusterID])(randEngine_);
+		}
+		if (checkMBR_ && !m.isWithin(&randPts[point * dimension])) {
+			--point;
 		}
 	}
 }
