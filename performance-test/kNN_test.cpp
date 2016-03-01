@@ -295,6 +295,8 @@ int main(int argc, char** argv) {
 					<< watch.getLastSplit() << " micro sec.)\n" << std::endl;
 		} else if (!strcmp(directive, "gridCellSize")) {
 			std::cin >> gridCellSize;
+		} else if (!strcmp(directive, "kOptimizedGridCells")) {
+			gridCellSize = Grid::determineCellSize(k);
 		} else if (!strcmp(directive, "gridMaxNumberOfThreads")) {
 			std::cin >> gridMaxNumberOfInsertThreads;
 		} else if (!strcmp(directive, "gridThreadLoad")) {
