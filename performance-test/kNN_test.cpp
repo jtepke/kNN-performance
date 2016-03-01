@@ -141,7 +141,7 @@ Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
 	if (!printCSV) {
 		std::cout << "Building grid index (cell size = " << cellSize;
 		if (numberOfRefPoints > gridInsertThreadLoad) {
-			std::cout << ", max. number of threads = " << maxNumberOfThreads;
+			std::cout << ", max. number of threads = " << gridMaxNumberOfInsertThreads;
 		}
 		std::cout << ") ... this may take a while ..." << std::endl;
 	}
