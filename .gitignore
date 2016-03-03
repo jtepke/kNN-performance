@@ -3,6 +3,7 @@ Debug
 core
 .settings
 Release/kNNBaThesis
+Release/kNN_test
 Release/performance-test/*
 Release/src/knn/*
 Release/src/grid/*
