@@ -1,0 +1,20 @@
+dimension 2 
+numberOfRefPoints 162000000
+refMBR 0.0 0.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 100
+queryMBR 1.0 1.0 80.0 80.0
+queryDistribution uniform 
+
+genReferencePoints
+genQueryPoints
+
+
+gridMaxNumberOfThreads 8
+gridThreadLoad 10
+k 100000
+kOptimizedGridCells
+buildGrid
+
+runGridKnn
