@@ -387,23 +387,9 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 	std::multimap<double, PointVectorAccessor> unconsidered_pts;
 	unsigned queryCellNo = cellNumber(query);
 	std::vector<unsigned> cartesianQueryCoords = getCartesian(queryCellNo);
-	while (candidates.notFull()) {
+	do {
 		closestDistToCellBorder = findNextClosestCellBorder(query,
 				kNN_iteration);
-		for (auto it = unconsidered_pts.begin(); it != unconsidered_pts.end();
-				it = unconsidered_pts.erase(it)) {
-			double current_dist = it->first;
-			PointVectorAccessor candidate = it->second;
-
-			if (!(current_dist < closestDistToCellBorder)) {
-				break;
-				//points from this part are not considerable since they not
-				//in the radius of valid points.
-			} else if (current_dist < candidates.max_dist()) {
-				candidates.push(candidate, current_dist);
-			}
-
-		}
 
 		for (unsigned cNumber : getHyperSquareCellEnvironment(kNN_iteration,
 				queryCellNo, cartesianQueryCoords)) {
@@ -412,18 +398,13 @@ BPQ<PointVectorAccessor> Grid::kNearestNeighbors(unsigned k,
 			for (std::size_t p_idx = 0; p_idx < pc.size(); ++p_idx) {
 				auto point = pc[p_idx];
 				double current_dist = Metrics::squared_euclidean(point, query);
-				if (current_dist < closestDistToCellBorder) {
-					if (current_dist < candidates.max_dist()) {
-						candidates.push(point, current_dist);
-					}
-				} else {
-					unconsidered_pts.insert(
-							std::make_pair(current_dist, point));
+				if (current_dist < candidates.max_dist()) {
+					candidates.push(point, current_dist);
 				}
 			}
 		}
 		++kNN_iteration;
-	}
+	} while (candidates.max_dist() > closestDistToCellBorder);
 
 	return candidates;
 }
