@@ -26,9 +26,7 @@ class Representable {
 public:
 	Representable() {
 	}
-	virtual ~Representable() {
 
-	}
 	virtual void to_stream(std::ostream& os) = 0;
 
 };
