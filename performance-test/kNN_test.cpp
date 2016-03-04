@@ -319,9 +319,17 @@ int main(int argc, char** argv) {
 			if (naiveMR) {
 				delete (naiveMR);
 			}
+			bool useGrid;
+			std::cin >> useGrid;
+			if(useGrid) {
 			naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
 					numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
-					singleThreadedThreshold };
+					singleThreadedThreshold , KNN_STRATEGY::GRID};
+			} else {
+				naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
+									numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
+									singleThreadedThreshold , KNN_STRATEGY::NAIVE};
+			}
 		} else if (!strcmp(directive, "runGridKnn")) {
 			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,
 					grid);
