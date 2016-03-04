@@ -1,0 +1,39 @@
+dimension 3
+numberOfRefPoints 100000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution gauss_cluster
+refStddev 50
+refMean 50
+numberOfRefClusters 10
+
+numberOfQueryPoints 1000
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints
+
+k 10
+kOptimizedGridCells
+buildGrid
+runGridKnn
+
+k 100
+kOptimizedGridCells
+buildGrid
+runGridKnn
+
+k 1000
+kOptimizedGridCells
+buildGrid
+runGridKnn
+
+k 10000
+kOptimizedGridCells
+buildGrid
+runGridKnn
+
+k 100000
+kOptimizedGridCells
+buildGrid
+runGridKnn
