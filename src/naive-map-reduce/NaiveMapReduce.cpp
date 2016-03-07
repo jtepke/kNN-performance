@@ -169,16 +169,14 @@ BPQ<PointArrayAccessor> NaiveMapReduce::reduceGrid(
 		std::vector<BPQ<PointVectorAccessor>>& mapResult, PointAccessor* query,
 		unsigned k) {
 	BPQ<PointArrayAccessor> result { k };
-
+	PointArrayAccessor pa = PointArrayAccessor{query->getData(),query->getOffset(),query->dimension()};
 	for (unsigned bpq_idx = 0; bpq_idx < mapResult.size(); ++bpq_idx) {
 
-		while (!mapResult[bpq_idx].empty()) {
+		while (!(mapResult[bpq_idx].empty())) {
 			double topDistance = mapResult[bpq_idx].topDistance();
 
 			if (topDistance < result.max_dist()) {
-				result.push(
-						PointArrayAccessor { mapResult[bpq_idx].topPoint() },
-						topDistance);
+				result.push(pa, topDistance);
 			}
 
 			mapResult[bpq_idx].pop();
