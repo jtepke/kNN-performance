@@ -1,0 +1,22 @@
+dimension 3
+numberOfRefPoints 1000000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution gauss_cluster
+refStddev 50
+refMean 50
+numberOfRefClusters 10
+
+numberOfQueryPoints 100
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+#genReferencePoints
+readReferencePointsFromFile 1BRef_gauss_cluster.pts 1000000000
+genQueryPoints
+
+k 1000
+maxNumberOfThreads 40 
+maxThreadLoad 10
+singleThreadedThreshold 10
+buildNaiveMapReduce
+runNaiveMapReduceKnn
