@@ -1,7 +1,9 @@
 #include "../util/RandomPointGenerator.h"
 #include "../util/MemoryManagement.h"
-#include <stdexcept>
+
 #include <cassert>
+#include <stdexcept>
+#include <thread>
 
 void RandomPointGenerator::initUniform(MBR& m, std::size_t dimension) {
 	uniform_.reserve(dimension);
@@ -29,11 +31,13 @@ void RandomPointGenerator::initGaussCluster(std::size_t numberOfClusters,
 }
 
 void RandomPointGenerator::genUniformPts(std::vector<double>& randPts,
-		std::size_t numberOfPoints, std::size_t dimension, MBR& mbr) {
+		std::size_t numberOfPoints, std::size_t dimension, MBR& mbr,
+		unsigned threadOffset) {
 
 	for (std::size_t i = 0; i < numberOfPoints; i++) {
 		for (std::size_t j = 0; j < dimension; j++) {
-			randPts[(i * dimension) + j] = (*uniform_[j])(randEngine_);
+			randPts[(i * dimension) + j + threadOffset] = (*uniform_[j])(
+					randEngine_);
 		}
 		assert(mbr.isWithin(&randPts[i * dimension]));
 	}
@@ -80,7 +84,37 @@ PointContainer RandomPointGenerator::generatePoints(std::size_t numberOfPoints,
 		break;
 	case UNIFORM:
 		initUniform(mbr, dimension);
-		genUniformPts(randPoints, numberOfPoints, dimension, mbr);
+		if (numberOfGeneratorThreads_ == 1) {
+			genUniformPts(randPoints, numberOfPoints, dimension, mbr);
+		} else {
+			std::vector<std::thread> mapThreads;
+
+			std::size_t step = numberOfPoints / numberOfGeneratorThreads_;
+			std::size_t lastFullStepOffset = (numberOfGeneratorThreads_ - 1)
+					* step;
+			std::size_t endStep = numberOfPoints - lastFullStepOffset;
+
+			for (unsigned threadId = 0;
+					threadId < numberOfGeneratorThreads_ - 1; ++threadId) {
+				mapThreads.push_back(
+						std::thread(&RandomPointGenerator::genUniformPts, this,
+								std::ref(randPoints), step, dimension,
+								std::ref(mbr), step * dimension * threadId));
+			}
+
+			mapThreads.push_back(
+					std::thread(&RandomPointGenerator::genUniformPts, this,
+							std::ref(randPoints), endStep, dimension,
+							std::ref(mbr),
+							step * dimension
+									* (numberOfGeneratorThreads_ - 1)));
+
+			for (unsigned threadId = 0; threadId < numberOfGeneratorThreads_;
+					++threadId) {
+				mapThreads[threadId].join();
+			}
+
+		}
 		break;
 	default:
 		//this should never happen...

@@ -14,11 +14,12 @@ private:
 	std::vector<std::normal_distribution<double>*> gauss_;
 
 	bool checkMBR_;
+	std::size_t numberOfGeneratorThreads_ = 1;
 	void initUniform(MBR& m, std::size_t dimension);
 	void initGauss(double mean, double stddev);
 	void initGaussCluster(std::size_t dimension, double stddev);
 	void genUniformPts(std::vector<double>& randPts, std::size_t numberOfPoints,
-			std::size_t dimension, MBR& m);
+			std::size_t dimension, MBR& m, unsigned threadOffset = 0);
 	void genGaussPts(std::vector<double>& randPts, std::size_t numberOfPoints,
 			std::size_t dimension, std::size_t numberOfClusters, MBR& m);
 public:
@@ -52,8 +53,11 @@ public:
 	void setCheckMBR(bool checkFlag) {
 		checkMBR_ = checkFlag;
 	}
-	bool getCheckMBR() {
-		return checkMBR_;
+	void setNumberOfGeneratorThreads(std::size_t numberOfGeneratorThreads) {
+		numberOfGeneratorThreads_ = numberOfGeneratorThreads;
+	}
+	std::size_t getNumberOfGeneratorThreads() {
+		return numberOfGeneratorThreads_;
 	}
 };
 

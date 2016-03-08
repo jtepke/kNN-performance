@@ -22,6 +22,7 @@
 //Reference parameters
 std::size_t dimension;					// dimension
 std::size_t numberOfRefPoints = 0;			// reference size
+std::size_t numberOfGeneratorThreads = 1; //number of generator threads
 unsigned seed;
 bool customizedSeed = false;
 double refMean = 0.0;					// mean
@@ -141,7 +142,8 @@ Grid* buildUpGrid(Grid* grid, StopWatch& watch, double* refPtsArray,
 	if (!printCSV) {
 		std::cout << "Building grid index (cell size = " << cellSize;
 		if (numberOfRefPoints > gridInsertThreadLoad) {
-			std::cout << ", max. number of threads = " << gridMaxNumberOfInsertThreads;
+			std::cout << ", max. number of threads = "
+					<< gridMaxNumberOfInsertThreads;
 		}
 		std::cout << ") ... this may take a while ..." << std::endl;
 	}
@@ -189,6 +191,8 @@ int main(int argc, char** argv) {
 			std::cin >> dimension;
 		} else if (!strcmp(directive, "numberOfRefPoints")) {
 			std::cin >> numberOfRefPoints;
+		} else if (!strcmp(directive, "numberOfGeneratorThreads")) {
+			std::cin >> numberOfGeneratorThreads;
 		} else if (!strcmp(directive, "refMBR")) {
 			refMBR = parseMbr(std::cin, dimension);
 		} else if (!strcmp(directive, "refMean")) {
@@ -216,6 +220,7 @@ int main(int argc, char** argv) {
 			} else {
 				rpg = new RandomPointGenerator { };
 			}
+			rpg->setNumberOfGeneratorThreads(numberOfGeneratorThreads);
 			std::cout
 					<< "Generating reference points ... this may take a while..."
 					<< std::endl;
@@ -321,14 +326,14 @@ int main(int argc, char** argv) {
 			}
 			bool useGrid;
 			std::cin >> useGrid;
-			if(useGrid) {
-			naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
-					numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
-					singleThreadedThreshold , KNN_STRATEGY::GRID};
+			if (useGrid) {
+				naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
+						numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
+						singleThreadedThreshold, KNN_STRATEGY::GRID };
 			} else {
 				naiveMR = new NaiveMapReduce { refPoints.data(), dimension,
-									numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
-									singleThreadedThreshold , KNN_STRATEGY::NAIVE};
+						numberOfRefPoints, maxNumberOfThreads, maxThreadLoad,
+						singleThreadedThreshold, KNN_STRATEGY::NAIVE };
 			}
 		} else if (!strcmp(directive, "runGridKnn")) {
 			auto gridKnnTime = executeKnn<PointVectorAccessor>(queryPoints, k,

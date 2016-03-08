@@ -26,16 +26,31 @@ protected:
 	}
 
 	void initRPGWithSeed(std::size_t seed) {
+		if (rpg) {
+			delete (rpg);
+		}
 		rpg = new RandomPointGenerator { seed };
 	}
 
 	void initRPGWithoutSeed() {
+		if (rpg) {
+			delete (rpg);
+		}
 		rpg = new RandomPointGenerator { };
 	}
 };
 
 TEST_F(RandomPointGeneratorTest, can_generate_1MioPts_unfiormly_disitributed) {
 	initRPGWithoutSeed();
+	auto result = rpg->generatePoints(ONE_MIO_TEST_PTS,
+			RandomPointGenerator::UNIFORM, testMBR);
+
+	ASSERT_EQ(result.size(), ONE_MIO_TEST_PTS);
+}
+
+TEST_F(RandomPointGeneratorTest, can_generate_1MioPts_unfiormly_disitributed_with_multiple_threads) {
+	initRPGWithoutSeed();
+	rpg->setNumberOfGeneratorThreads(8);
 	auto result = rpg->generatePoints(ONE_MIO_TEST_PTS,
 			RandomPointGenerator::UNIFORM, testMBR);
 
