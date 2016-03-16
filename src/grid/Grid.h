@@ -30,7 +30,7 @@ public:
 	/** locks for multi-threaded insert operation*/
 	std::vector<std::mutex*> insertLocks_;
 	/** we assume this the optimal number points per cell */
-	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 1024;
+	static const std::size_t CELL_FILL_OPTIMUM_DEFAULT = 200;
 	/** Default value for max number of insert threads*/
 	static const unsigned MAX_NUMBER_OF_THREADS_DEFAULT = 20;
 	/** Default value for max points to be inserted single-threaded*/
