@@ -173,7 +173,7 @@ protected:
 		points_ = rg.generatePoints(NUMBER_OF_TEST_POINTS,
 				RandomPointGenerator::UNIFORM, grid_mbr);
 		kNN_test_grid_ = new Grid(DIMENSION, points_.data(),
-				NUMBER_OF_TEST_POINTS * DIMENSION);
+				NUMBER_OF_TEST_POINTS * DIMENSION, 1024);
 	}
 
 	virtual void TearDown() {
@@ -273,7 +273,7 @@ TEST_F(GridKnnTest, getHyperSquareEnvironment_returns_all_cells_eventually) {
 	auto result_2 = kNN_test_grid_->getHyperSquareCellEnvironment(2, cellNumber,
 			cartesionQueryCoords);
 
-	std::vector<unsigned> expected_2 { 2, 11, 20, 29, 6, 15, 24, 33, 3, 4, 5 };
+	std::vector<unsigned> expected_2 { 2, 16, 20, 29, 6, 15, 24, 33, 3, 4, 5 };
 	EXPECT_EQ(result_2.size(), expected_2.size());
 
 	for (unsigned actual : result_2) {
@@ -391,8 +391,8 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 							<< results_grid.size() << '\n';
 					std::cerr << "naive top(): ";
 					results_naive.topPoint().to_stream(std::cerr);
-//					std::cerr << "grid top(): ";
-//					results_grid.top()->to_stream(std::cerr);
+					std::cerr << "grid top(): ";
+					results_grid.topPoint().to_stream(std::cerr);
 					std::cerr << "-----------------------\n";
 					std::cerr << std::endl;
 					goto error_abort;
@@ -402,7 +402,7 @@ TEST_F(GridKnnTest, grid_produces_same_results_as_naive_approach) {
 			}
 		}
 
-		//Hack, to speed up test without breaking others
+		//Performance hack, to speed up test without breaking others
 		if (current_k >= 500) {
 			current_k += 39;
 		}
