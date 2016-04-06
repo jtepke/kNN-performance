@@ -1,7 +1,11 @@
 dimension 3
-numberOfRefPoints 100000000
+numberOfRefPoints 200000000
 refMBR 0.0 0.0 0.0 100.0 100.0 100.0
-refDistribution uniform
+refDistribution gauss_cluster
+refStddev 50
+refMean 50
+numberOfRefClusters 100
+
 genReferencePoints
 
-writeReferencePointsToFile 100MRef_uniform_3d.pts
+writeReferencePointsToFile 200MRef_gauss_cluster_3d001.pts

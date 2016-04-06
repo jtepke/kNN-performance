@@ -1,0 +1,11 @@
+dimension 3
+numberOfRefPoints 500000000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 1000
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints

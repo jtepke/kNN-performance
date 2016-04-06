@@ -1,0 +1,19 @@
+dimension 2 
+numberOfRefPoints 13000000
+refMBR 0.0 0.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 10
+queryMBR 1.0 1.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints
+
+k 10
+maxNumberOfThreads 8 
+maxThreadLoad 10
+singleThreadedThreshold 10
+buildNaiveMapReduce 1 
+
+runNaiveMapReduceKnn

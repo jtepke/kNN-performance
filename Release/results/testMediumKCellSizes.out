@@ -1,0 +1,3550 @@
+###############################################################
+kNN Tester: Please specify input 
+###############################################################
+
+Generating reference points ... this may take a while...
+Finished reference point generation! (63557 micro sec.)
+
+Generating query points ... this may take a while...
+Finished query point generation! (48 micro sec.)
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (224126 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 115
+Query whole runtime (micro sec.): 115003
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (187073 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 195
+Query whole runtime (micro sec.): 195111
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160952 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 262
+Query whole runtime (micro sec.): 262084
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147777 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 228
+Query whole runtime (micro sec.): 228600
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (146057 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 171
+Query whole runtime (micro sec.): 171181
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (147776 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 144
+Query whole runtime (micro sec.): 144156
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (132779 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 163
+Query whole runtime (micro sec.): 163026
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (130202 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 180
+Query whole runtime (micro sec.): 180341
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129662 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 197
+Query whole runtime (micro sec.): 197492
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (128978 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 218
+Query whole runtime (micro sec.): 218020
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (127320 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242097
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (130463 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 269
+Query whole runtime (micro sec.): 269596
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (125045 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 299
+Query whole runtime (micro sec.): 299986
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (121976 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 300
+Query whole runtime (micro sec.): 300147
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120358 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 335
+Query whole runtime (micro sec.): 335772
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (120162 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 335
+Query whole runtime (micro sec.): 335721
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119542 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 373
+Query whole runtime (micro sec.): 373120
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (127973 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 373
+Query whole runtime (micro sec.): 373448
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (121383 micro sec.)
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 411
+Query whole runtime (micro sec.): 411673
+
+Finished kNN (k=105) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 410
+Query whole runtime (micro sec.): 410930
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (211579 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 114
+Query whole runtime (micro sec.): 114175
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (187767 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 194
+Query whole runtime (micro sec.): 194197
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160461 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 274
+Query whole runtime (micro sec.): 274036
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (148195 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 257
+Query whole runtime (micro sec.): 257943
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (142938 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 197
+Query whole runtime (micro sec.): 197285
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (147230 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 148
+Query whole runtime (micro sec.): 148659
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (132444 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 164
+Query whole runtime (micro sec.): 164233
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (130057 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 179
+Query whole runtime (micro sec.): 179959
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129603 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 196
+Query whole runtime (micro sec.): 196920
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129052 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 218
+Query whole runtime (micro sec.): 218083
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (126944 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242840
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (124609 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 271
+Query whole runtime (micro sec.): 271171
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (121797 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302007
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123060 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301744
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (119862 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 336
+Query whole runtime (micro sec.): 336921
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119745 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 336
+Query whole runtime (micro sec.): 336674
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119182 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381393
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (122555 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 376
+Query whole runtime (micro sec.): 376747
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (121075 micro sec.)
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 415
+Query whole runtime (micro sec.): 415284
+
+Finished kNN (k=110) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 414
+Query whole runtime (micro sec.): 414855
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (211899 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 115
+Query whole runtime (micro sec.): 115478
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (186561 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 198
+Query whole runtime (micro sec.): 198553
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160681 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 281
+Query whole runtime (micro sec.): 281482
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147811 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 274
+Query whole runtime (micro sec.): 274452
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (143432 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 224
+Query whole runtime (micro sec.): 224874
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (137813 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 166
+Query whole runtime (micro sec.): 166651
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (132621 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 164
+Query whole runtime (micro sec.): 164289
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129954 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 181
+Query whole runtime (micro sec.): 181491
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129226 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 198
+Query whole runtime (micro sec.): 198354
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (128624 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 219
+Query whole runtime (micro sec.): 219011
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (127264 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 244
+Query whole runtime (micro sec.): 244523
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (129765 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 271
+Query whole runtime (micro sec.): 271559
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (124989 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301931
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (122050 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301735
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120083 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 338
+Query whole runtime (micro sec.): 338790
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119931 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 338
+Query whole runtime (micro sec.): 338378
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119647 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 376
+Query whole runtime (micro sec.): 376831
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (119765 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 377
+Query whole runtime (micro sec.): 377282
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (121046 micro sec.)
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 418
+Query whole runtime (micro sec.): 418582
+
+Finished kNN (k=115) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 418
+Query whole runtime (micro sec.): 418444
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (212239 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 116
+Query whole runtime (micro sec.): 116439
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (186050 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 197
+Query whole runtime (micro sec.): 197336
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (161749 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 289
+Query whole runtime (micro sec.): 289514
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147503 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 294
+Query whole runtime (micro sec.): 294743
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (142870 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 253
+Query whole runtime (micro sec.): 253324
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (137390 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 184
+Query whole runtime (micro sec.): 184649
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (132161 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 164
+Query whole runtime (micro sec.): 164841
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129912 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 181
+Query whole runtime (micro sec.): 181497
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (128771 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 197
+Query whole runtime (micro sec.): 197972
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (134246 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 220
+Query whole runtime (micro sec.): 220211
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (129404 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 245
+Query whole runtime (micro sec.): 245071
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (124238 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 273
+Query whole runtime (micro sec.): 273020
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (121410 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304271
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (121771 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304104
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (119412 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 341
+Query whole runtime (micro sec.): 341914
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119049 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 350
+Query whole runtime (micro sec.): 350713
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (123238 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 393
+Query whole runtime (micro sec.): 393243
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (123059 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 392
+Query whole runtime (micro sec.): 392809
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (123487 micro sec.)
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 432
+Query whole runtime (micro sec.): 432380
+
+Finished kNN (k=120) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 431
+Query whole runtime (micro sec.): 431940
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (218174 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 121
+Query whole runtime (micro sec.): 121248
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (197249 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 212
+Query whole runtime (micro sec.): 212218
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (168834 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 308
+Query whole runtime (micro sec.): 308140
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (155641 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 322
+Query whole runtime (micro sec.): 322273
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (171777 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 288
+Query whole runtime (micro sec.): 288780
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (166026 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 223
+Query whole runtime (micro sec.): 223185
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (186192 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 176
+Query whole runtime (micro sec.): 176150
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (171530 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 181
+Query whole runtime (micro sec.): 181415
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (152084 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 201
+Query whole runtime (micro sec.): 201436
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (164206 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 228
+Query whole runtime (micro sec.): 228214
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (157526 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 245
+Query whole runtime (micro sec.): 245001
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (147362 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 298
+Query whole runtime (micro sec.): 298165
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (135596 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 315
+Query whole runtime (micro sec.): 315394
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123952 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 299
+Query whole runtime (micro sec.): 299931
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120939 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 333
+Query whole runtime (micro sec.): 333605
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (121576 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 335
+Query whole runtime (micro sec.): 335212
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (121302 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 372
+Query whole runtime (micro sec.): 372949
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (126826 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 387
+Query whole runtime (micro sec.): 387330
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (130679 micro sec.)
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 405
+Query whole runtime (micro sec.): 405619
+
+Finished kNN (k=125) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 405
+Query whole runtime (micro sec.): 405850
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (249962 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 123
+Query whole runtime (micro sec.): 123774
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (187437 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 195
+Query whole runtime (micro sec.): 195854
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (164150 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 293
+Query whole runtime (micro sec.): 293227
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (151806 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 318
+Query whole runtime (micro sec.): 318095
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (147535 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 298
+Query whole runtime (micro sec.): 298140
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (139116 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 236
+Query whole runtime (micro sec.): 236229
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (135020 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 168
+Query whole runtime (micro sec.): 168636
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (132538 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 179
+Query whole runtime (micro sec.): 179722
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (131281 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 193
+Query whole runtime (micro sec.): 193911
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (131686 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 214
+Query whole runtime (micro sec.): 214157
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (126756 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 240
+Query whole runtime (micro sec.): 240045
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (127216 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 267
+Query whole runtime (micro sec.): 267057
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (124834 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 296
+Query whole runtime (micro sec.): 296909
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (124639 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 297
+Query whole runtime (micro sec.): 297777
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (122622 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 334
+Query whole runtime (micro sec.): 334089
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (122621 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 340
+Query whole runtime (micro sec.): 340679
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (127512 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 369
+Query whole runtime (micro sec.): 369266
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (119185 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 377
+Query whole runtime (micro sec.): 377856
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (127469 micro sec.)
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 422
+Query whole runtime (micro sec.): 422166
+
+Finished kNN (k=130) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 423
+Query whole runtime (micro sec.): 423942
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (223431 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 118
+Query whole runtime (micro sec.): 118937
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (189218 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 203
+Query whole runtime (micro sec.): 203057
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (161735 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302823
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (152724 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 337
+Query whole runtime (micro sec.): 337018
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (158066 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 322
+Query whole runtime (micro sec.): 322368
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (140292 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 268
+Query whole runtime (micro sec.): 268495
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (135895 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 180
+Query whole runtime (micro sec.): 180556
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (132506 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 186
+Query whole runtime (micro sec.): 186460
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (133278 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 200
+Query whole runtime (micro sec.): 200703
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (132337 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 216
+Query whole runtime (micro sec.): 216415
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (138859 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242678
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (126447 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 270
+Query whole runtime (micro sec.): 270548
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (124219 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301668
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (124253 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301800
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120939 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 336
+Query whole runtime (micro sec.): 336360
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119834 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 336
+Query whole runtime (micro sec.): 336880
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (120306 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381069
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (123419 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 376
+Query whole runtime (micro sec.): 376485
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (120902 micro sec.)
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 418
+Query whole runtime (micro sec.): 418927
+
+Finished kNN (k=135) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 418
+Query whole runtime (micro sec.): 418586
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (214265 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 117
+Query whole runtime (micro sec.): 117624
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (179915 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 195
+Query whole runtime (micro sec.): 195303
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (156057 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 299
+Query whole runtime (micro sec.): 299675
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (144689 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 336
+Query whole runtime (micro sec.): 336942
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (141183 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 335
+Query whole runtime (micro sec.): 335506
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138723 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 284
+Query whole runtime (micro sec.): 284002
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (129975 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 190
+Query whole runtime (micro sec.): 190093
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (127731 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 184
+Query whole runtime (micro sec.): 184709
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (126935 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 194
+Query whole runtime (micro sec.): 194649
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (127354 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 214
+Query whole runtime (micro sec.): 214545
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (125127 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 240
+Query whole runtime (micro sec.): 240639
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (123761 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 266
+Query whole runtime (micro sec.): 266800
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (120044 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 296
+Query whole runtime (micro sec.): 296281
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (120017 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 295
+Query whole runtime (micro sec.): 295946
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (117556 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 333
+Query whole runtime (micro sec.): 333501
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (117542 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 334
+Query whole runtime (micro sec.): 334296
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (117255 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 373
+Query whole runtime (micro sec.): 373249
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (130528 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 374
+Query whole runtime (micro sec.): 374497
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (119369 micro sec.)
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 415
+Query whole runtime (micro sec.): 415443
+
+Finished kNN (k=140) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 415
+Query whole runtime (micro sec.): 415060
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (208636 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 119
+Query whole runtime (micro sec.): 119053
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (185664 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 201
+Query whole runtime (micro sec.): 201866
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (166503 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 314
+Query whole runtime (micro sec.): 314390
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147690 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 351
+Query whole runtime (micro sec.): 351863
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (142324 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 348
+Query whole runtime (micro sec.): 348208
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138381 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 311
+Query whole runtime (micro sec.): 311171
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (131176 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 212
+Query whole runtime (micro sec.): 212636
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (128827 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 192
+Query whole runtime (micro sec.): 192619
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (130669 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 197
+Query whole runtime (micro sec.): 197500
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (128319 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 217
+Query whole runtime (micro sec.): 217634
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (126336 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242098
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (124037 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 269
+Query whole runtime (micro sec.): 269767
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (129631 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 300
+Query whole runtime (micro sec.): 300291
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (125435 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 300
+Query whole runtime (micro sec.): 300749
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120577 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 337
+Query whole runtime (micro sec.): 337987
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (120083 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 337
+Query whole runtime (micro sec.): 337676
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (120647 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 378
+Query whole runtime (micro sec.): 378873
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (120380 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 379
+Query whole runtime (micro sec.): 379585
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (120376 micro sec.)
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 420
+Query whole runtime (micro sec.): 420879
+
+Finished kNN (k=145) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 419
+Query whole runtime (micro sec.): 419738
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (210851 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 121
+Query whole runtime (micro sec.): 121813
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (181729 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 198
+Query whole runtime (micro sec.): 198352
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (157025 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304651
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (148675 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 358
+Query whole runtime (micro sec.): 358547
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (141896 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 365
+Query whole runtime (micro sec.): 365277
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138962 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 331
+Query whole runtime (micro sec.): 331955
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (130465 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 233
+Query whole runtime (micro sec.): 233454
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129972 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 198
+Query whole runtime (micro sec.): 198884
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (128537 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 200
+Query whole runtime (micro sec.): 200288
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129565 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 220
+Query whole runtime (micro sec.): 220247
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (130771 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 243
+Query whole runtime (micro sec.): 243935
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (132777 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 268
+Query whole runtime (micro sec.): 268464
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (121833 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 299
+Query whole runtime (micro sec.): 299689
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (121464 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 299
+Query whole runtime (micro sec.): 299544
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (119624 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 335
+Query whole runtime (micro sec.): 335031
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (118425 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 334
+Query whole runtime (micro sec.): 334819
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (120981 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 375
+Query whole runtime (micro sec.): 375832
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (119876 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 375
+Query whole runtime (micro sec.): 375497
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (121221 micro sec.)
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 416
+Query whole runtime (micro sec.): 416026
+
+Finished kNN (k=150) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 416
+Query whole runtime (micro sec.): 416084
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (211037 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 128
+Query whole runtime (micro sec.): 128250
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (186322 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 203
+Query whole runtime (micro sec.): 203416
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160176 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 307
+Query whole runtime (micro sec.): 307864
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (149997 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 368
+Query whole runtime (micro sec.): 368163
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (143405 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 380
+Query whole runtime (micro sec.): 380555
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (139720 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 354
+Query whole runtime (micro sec.): 354071
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (132655 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 261
+Query whole runtime (micro sec.): 261431
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (132525 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 214
+Query whole runtime (micro sec.): 214381
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129447 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 201
+Query whole runtime (micro sec.): 201738
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (130244 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 217
+Query whole runtime (micro sec.): 217862
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (129542 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 243
+Query whole runtime (micro sec.): 243827
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (125295 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 271
+Query whole runtime (micro sec.): 271079
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (124240 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302698
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (120941 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302395
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (119444 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 339
+Query whole runtime (micro sec.): 339900
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (120911 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 345
+Query whole runtime (micro sec.): 345248
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (122892 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 380
+Query whole runtime (micro sec.): 380797
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (120706 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381322
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (122942 micro sec.)
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 422
+Query whole runtime (micro sec.): 422071
+
+Finished kNN (k=155) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 421
+Query whole runtime (micro sec.): 421805
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (213559 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 134
+Query whole runtime (micro sec.): 134557
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (182343 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 200
+Query whole runtime (micro sec.): 200557
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (161107 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 310
+Query whole runtime (micro sec.): 310942
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (148772 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 373
+Query whole runtime (micro sec.): 373592
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (144692 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 392
+Query whole runtime (micro sec.): 392115
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (139747 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 379
+Query whole runtime (micro sec.): 379311
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (133474 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 286
+Query whole runtime (micro sec.): 286356
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (131579 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 228
+Query whole runtime (micro sec.): 228797
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (130896 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 206
+Query whole runtime (micro sec.): 206633
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129032 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 218
+Query whole runtime (micro sec.): 218038
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (127396 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242106
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (125625 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 269
+Query whole runtime (micro sec.): 269683
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (123514 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301726
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123058 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 301
+Query whole runtime (micro sec.): 301529
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (121280 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 338
+Query whole runtime (micro sec.): 338583
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (121410 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 338
+Query whole runtime (micro sec.): 338461
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119571 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 377
+Query whole runtime (micro sec.): 377160
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (120799 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 377
+Query whole runtime (micro sec.): 377391
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (119779 micro sec.)
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 422
+Query whole runtime (micro sec.): 422925
+
+Finished kNN (k=160) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 421
+Query whole runtime (micro sec.): 421215
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (212857 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 144
+Query whole runtime (micro sec.): 144259
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (183580 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 205
+Query whole runtime (micro sec.): 205105
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (162848 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 310
+Query whole runtime (micro sec.): 310556
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147448 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 378
+Query whole runtime (micro sec.): 378661
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (141045 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 404
+Query whole runtime (micro sec.): 404702
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (137484 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 401
+Query whole runtime (micro sec.): 401240
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (133567 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 311
+Query whole runtime (micro sec.): 311319
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (128506 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 250
+Query whole runtime (micro sec.): 250305
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129938 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 215
+Query whole runtime (micro sec.): 215313
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (130080 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 221
+Query whole runtime (micro sec.): 221251
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (125722 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 245
+Query whole runtime (micro sec.): 245083
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (125848 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 272
+Query whole runtime (micro sec.): 272050
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (123111 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 303
+Query whole runtime (micro sec.): 303781
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (122896 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304173
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120897 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 341
+Query whole runtime (micro sec.): 341045
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (120764 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 340
+Query whole runtime (micro sec.): 340569
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (118132 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381631
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (120398 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381128
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (119570 micro sec.)
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 428
+Query whole runtime (micro sec.): 428248
+
+Finished kNN (k=165) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 428
+Query whole runtime (micro sec.): 428548
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (213868 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 157
+Query whole runtime (micro sec.): 157065
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (182769 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 203
+Query whole runtime (micro sec.): 203896
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (159637 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 313
+Query whole runtime (micro sec.): 313291
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (148889 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 383
+Query whole runtime (micro sec.): 383250
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (144909 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 417
+Query whole runtime (micro sec.): 417232
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138381 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 416
+Query whole runtime (micro sec.): 416346
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (133509 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 328
+Query whole runtime (micro sec.): 328992
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (131610 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 280
+Query whole runtime (micro sec.): 280677
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (131012 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 230
+Query whole runtime (micro sec.): 230939
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129311 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 222
+Query whole runtime (micro sec.): 222418
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (128337 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 242
+Query whole runtime (micro sec.): 242802
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (126468 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 270
+Query whole runtime (micro sec.): 270649
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (122676 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302889
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123517 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302147
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (118332 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 339
+Query whole runtime (micro sec.): 339181
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119425 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 339
+Query whole runtime (micro sec.): 339917
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (118373 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 378
+Query whole runtime (micro sec.): 378270
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (118720 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 377
+Query whole runtime (micro sec.): 377763
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (118034 micro sec.)
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 421
+Query whole runtime (micro sec.): 421352
+
+Finished kNN (k=170) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 420
+Query whole runtime (micro sec.): 420864
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (210409 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 169
+Query whole runtime (micro sec.): 169512
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (180857 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 208
+Query whole runtime (micro sec.): 208344
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (158737 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 312
+Query whole runtime (micro sec.): 312347
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (145636 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 389
+Query whole runtime (micro sec.): 389411
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (141705 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 423
+Query whole runtime (micro sec.): 423548
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (136641 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 431
+Query whole runtime (micro sec.): 431097
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (136260 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 349
+Query whole runtime (micro sec.): 349344
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129198 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 311
+Query whole runtime (micro sec.): 311802
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129355 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 245
+Query whole runtime (micro sec.): 245730
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129017 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 227
+Query whole runtime (micro sec.): 227051
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (126906 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 244
+Query whole runtime (micro sec.): 244520
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (123551 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 273
+Query whole runtime (micro sec.): 273538
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (122492 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 303
+Query whole runtime (micro sec.): 303701
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123425 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 303
+Query whole runtime (micro sec.): 303947
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120617 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 342
+Query whole runtime (micro sec.): 342170
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (119659 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 342
+Query whole runtime (micro sec.): 342182
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (120248 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 383
+Query whole runtime (micro sec.): 383650
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (119434 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 383
+Query whole runtime (micro sec.): 383543
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (120660 micro sec.)
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 427
+Query whole runtime (micro sec.): 427651
+
+Finished kNN (k=175) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 427
+Query whole runtime (micro sec.): 427612
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (212487 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 181
+Query whole runtime (micro sec.): 181434
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (182681 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 205
+Query whole runtime (micro sec.): 205949
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (159500 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 314
+Query whole runtime (micro sec.): 314437
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (147677 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 392
+Query whole runtime (micro sec.): 392293
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (144017 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 428
+Query whole runtime (micro sec.): 428687
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138858 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 438
+Query whole runtime (micro sec.): 438647
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (130319 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 375
+Query whole runtime (micro sec.): 375191
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (128479 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 337
+Query whole runtime (micro sec.): 337296
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (128339 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 266
+Query whole runtime (micro sec.): 266513
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (129233 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 232
+Query whole runtime (micro sec.): 232358
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (128781 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 244
+Query whole runtime (micro sec.): 244937
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (127218 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 272
+Query whole runtime (micro sec.): 272585
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (123813 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 303
+Query whole runtime (micro sec.): 303411
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (121292 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 302
+Query whole runtime (micro sec.): 302836
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (119220 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 341
+Query whole runtime (micro sec.): 341629
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (118309 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 341
+Query whole runtime (micro sec.): 341920
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119757 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 381
+Query whole runtime (micro sec.): 381809
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (120003 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 382
+Query whole runtime (micro sec.): 382147
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (119495 micro sec.)
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 425
+Query whole runtime (micro sec.): 425111
+
+Finished kNN (k=180) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 425
+Query whole runtime (micro sec.): 425023
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (208372 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 196
+Query whole runtime (micro sec.): 196495
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (186105 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 213
+Query whole runtime (micro sec.): 213045
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160791 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 316
+Query whole runtime (micro sec.): 316434
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (148052 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 401
+Query whole runtime (micro sec.): 401430
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (142345 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 437
+Query whole runtime (micro sec.): 437562
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138007 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 454
+Query whole runtime (micro sec.): 454903
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (133990 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 396
+Query whole runtime (micro sec.): 396922
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129626 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 364
+Query whole runtime (micro sec.): 364586
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (130745 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 297
+Query whole runtime (micro sec.): 297696
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (128066 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 245
+Query whole runtime (micro sec.): 245109
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (126477 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 246
+Query whole runtime (micro sec.): 246969
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (125654 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 273
+Query whole runtime (micro sec.): 273929
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (123656 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304696
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (120307 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304743
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (121169 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 343
+Query whole runtime (micro sec.): 343892
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (121115 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 343
+Query whole runtime (micro sec.): 343732
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (120129 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 392
+Query whole runtime (micro sec.): 392268
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (121401 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 385
+Query whole runtime (micro sec.): 385515
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (123088 micro sec.)
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 430
+Query whole runtime (micro sec.): 430533
+
+Finished kNN (k=185) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 429
+Query whole runtime (micro sec.): 429222
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (212422 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 209
+Query whole runtime (micro sec.): 209581
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (180814 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 208
+Query whole runtime (micro sec.): 208421
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (159193 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 316
+Query whole runtime (micro sec.): 316506
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (144820 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 401
+Query whole runtime (micro sec.): 401948
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (143847 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 444
+Query whole runtime (micro sec.): 444769
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (138556 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 468
+Query whole runtime (micro sec.): 468987
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (131933 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 417
+Query whole runtime (micro sec.): 417167
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (129593 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 383
+Query whole runtime (micro sec.): 383190
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (129173 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 323
+Query whole runtime (micro sec.): 323063
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (130491 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 259
+Query whole runtime (micro sec.): 259420
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (127740 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 248
+Query whole runtime (micro sec.): 248933
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (126461 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 272
+Query whole runtime (micro sec.): 272367
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (122657 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304521
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (123754 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 304
+Query whole runtime (micro sec.): 304742
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (120932 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 342
+Query whole runtime (micro sec.): 342724
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (120985 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 340
+Query whole runtime (micro sec.): 340878
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (119352 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 385
+Query whole runtime (micro sec.): 385212
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (119006 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 385
+Query whole runtime (micro sec.): 385157
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (117529 micro sec.)
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 428
+Query whole runtime (micro sec.): 428086
+
+Finished kNN (k=190) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 428
+Query whole runtime (micro sec.): 428860
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (211387 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 221
+Query whole runtime (micro sec.): 221597
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (183780 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 216
+Query whole runtime (micro sec.): 216003
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (160264 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 319
+Query whole runtime (micro sec.): 319442
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (144915 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 409
+Query whole runtime (micro sec.): 409834
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (145339 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 460
+Query whole runtime (micro sec.): 460850
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (139224 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 486
+Query whole runtime (micro sec.): 486940
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (135617 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 443
+Query whole runtime (micro sec.): 443743
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (150233 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 416
+Query whole runtime (micro sec.): 416571
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (137560 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 360
+Query whole runtime (micro sec.): 360677
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (135194 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 285
+Query whole runtime (micro sec.): 285748
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (132736 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 260
+Query whole runtime (micro sec.): 260167
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (128832 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 280
+Query whole runtime (micro sec.): 280972
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (126606 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 315
+Query whole runtime (micro sec.): 315693
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (126677 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 314
+Query whole runtime (micro sec.): 314808
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (126268 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 353
+Query whole runtime (micro sec.): 353439
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (126313 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 353
+Query whole runtime (micro sec.): 353438
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (126846 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 396
+Query whole runtime (micro sec.): 396424
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (125621 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 396
+Query whole runtime (micro sec.): 396883
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (125427 micro sec.)
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 445
+Query whole runtime (micro sec.): 445568
+
+Finished kNN (k=195) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 443
+Query whole runtime (micro sec.): 443810
+
+Building grid index (cell size = 5) ... this may take a while ...
+Finished grid construction! (221795 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 252
+Query whole runtime (micro sec.): 252074
+
+Building grid index (cell size = 10) ... this may take a while ...
+Finished grid construction! (209298 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 221
+Query whole runtime (micro sec.): 221818
+
+Building grid index (cell size = 15) ... this may take a while ...
+Finished grid construction! (170099 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 331
+Query whole runtime (micro sec.): 331403
+
+Building grid index (cell size = 20) ... this may take a while ...
+Finished grid construction! (157306 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 422
+Query whole runtime (micro sec.): 422918
+
+Building grid index (cell size = 25) ... this may take a while ...
+Finished grid construction! (151746 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 473
+Query whole runtime (micro sec.): 473463
+
+Building grid index (cell size = 30) ... this may take a while ...
+Finished grid construction! (146427 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 510
+Query whole runtime (micro sec.): 510732
+
+Building grid index (cell size = 35) ... this may take a while ...
+Finished grid construction! (139449 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 468
+Query whole runtime (micro sec.): 468605
+
+Building grid index (cell size = 40) ... this may take a while ...
+Finished grid construction! (136140 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 444
+Query whole runtime (micro sec.): 444080
+
+Building grid index (cell size = 45) ... this may take a while ...
+Finished grid construction! (134695 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 390
+Query whole runtime (micro sec.): 390793
+
+Building grid index (cell size = 50) ... this may take a while ...
+Finished grid construction! (137811 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 309
+Query whole runtime (micro sec.): 309099
+
+Building grid index (cell size = 55) ... this may take a while ...
+Finished grid construction! (132079 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 265
+Query whole runtime (micro sec.): 265214
+
+Building grid index (cell size = 60) ... this may take a while ...
+Finished grid construction! (129695 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 283
+Query whole runtime (micro sec.): 283713
+
+Building grid index (cell size = 65) ... this may take a while ...
+Finished grid construction! (126885 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 314
+Query whole runtime (micro sec.): 314054
+
+Building grid index (cell size = 70) ... this may take a while ...
+Finished grid construction! (127919 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 313
+Query whole runtime (micro sec.): 313876
+
+Building grid index (cell size = 75) ... this may take a while ...
+Finished grid construction! (124507 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 355
+Query whole runtime (micro sec.): 355733
+
+Building grid index (cell size = 80) ... this may take a while ...
+Finished grid construction! (124460 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 355
+Query whole runtime (micro sec.): 355940
+
+Building grid index (cell size = 85) ... this may take a while ...
+Finished grid construction! (124039 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 397
+Query whole runtime (micro sec.): 397093
+
+Building grid index (cell size = 90) ... this may take a while ...
+Finished grid construction! (125556 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 401
+Query whole runtime (micro sec.): 401445
+
+Building grid index (cell size = 95) ... this may take a while ...
+Finished grid construction! (128156 micro sec.)
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 444
+Query whole runtime (micro sec.): 444990
+
+Finished kNN (k=200) lookup on Spatial Grid
+Run queries: 1000
+Indexed points: 1000000
+Query avg. runtime (micro sec.): 444
+Query whole runtime (micro sec.): 444469
+
