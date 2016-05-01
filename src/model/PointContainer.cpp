@@ -42,6 +42,12 @@ PointContainer PointContainer::clonePoint(std::size_t pointIndex) const {
 	return p;
 }
 
+PointContainer PointContainer::append(PointContainer& tail) {
+	coordinates_.insert(coordinates_.end(), tail.begin(), tail.end());
+
+	return *this;
+}
+
 double* PointContainer::data() {
 	return coordinates_.data();
 }

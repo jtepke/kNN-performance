@@ -1,10 +1,12 @@
 #ifndef POINTCONTAINER_H_
 #define POINTCONTAINER_H_
 
-#include "../util/Representable.h"
-#include <vector>
 #include <cstddef>
+#include <iterator>
+#include <vector>
+
 #include "PointVectorAccessor.h"
+#include "../util/Representable.h"
 
 class PointContainer: public Representable {
 protected:
@@ -36,6 +38,7 @@ public:
 			dimension_(dimension), coordinates_(coordinates) {
 
 	}
+
 	PointVectorAccessor operator[](std::size_t idx) {
 		const std::size_t pIndex = dimension_ * idx;
 
@@ -48,8 +51,18 @@ public:
 	std::size_t size() const;
 	virtual bool empty();
 	PointContainer clonePoint(std::size_t pointIndex) const;
+	PointContainer append(PointContainer& pc);
 	double* data();
+
 	void to_stream(std::ostream& os) override;
+
+	std::vector<double>::iterator begin() {
+		return coordinates_.begin();
+	}
+
+	std::vector<double>::iterator end() {
+		return coordinates_.end();
+	}
 };
 
 #endif
