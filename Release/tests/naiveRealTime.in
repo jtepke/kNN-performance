@@ -1,0 +1,14 @@
+dimension 3
+numberOfRefPoints 100
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 100
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints
+
+k 10000
+runRealTimeTest 3000 naive

@@ -1,0 +1,17 @@
+dimension 3
+numberOfRefPoints 100000
+refMBR 0.0 0.0 0.0 100.0 100.0 100.0
+refDistribution uniform
+
+numberOfQueryPoints 100
+queryMBR 1.0 1.0 1.0 80.0 80.0 80.0
+queryDistribution uniform
+
+genReferencePoints
+genQueryPoints
+
+gridMaxNumberOfThreads 2 
+gridThreadLoad 10
+
+k 1000
+runRealTimeTest 3000 grid 
